@@ -132,7 +132,7 @@ class FirstFiveAPI {
   };
 
   static async viewProjectUserMatches(project_id){
-    let res = await this.request(`matches/${project_id/users}`);
+    let res = await this.request(`matches/${project_id}/users}`);
     return res;
   };
 
