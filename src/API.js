@@ -80,16 +80,94 @@ class FirstFiveAPI {
     return res.userData;
   };
 
+  static async editUser(username, updateData){
+    let res = await this.request(`users/${username}`, {...updateData}, 'patch');
+    return res.userData;
+  };
 
-
+  static async deleteUser(username){
+    let res = await this.request(`users/${username}`, {}, 'delete');
+    return res;
+  };
 
 
   // ******************************************* PROJECT methods
 
-  // Methods used in app to call API.
+  static async createProject(projectData){
+    let res = await this.request(`projects/new`, {...projectData}, 'post');
+    return res;
+  };
+
   static async getAllProjects(){
     let res = await this.request(`projects/all`);
     console.log("Res is", res)
+    return res;
+  };
+
+  static async viewProject(project_id){
+    let res = await this.this(`projects/${project_id}`);
+    return res;
+  };
+
+  static async editProject(project_id, updateData){
+    let res= await this.request(`projects/${project_id}`, {...updateData}, 'patch');
+    return res;
+  };
+
+  static async deleteProject(project_id){
+    let res = await this.request(`delete/${project_id}`, {}, 'delete');
+    return res;
+  };
+
+  // ******************************************* Match methods
+
+  static async addMatch(username, project_id){
+    let res = await this.request(`matches/add/${username}/${project_id}`, {}, 'post');
+    return res;
+  };
+
+  static async viewUsernameMatches(username){
+    let res = await this.request(`matches/view/${username}/all`);
+    return res;
+  };
+
+  static async viewProjectUserMatches(project_id){
+    let res = await this.request(`matches/${project_id/users}`);
+    return res;
+  };
+
+  static async removeUserMatch(username, project_id){
+    let res = await this.request(`matches/${username}/${project_id}`, {}, 'post');
+    return res;
+  };
+  
+
+  // ******************************************* Project Member methods
+
+  static async addProjectMember(project_id, userToAdd){
+    let res = await this.request(`projects/add/${project_id}`, {...userToAdd}, 'post');
+    return res;
+  };
+
+  static async viewAllProjMembers(project_id){
+    let res= await this.request(`projectmembers/view/all${project_id}`);
+    return res;
+  };
+
+  static async deleteProjectMember(project_id, userToDel){
+    let res = await this.request(`projectmembers/delete/${project_id}`, {...userToDel}, 'delete');
+    return res;
+  };
+
+  // ******************************************* Message methods
+
+  static async createMessage(username, msgData){
+    let res = await this.request(`messages/${username}/create`, {...msgData}, 'post');
+    return res;
+  };
+
+  static async getAllUserMessages(username){
+    let res = await this.request(`messages/${username}/all`);
     return res;
   };
 
