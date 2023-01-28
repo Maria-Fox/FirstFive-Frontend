@@ -13,7 +13,10 @@ class FirstFiveAPI {
     console.log("API Call:", endpoint, data, method);
 
     // hard coding in "blah" token
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJsYWgiLCJpYXQiOjE2NzQ3NTM2Mzd9.-DdkmQK-7oq8fu15twA0FOysb6xhLdeqDK2WlBYxd2I";
+    // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJsYWgiLCJpYXQiOjE2NzQ3NTM2Mzd9.-DdkmQK-7oq8fu15twA0FOysb6xhLdeqDK2WlBYxd2I";
+
+    // CLI TOKEN
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZyb21DTEkiLCJpYXQiOjE2NzQwMDMwODN9.jBbzE30bK3WmLMVJLprLRerxzaF4YNkX7-5jyHE7Cck"
 
     // MUST BE FirstFiveAPI.token once users can register/login.
     const url = `${BASE_URL}/${endpoint}`;
@@ -38,7 +41,7 @@ class FirstFiveAPI {
   static async registerUser(userData) {
     try{
       console.log("register user method called")
-      let newUser = await this.request("/auth/register", {...userData}, 'post');
+      let newUser = await this.request("auth/register", {...userData}, 'post');
 
       // assign valid JWT to local storage for global use
       localStorage.setItem('token', newUser.signedJWT);
@@ -53,7 +56,7 @@ class FirstFiveAPI {
 
   static async authenticateUser(userData){
     try{
-      let authUser = await this.request(`/auth/login`, {...userData}, 'post');
+      let authUser = await this.request(`auth/login`, {...userData}, 'post');
       // assign valid JWT to local storage for global use
       localStorage.setItem('token', authUser.signedJWT);
       localStorage.setItem('username', userData.username);
@@ -65,7 +68,23 @@ class FirstFiveAPI {
     }
   }
 
-    // ******************************************* PROJECT methods
+
+  // ******************************************* USER methods
+
+  // Need to see about limmited views to only those who matched..
+
+
+  static async viewUser(username){
+    let res = await this.request(`users/${username}`); 
+    console.log(res.userData);
+    return res.userData;
+  };
+
+
+
+
+
+  // ******************************************* PROJECT methods
 
   // Methods used in app to call API.
   static async getAllProjects(){
@@ -73,8 +92,6 @@ class FirstFiveAPI {
     console.log("Res is", res)
     return res;
   };
-
-
 
 
   // class closing bracket don't delete.
