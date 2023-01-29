@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import FirstFiveAPI from "./API";
 
-let res;
-
 const Example = () => {
 
   let [data, setData] = useState("");

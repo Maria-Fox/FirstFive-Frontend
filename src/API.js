@@ -16,12 +16,12 @@ class FirstFiveAPI {
     // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJsYWgiLCJpYXQiOjE2NzQ3NTM2Mzd9.-DdkmQK-7oq8fu15twA0FOysb6xhLdeqDK2WlBYxd2I";
 
     // CLI TOKEN
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZyb21DTEkiLCJpYXQiOjE2NzQwMDMwODN9.jBbzE30bK3WmLMVJLprLRerxzaF4YNkX7-5jyHE7Cck"
+    // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZyb21DTEkiLCJpYXQiOjE2NzQwMDMwODN9.jBbzE30bK3WmLMVJLprLRerxzaF4YNkX7-5jyHE7Cck"
 
     // MUST BE FirstFiveAPI.token once users can register/login.
     const url = `${BASE_URL}/${endpoint}`;
     console.log(`Url requested: ${url}`)
-    const headers = { Authorization: `Bearer ${token}` };
+    const headers = { Authorization: `Bearer ${this.token}` };
     const params = (method === "get")
         ? data
         : {};
@@ -44,10 +44,12 @@ class FirstFiveAPI {
       let newUser = await this.request("auth/register", {...userData}, 'post');
 
       // assign valid JWT to local storage for global use
-      localStorage.setItem('token', newUser.signedJWT);
-      localStorage.setItem('username', userData.username);
-      // assign token to static method. Return to front-end to use in further auth requests.
+      window.localStorage.setItem('token', newUser.signedJWT);
+      window.localStorage.setItem('username', userData.username);
+
+      // assign token to static method. Return for components/state
       this.token = newUser.signedJWT
+      console.log(newUser)
       return newUser.signedJWT
     }catch(e){
       throw e;
