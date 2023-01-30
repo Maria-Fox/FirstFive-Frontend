@@ -1,0 +1,9 @@
+.ProjectCard {
+  border: 2px dotted whitesmoke;
+  padding: 10px;
+  margin: 20px;
+};
+
+.LinkToUser{
+  color: beige;
+}

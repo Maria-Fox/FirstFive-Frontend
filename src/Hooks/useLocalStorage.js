@@ -15,7 +15,7 @@ function useLocalStorage(key , firstValue = null){
       window.localStorage.setItem(key, item)
     }
   }, [key, item])
-
+  // console.log("local storage is", [item])
   return [item, setItem]
 }
 export default useLocalStorage;

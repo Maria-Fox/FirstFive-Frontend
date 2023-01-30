@@ -21,7 +21,7 @@ class FirstFiveAPI {
     // MUST BE FirstFiveAPI.token once users can register/login.
     const url = `${BASE_URL}/${endpoint}`;
     console.log(`Url requested: ${url}`)
-    const headers = { Authorization: `Bearer ${this.token}` };
+    const headers = { Authorization: `Bearer ${FirstFiveAPI.token}` };
     const params = (method === "get")
         ? data
         : {};
@@ -44,11 +44,12 @@ class FirstFiveAPI {
       let newUser = await this.request("auth/register", {...userData}, 'post');
 
       // assign valid JWT to local storage for global use
-      window.localStorage.setItem('token', newUser.signedJWT);
-      window.localStorage.setItem('username', userData.username);
+      // window.localStorage.setItem('token', newUser.signedJWT);
+      // window.localStorage.setItem('username', userData.username);
 
       // assign token to static method. Return for components/state
       this.token = newUser.signedJWT
+
       console.log(newUser)
       return newUser.signedJWT
     }catch(e){
@@ -59,16 +60,11 @@ class FirstFiveAPI {
   static async authenticateUser(userData){
     try{
       let authUser = await this.request(`auth/login`, {...userData}, 'post');
-      // assign valid JWT to local storage for global use
-      localStorage.setItem('token', authUser.signedJWT);
-      localStorage.setItem('username', userData.username);
-      // assign token to static method. Return to front-end to use in further auth requests.
-      this.token = authUser.signedJWT
-      return authUser.signedJWT
+      return authUser.signedJWT;
     } catch(e){
       throw e;
-    }
-  }
+    };
+  };
 
 
   // ******************************************* USER methods
@@ -102,6 +98,12 @@ class FirstFiveAPI {
 
   static async getAllProjects(){
     let res = await this.request(`projects/all`);
+    console.log("Res is", res)
+    return res;
+  };
+
+  static async getNonMatchedProjects(){
+    let res = await this.request(`projects/view`);
     console.log("Res is", res)
     return res;
   };

@@ -11,28 +11,28 @@ function App() {
   // adds token to local storage for continued auth routes use
   let [token, setToken] = useLocalStorage();
   let [authUser, setAuthUser] = useState(null);
+  let [matchedProjectIds, setMatchedProjectIds] = useState(null)
 
 
   useEffect(function loadUserInfo() {
-    console.log("hello")
     async function getCurrentUser() {
       if(token){
         try {
-          // token payload is the username.
-          const {username}  = decodeToken(token);          
+          const {username}  = decodeToken(token);  
+          setAuthUser(username);        
          // add token to Api class so it can be used to call the API.
           API.token = token;
-          console.log("we have a token & assigned to class")
-          let user = await API.viewUser(username);
-          setAuthUser(user.username);
+          let userMatches = await API.viewUsernameMatches(username);
+          let matchIds = userMatches.map(match => match.project_id);
+          setMatchedProjectIds([...matchIds])
+          console.log(matchedProjectIds, "matched id's");
         } catch (e) {
           authUser(null);
           return {message: "Unauthorized"};
-        }
-    } else {
-      console.log("no token found")
-    }
-    } getCurrentUser();
+        };
+      };
+    };
+    getCurrentUser();
   }, [token]);
 
 
@@ -51,13 +51,25 @@ function App() {
     };
   };
 
+  async function authenticeUser(userData) {
+    // includes: username, password
+    try {
+      let userToken = await API.authenticateUser(userData);
+      setToken(userToken);
+      return {success : true};
+    } catch (e) {
+      console.log(e);
+      return {success : false, e}
+    };
+  };
+
   console.log("In app user is:", authUser)
 
   return (
     <div className="App-header">
-      <UserContext.Provider value = {{authUser, setAuthUser}}>
-      <p>React live on PORT 3000</p> 
-      <NavRoutes registerUser = {registerUser}/>
+      <UserContext.Provider value = {{authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds}}>
+        <p>React live on PORT 3000</p> 
+          <NavRoutes registerUser = {registerUser} authenticateUser = {authenticeUser}/>
       </UserContext.Provider>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom"
 
 const RegisterForm = ({registerUser}) => {
@@ -39,7 +39,7 @@ const RegisterForm = ({registerUser}) => {
 
       if(response.success){
         console.log("success");
-        navigate("projects/all");
+        navigate("/projects/view");
       } else {
         setErrors(response);
       };
