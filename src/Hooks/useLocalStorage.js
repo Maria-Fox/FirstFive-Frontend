@@ -1,23 +1,31 @@
 import {useState, useEffect} from "react"
 // used to track token throughout the app. Behaves as state w/ localstorage features.
 
-// key = const jobly_token = "jobly-token-key"
-function useLocalStorage(key , firstValue = null){
-  const initialValue = localStorage.getItem(key) || firstValue;
+// key = const firstfive_token = "token". If the key given does not exist it will default.
+function useLocalStorage(key , defaultValue = null){
+  const initialValue = localStorage.getItem(key) || defaultValue;
 
-  // Adds the token to local state- when used for userAuth
+  // Initiates state
   let [item, setItem] = useState(initialValue);
 
   useEffect(function setLocalStorage() {
     if(!item){
+      // if the null OR ran above, remove the item
       window.localStorage.removeItem(key);
     } else {
+      // if it's the first time, or the item exists set the value of the local storage item.
       window.localStorage.setItem(key, item)
     }
-  }, [key, item])
-  // console.log("local storage is", [item])
-  return [item, setItem]
-}
+  }, [key, item]);
+
+
+  console.log("*******Local storage changed******");
+  console.log([item])
+
+  // returns the new piece of state along with a setState function to update.
+  return [item, setItem];
+
+};
 export default useLocalStorage;
 
 // token = key.... passed in from App.js

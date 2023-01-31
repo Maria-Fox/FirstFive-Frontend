@@ -4,24 +4,25 @@ import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 import "./ProjectCard.css";
 
-const ProjectCard = ({id, owner_username, name, project_desc, timeframe, github_repo}) => {
+const ProjectCard = ({id, owner_username, name, project_desc, timeframe, github_repo, handleMatch}) => {
 
   // user can "match" a project, an alert shows, project is removed from display..
   let {authUser, matchedProjectIds, setMatchedProjectIds} = useContext(UserContext);
   console.log("In project card, the auth user is", authUser)
 
-  async function handleMatch(e) {
-    try{
-      console.log(authUser, id)
-      let newMatch = await API.addMatch(authUser, id);
-      // Add in the new Proejct ID into state. ProjectList sends off a new request to get the ones not added.
-      setMatchedProjectIds(matchedProjectIds => [matchedProjectIds, id]);
-      // some JS function for interactive/ fun match visual.
-      alert("You've been matched!");
-    }catch(e){
-      console.log(e);
-    };
-  };
+  // async function handleMatch(e) {
+  //   try{
+  //     console.log(authUser, id)
+  //     let newMatch = await API.addMatch(authUser, id);
+  //     // Add in the new Proejct ID into state. ProjectList sends off a new request to get the ones not added.
+  //     console.log("matched b4:", matchedProjectIds)
+  //     setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
+  //     // some JS function for interactive/ fun match visual.
+  //     alert("You've been matched!");
+  //   }catch(e){
+  //     console.log(e);
+  //   };
+  // };
 
 
   return(

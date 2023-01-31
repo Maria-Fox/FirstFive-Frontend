@@ -11,18 +11,19 @@ const NavRoutes = ({registerUser, authenticateUser}) => {
   return(
     <Routes>
   
-      {/* {<Route path = "/projects/all" element = {
+      {<Route path = "/projects/all" element = {
         <PrivateRoute>
           <ProjectList />
         </PrivateRoute>} >
-      </Route>}   */}
+      </Route>}  
+
       <Route path= "/projects/all" element = {<ProjectList />}></Route>
+      <Route path= "/projects/view" element = {<ProjectList />}></Route>
 
       
-      
-      <Route path= "/projects/view" element = {<ProjectList />}></Route>
       {/* <Route path= "/projects/new" element = {<ProjectList />}></Route> */}
-      <Route path = "/users/:username" element = {<UserProfile />}></Route>
+      <Route exact path = "/users/:username" element = {<UserProfile />}></Route>
+
 
 
 

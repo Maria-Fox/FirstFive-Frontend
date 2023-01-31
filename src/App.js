@@ -5,74 +5,82 @@ import API from "./API";
 import UserContext from './UserComponents/UserContext';
 import {decodeToken} from "react-jwt";
 import useLocalStorage from './Hooks/useLocalStorage';
+import FirstFiveAPI from './API';
 
-function App() {
+// Key name for storing token in localStorage for "remember me" re-login
+export const token_storage = "token";
 
-  // adds token to local storage for continued auth routes use
-  let [token, setToken] = useLocalStorage();
-  let [authUser, setAuthUser] = useState(null);
-  let [matchedProjectIds, setMatchedProjectIds] = useState(null)
+function CopyApp() {
+  const [authUser, setAuthtUser] = useState(null);
+  const [token, setToken] = useLocalStorage(token_storage);
+  const [matchedProjectIds, setMatchedProjectIds] = useState(null)
 
+  // Load user info from API. Until a user is logged in and they have a token,
+  // this should not run. It only needs to re-run when a user logs out, so
+  // the value of the token is a dependency for this effect.
 
   useEffect(function loadUserInfo() {
+    console.debug("App useEffect loadUserInfo", "token=", token);
+
     async function getCurrentUser() {
-      if(token){
+      if (token) {
         try {
-          const {username}  = decodeToken(token);  
-          setAuthUser(username);        
-         // add token to Api class so it can be used to call the API.
-          API.token = token;
+          let { username } = decodeToken(token);
+          setAuthtUser(username);
+          // put the token on the Api class so it can use it to call the API.
+          FirstFiveAPI.token = token;
           let userMatches = await API.viewUsernameMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
           setMatchedProjectIds([...matchIds])
           console.log(matchedProjectIds, "matched id's");
-        } catch (e) {
-          authUser(null);
-          return {message: "Unauthorized"};
-        };
-      };
-    };
+        } catch (err) {
+          console.error("App loadUserInfo: problem loading", err);
+          // setCurrentUser(null);
+        }
+      }
+    }
+
     getCurrentUser();
   }, [token]);
 
+  /** Handles site-wide logout. */
+  function logout() {
+    setAuthtUser(null);
+    setToken(null);
+  }
 
-  // ***************************************************************
-
-  async function registerUser(userData) {
-    // includes: username, password, email, bio
+  async function register(userData) {
     try {
-      let userToken = await API.registerUser(userData);
-      setToken(userToken);
-      console.log("THIS IS NEW THE NEW TOKEN: ", token);
-      return {success : true};
-    } catch (e) {
-      console.log(e);
-      return {success : false, e}
-    };
-  };
+      let token = await API.registerUser(userData);
+      setToken(token);
+      return { success: true };
+    } catch (errors) {
+      console.error("signup failed", errors);
+      return { success: false, errors };
+    }
+  }
 
-  async function authenticeUser(userData) {
-    // includes: username, password
+
+  async function authenticateUser(userData) {
     try {
-      let userToken = await API.authenticateUser(userData);
-      setToken(userToken);
-      return {success : true};
-    } catch (e) {
-      console.log(e);
-      return {success : false, e}
-    };
-  };
-
-  console.log("In app user is:", authUser)
+      let token = await API.authenticateUser(userData);
+      setToken(token);
+      return { success: true };
+    } catch (errors) {
+      console.error("login failed", errors);
+      return { success: false, errors };
+    }
+  }
 
   return (
-    <div className="App-header">
-      <UserContext.Provider value = {{authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds}}>
-        <p>React live on PORT 3000</p> 
-          <NavRoutes registerUser = {registerUser} authenticateUser = {authenticeUser}/>
-      </UserContext.Provider>
-    </div>
+        <UserContext.Provider
+            value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIds}}>
+          <div className="App">
+            <NavRoutes register={register} authenticateUser={authenticateUser} />
+          </div>
+        </UserContext.Provider>
+
   );
 }
 
-export default App;
+export default CopyApp;

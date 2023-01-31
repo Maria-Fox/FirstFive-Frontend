@@ -29,7 +29,7 @@ const Login = ({authenticateuser}) => {
       e.preventDefault();
       let response = await authenticateuser(formData);
       if(response.success){
-        navigate("/projects/view");
+        navigate(`/projects/view`);
       };
     } catch(err){
       console.log(err);

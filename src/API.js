@@ -9,49 +9,37 @@ class FirstFiveAPI {
 
   // ******************************************* AUTH/ LOGIN methods
 
-  static async request(endpoint, data = {}, method = "get"){
-    console.log("API Call:", endpoint, data, method);
 
-    // hard coding in "blah" token
-    // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJsYWgiLCJpYXQiOjE2NzQ3NTM2Mzd9.-DdkmQK-7oq8fu15twA0FOysb6xhLdeqDK2WlBYxd2I";
+  static async request(endpoint, data = {}, method = "get") {
+    console.debug("API Call:", endpoint, data, method, this.token, "**********");
 
-    // CLI TOKEN
-    // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZyb21DTEkiLCJpYXQiOjE2NzQwMDMwODN9.jBbzE30bK3WmLMVJLprLRerxzaF4YNkX7-5jyHE7Cck"
-
-    // MUST BE FirstFiveAPI.token once users can register/login.
     const url = `${BASE_URL}/${endpoint}`;
-    console.log(`Url requested: ${url}`)
     const headers = { Authorization: `Bearer ${FirstFiveAPI.token}` };
     const params = (method === "get")
         ? data
         : {};
 
-    // Try sending off request with data passed in
+    if(!this.token){
+      console.log("There's no token")
+    this.token = window.localStorage.getItem("token") || "";
+    };
+
+
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.response);
+      console.error("API Error:", err.message);
       // let message = err.response.data.error.message;
       // throw Array.isArray(message) ? message : [message];
-      console.log(`ERROR: ${err}`)
-      throw Error(err)
-    }
+    
+    };
   };
 
   static async registerUser(userData) {
     try{
       console.log("register user method called")
       let newUser = await this.request("auth/register", {...userData}, 'post');
-
-      // assign valid JWT to local storage for global use
-      // window.localStorage.setItem('token', newUser.signedJWT);
-      // window.localStorage.setItem('username', userData.username);
-
-      // assign token to static method. Return for components/state
-      this.token = newUser.signedJWT
-
-      console.log(newUser)
-      return newUser.signedJWT
+      return newUser.signedJWT;
     }catch(e){
       throw e;
     };
