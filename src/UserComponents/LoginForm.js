@@ -3,7 +3,7 @@ import UserContext from "./UserContext";
 import { useNavigate } from "react-router-dom";
 import API from "../API";
 
-const Login = ({authenticateuser}) => {
+const LoginForm = ({authenticateuser}) => {
 
   let {authUser, setAuthUser} = useContext(UserContext);
   let navigate = useNavigate();
@@ -82,4 +82,4 @@ const Login = ({authenticateuser}) => {
   )
 };
 
-export default Login;
+export default LoginForm;

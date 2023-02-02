@@ -1,26 +1,26 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 // used to track token throughout the app. Behaves as state w/ localstorage features.
 
 // key = const firstfive_token = "token". If the key given does not exist it will default.
-function useLocalStorage(key , defaultValue = null){
-  const initialValue = localStorage.getItem(key) || defaultValue;
+function useLocalStorage(key, defaultValue = null) {
+  const initialValue = sessionStorage.getItem(key) || defaultValue;
 
   // Initiates state
   let [item, setItem] = useState(initialValue);
 
   useEffect(function setLocalStorage() {
-    if(!item){
+    if (!item) {
       // if the null OR ran above, remove the item
-      window.localStorage.removeItem(key);
+      window.sessionStorage.removeItem(key);
     } else {
       // if it's the first time, or the item exists set the value of the local storage item.
-      window.localStorage.setItem(key, item)
+      window.sessionStorage.setItem(key, item)
     }
   }, [key, item]);
 
 
-  console.log("*******Local storage changed******");
-  console.log([item])
+  // console.log("*******Local storage changed******");
+  // console.log([item])
 
   // returns the new piece of state along with a setState function to update.
   return [item, setItem];

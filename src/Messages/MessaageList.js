@@ -1,0 +1,49 @@
+import React, { useEffect, useState, useContext } from "react";
+import API from "../API";
+import UserContext from "../UserComponents/UserContext";
+import MessageCard from "./MessageCard";
+
+const MessageList = () => {
+
+  // ***************************************************************
+
+  const [userMessages, setUserMessages] = useState(null);
+  const { authUser } = useContext(UserContext);
+  console.log("Messages - user is ", authUser);
+
+
+  // ***************************************************************
+
+  useEffect(() => {
+    async function viewUserMessages() {
+      try {
+        let response = await API.getAllUserMessages(authUser);
+        setUserMessages(response);
+        console.log(userMessages);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    viewUserMessages();
+  }, [setUserMessages]);
+
+
+  return (
+    <div>
+      {userMessages ?
+        userMessages.map(({ id, message_from, message_to, body, sent_at }) =>
+          <MessageCard
+            key={id}
+            id={id}
+            message_from={message_from}
+            message_to={message_to}
+            body={body}
+            sent_at={sent_at}
+          />
+        )
+        : <p>Loading...</p>}
+    </div >
+  )
+};
+
+export default MessageList;

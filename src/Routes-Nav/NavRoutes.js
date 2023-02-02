@@ -1,40 +1,56 @@
-import React, { useContext } from "react";
-import {Routes, Route} from "react-router-dom";
-import Register from "../UserComponents/Register";
-import Login from "../UserComponents/Login";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import RegisterForm from "../UserComponents/RegisterForm";
+import LoginForm from "../UserComponents/LoginForm";
 import ProjectList from "../ProjectComponents/ProjectList";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import UserProfile from "../UserComponents/UserProfile";
+import CreateProjectForm from "../ProjectComponents/CreateProjectForm";
+import ProjectCard from "../ProjectComponents/ProjectCard";
+import MatchList from "../MatchComponents/MatchList";
+import MessageList from "../Messages/MessaageList";
+import MessageCard from "../Messages/MessageCard";
+import CreateMessage from "../Messages/CreateMessage";
+import SingleMsgDetails from "../Messages/SingleMsgDetail";
 
-const NavRoutes = ({registerUser, authenticateUser}) => {
+const NavRoutes = ({ registerUser, authenticateUser }) => {
 
-  return(
+  return (
     <Routes>
-  
-      {<Route path = "/projects/all" element = {
+
+      {/* {<Route path = "/projects/all" element = {
         <PrivateRoute>
           <ProjectList />
         </PrivateRoute>} >
-      </Route>}  
+      </Route>}   */}
 
-      <Route path= "/projects/all" element = {<ProjectList />}></Route>
-      <Route path= "/projects/view" element = {<ProjectList />}></Route>
+      <Route path="/auth/register"
+        element={<RegisterForm registerUser={registerUser} />}>
+      </Route>
+      <Route path="/auth/login"
+        element={<LoginForm authenticateuser={authenticateUser} />}>
+      </Route>
 
-      
-      {/* <Route path= "/projects/new" element = {<ProjectList />}></Route> */}
-      <Route exact path = "/users/:username" element = {<UserProfile />}></Route>
+      <Route exact path="/users/:username" element={<UserProfile />}></Route>
+
+
+      <Route path="/projects/new" element={<CreateProjectForm />}></Route>
+      <Route path="/projects/view" element={<ProjectList />}></Route>
+      <Route path="/projects/:id" element={<ProjectCard />}></Route>
+
+
+      <Route exact path="/matches/view/:username/all" element={<MatchList />}></Route>
 
 
 
 
-      <Route path = "/auth/register" 
-          element = {<Register registerUser={registerUser}/>}>
-      </Route> 
-      <Route path = "/auth/login" 
-          element = {<Login  authenticateuser={authenticateUser}/>}>
-      </Route> 
-      
-  </Routes> 
+      <Route exact path="/messages/:username/create" element={<CreateMessage />}></Route>
+      <Route exact path="/messages/:username/all" element={<MessageList />}></Route>
+      <Route exact path="/messages/:username/read/:message_id" element={<SingleMsgDetails />}></Route>
+
+
+
+    </Routes>
   );
 };
 
