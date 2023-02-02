@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./ProjectCard.css";
 
-const ProjectCard = ({id, owner_username, name, project_desc, timeframe, github_repo, handleMatch}) => {
+const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github_repo, handleMatch }) => {
 
   // user can "match" a project, an alert shows, project is removed from display..
-  let {authUser} = useContext(UserContext);
+  let { authUser } = useContext(UserContext);
   console.log("In project card, the auth user is", authUser)
 
   // async function handleMatch(e) {
@@ -24,25 +24,18 @@ const ProjectCard = ({id, owner_username, name, project_desc, timeframe, github_
   // };
 
 
-  return(
+  return (
     <div className="ProjectCard">
       <h2>{name}</h2>
-      <Link to= {`/projects/${id}`} style= {{color:"aqua"}}>View Alone</Link>
+      <Link to={`/projects/${id}`} style={{ color: "aqua" }}>View Alone</Link>
       <h3>Created by: {owner_username}</h3>
-
-      <Link to={`/users/${owner_username}`} style= {{color:"aqua"}}>VIEW USER LINK</Link>
-
 
       <p>Expected project duration: {timeframe}</p>
 
-      {github_repo ? 
-      <a href= {github_repo} target = "_blank" rel="noreferrer" style= {{color:"aqua"}}> View Repo for: {name} </a>
-      : null}
-
       <p>{project_desc}</p>
 
-      {authUser === owner_username ? <Link>Edit Prooject</Link> : 
-          <button onClick = {() => handleMatch(authUser,id)}>Match</button>
+      {authUser === owner_username ? <Link>Edit Prooject</Link> :
+        <button onClick={() => handleMatch(authUser, id)}>Match</button>
       }
 
     </div>

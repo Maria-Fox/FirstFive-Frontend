@@ -22,20 +22,23 @@ const MatchList = () => {
     };
 
     getMatchData();
-  }, [setMatchData]);
+  }, [setMatchData, authUser]);
 
+  // ***************************************************************
 
   return (
 
     <div>
       <h1>Matches</h1>
-      {matchData ? matchData.map(({ project_id, project_desc, name, owner_username, timeframe }) =>
+      {matchData ? matchData.map(({ project_id, project_desc, name, owner_username, timeframe, github_repo }) =>
         <MatchedProj
           key={project_id}
           project_id={project_id}
+          project_desc={project_desc}
           name={name}
           owner_username={owner_username}
           timeframe={timeframe}
+          github_repo={github_repo}
         />
       )
         :

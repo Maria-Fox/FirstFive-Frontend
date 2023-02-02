@@ -123,7 +123,7 @@ class API {
   };
 
   static async viewProjectUserMatches(project_id) {
-    let res = await this.request(`matches/${project_id}/users}`);
+    let res = await this.request(`matches/view/${project_id}/users`);
     return res;
   };
 
@@ -141,7 +141,7 @@ class API {
   };
 
   static async viewAllProjMembers(project_id) {
-    let res = await this.request(`projectmembers/view/all${project_id}`);
+    let res = await this.request(`projectmembers/view/all/${project_id}`);
     return res;
   };
 

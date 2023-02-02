@@ -39,7 +39,9 @@ const CreateProjectForm = () => {
       let response = await API.createProject({ owner_username: authUser, ...projData });
       // console.log("resp is:", response);
       // user is instantly matched with project. They can find it under the 'projects' Nav item.
+      let proj_id = response.id;
 
+      // probably navigate elsewhere. temp for now
       alert("Project was added successfully.");
       navigate(`/matches/view/${authUser}/all`);
     } catch (e) {
@@ -55,8 +57,6 @@ const CreateProjectForm = () => {
       <h2>{errorsToPrint}</h2>
     );
   };
-
-
 
   return (
     <div>
