@@ -13,6 +13,7 @@ import CreateMessage from "../Messages/CreateMessage";
 import SingleMsgDetails from "../Messages/SingleMsgDetail";
 import MatchedProjectUsers from "../MatchComponents/MatchedProjectUsers";
 import ProjectMemberList from "../ProjectMembers.js/ProjectMemberList";
+import EditProject from "../ProjectComponents/EditProject";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
 
@@ -48,6 +49,7 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
 
       {/* Project Member Routes */}
       <Route exact path="projectmembers/view/all/:project_id" element={<ProjectMemberList />}></Route>
+      <Route path="/edit/project/:project_id" element={<EditProject />}></Route>
 
 
       {/* Message Routes */}

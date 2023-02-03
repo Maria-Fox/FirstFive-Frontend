@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
-import { NavLink, useLocation, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./NavBar.css"
 
 const NavBar = ({ logout }) => {
-  const location = useLocation();
+
+  // ***************************************************************
 
   let { authUser } = useContext(UserContext);
   console.log("In navBar user is: ", authUser, "*****");
+
+  // ***************************************************************
 
   if (!authUser) {
     return (

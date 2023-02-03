@@ -12,6 +12,8 @@ const CreateMessage = () => {
     body: ""
   };
 
+  // ***************************************************************
+
   const [msgData, setMsgData] = useState(initial_state);
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
@@ -25,6 +27,9 @@ const CreateMessage = () => {
       ...msgData
     }));
   };
+
+  // ***************************************************************
+
 
   const handleSubmit = async (e) => {
     try {
@@ -42,6 +47,8 @@ const CreateMessage = () => {
       <h2>{errorsToPrint}</h2>
     );
   };
+
+  // ***************************************************************
 
 
   return (

@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import MatchedProj from "./MatchedProj"
@@ -7,7 +8,8 @@ const MatchList = () => {
 
   // ***************************************************************
   const { authUser } = useContext(UserContext);
-  const [matchData, setMatchData] = useState(null)
+  const [matchData, setMatchData] = useState(null);
+  let navigate = useNavigate();
 
   useEffect(() => {
     async function getMatchData() {
@@ -15,7 +17,7 @@ const MatchList = () => {
         let response = await API.viewUsernameMatches(authUser);
         console.log("Match res", response)
         setMatchData(response);
-        console.log(matchData);
+        console.log("data looks like this !!!", matchData)
       } catch (e) {
         console.log(e);
       };
@@ -25,6 +27,22 @@ const MatchList = () => {
   }, [setMatchData, authUser]);
 
   // ***************************************************************
+
+  let handleUnmatch = async (username, project_id) => {
+    try {
+      let unmatchRes = await API.removeUserMatch(username, project_id);
+
+      console.log(unmatchRes, "UNMATCH RES****");
+      if (unmatchRes.Removed) {
+        // reset the projects displayed to all except the deleted project.
+        setMatchData(matchData.filter(ids => ids != !project_id));
+      };
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  // ***************************************************************
+
 
   return (
 
@@ -39,6 +57,7 @@ const MatchList = () => {
           owner_username={owner_username}
           timeframe={timeframe}
           github_repo={github_repo}
+          handleUnmatch={handleUnmatch}
         />
       )
         :

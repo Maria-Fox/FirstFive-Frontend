@@ -1,11 +1,10 @@
-import React, {useEffect, useState, useContext} from "react";
-import UserContext from "./UserContext";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../API";
 
-const LoginForm = ({authenticateuser}) => {
+const LoginForm = ({ authenticateuser }) => {
 
-  let {authUser, setAuthUser} = useContext(UserContext);
+  // ***************************************************************
+
   let navigate = useNavigate();
 
   let initial_state = {
@@ -16,69 +15,81 @@ const LoginForm = ({authenticateuser}) => {
   let [formData, setFormData] = useState(initial_state);
   let [formErrors, setFormErrors] = useState(null);
 
+  // ***************************************************************
+
+
   let handleChange = (e) => {
-    let {name, value} = e.target;
+    let { name, value } = e.target;
     setFormData(formData => ({
       ...formData,
-      [name]:value
+      [name]: value
     }));
   };
 
+  // ***************************************************************
+
   let handleSubmit = async (e) => {
-    try{
+    try {
       e.preventDefault();
       let response = await authenticateuser(formData);
-      if(response.success){
+      if (response.success) {
         navigate(`/projects/view`);
       };
-    } catch(err){
+    } catch (err) {
       console.log(err);
+      setFormErrors(err);
     }
   };
 
+  // ***************************************************************
+
+
   let printErrors = () => {
     let errorsToPrint = formErrors.e[0];
-    return(
+    return (
       <h2>{errorsToPrint}</h2>
     );
   };
 
-  return(
-      <div>
-        <h1>Sign in</h1>
+  // ***************************************************************
 
-        {formErrors ? <h1>{printErrors}</h1>: null};
 
-        <form onSubmit = {handleSubmit}>
+  return (
+    <div>
+      <h1>Sign in</h1>
 
-        <label htmlFor = "username" >Username
+      {formErrors ? <h1>{printErrors}</h1> : null};
+
+      <form onSubmit={handleSubmit}>
+
+        <label htmlFor="username" >Username
           <input
-          type = "text"
-          id = "username"
-          value = {formData.username}
-          name = "username"
-          required
-          onChange= {handleChange}
+            type="text"
+            id="username"
+            value={formData.username}
+            name="username"
+            required
+            onChange={handleChange}
           >
           </input>
         </label>
 
-        <label htmlFor = "password" >Password
+        <label htmlFor="password" >Password
           <input
-          type = "password"
-          id = "password"
-          value = {formData.password}
-          name = "password"
-          required
-          onChange= {handleChange}
+            type="password"
+            id="password"
+            value={formData.password}
+            name="password"
+            required
+            onChange={handleChange}
           >
           </input>
         </label>
 
 
         <button>Login</button>
-  </form>      
-  </div>
+      </form>
+    </div>
   )
 };
 

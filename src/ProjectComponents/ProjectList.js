@@ -6,10 +6,15 @@ import ProjectCard from "./ProjectCard";
 
 const ProjectList = () => {
 
+  // ***************************************************************
+
+
   let { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
   console.log("********************", matchedProjectIds);
 
   let [projects, setProjects] = useState(null);
+
+  // ***************************************************************
 
   useEffect(function viewAllProjects() {
     async function getAllProjects() {
@@ -31,6 +36,9 @@ const ProjectList = () => {
 
   }, [matchedProjectIds, setMatchedProjectIds]);
 
+  // ***************************************************************
+
+
   let handleMatch = async function (authuser, id) {
     try {
       console.log("matched ids are", matchedProjectIds);
@@ -44,6 +52,7 @@ const ProjectList = () => {
     };
   };
 
+  // ***************************************************************
 
   return (
     <div>
@@ -58,6 +67,7 @@ const ProjectList = () => {
           project_desc={project_desc}
           timeframe={timeframe}
           github_repo={github_repo}
+          handleMatch={handleMatch}
         />
       )
         :

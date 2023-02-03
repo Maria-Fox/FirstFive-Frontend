@@ -96,7 +96,7 @@ class API {
   };
 
   static async viewProject(project_id) {
-    let res = await this.this(`projects/${project_id}`);
+    let res = await this.request(`projects/${project_id}`);
     return res;
   };
 
@@ -128,7 +128,7 @@ class API {
   };
 
   static async removeUserMatch(username, project_id) {
-    let res = await this.request(`matches/${username}/${project_id}`, {}, 'post');
+    let res = await this.request(`matches/remove/${username}/${project_id}`, {}, 'post');
     return res;
   };
 

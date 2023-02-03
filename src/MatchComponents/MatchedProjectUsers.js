@@ -49,28 +49,33 @@ const MatchedProjectUsers = () => {
       <h1>Matched Users for: </h1>
       {projData && matchedUsers ?
         <div>
+
           <h1>{projData.proj_name}</h1>
           <small>
             <Link to={`/users/${projData.proj_owner}`}>
               {projData.proj_owner}
             </Link>
           </small>
+
+
           <p>
             {projData.github_repo ?
               <a href={projData.github_repo} target="_blank" rel="noreferrer" style={{ color: "aqua" }}> View Repo </a>
               : null}
           </p>
+
           <p>{projData.proj_desc}</p>
 
-          <h2>Matched Users</h2>
-
-          {matchedUsers.map(({ user_matched, matched_user_bio }) =>
-            <CommonUserProfile
-              key={user_matched}
-              username={user_matched}
-              bio={matched_user_bio}
-            />
-          )}
+          <div>
+            <h2>Matched Users</h2>
+            {matchedUsers.map(({ user_matched, matched_user_bio }) =>
+              <CommonUserProfile
+                key={user_matched}
+                username={user_matched}
+                bio={matched_user_bio}
+              />
+            )}
+          </div>
 
         </div>
 

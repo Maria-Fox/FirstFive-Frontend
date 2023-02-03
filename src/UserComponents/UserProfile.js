@@ -9,12 +9,14 @@ const UserProfile = () => {
   let { authUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  // ***************************************************************
 
   useEffect(function userProfile() {
     async function viewUserProfile() {
       try {
         let user = await API.viewUser(username);
         // console.log("Data is:", userData)
+        setUserData(user);
       } catch (e) {
         console.log(e, "***")
       };
@@ -23,11 +25,8 @@ const UserProfile = () => {
     viewUserProfile();
   }, [username]);
 
-  let userDataDisplay = (
-    <div>
-      <p>Data exists</p>
-    </div>
-  );
+  // ***************************************************************
+
 
   // Need guidance on how I can update an owner - component wise.
   let handleUpdate = () => {
@@ -38,6 +37,9 @@ const UserProfile = () => {
       </form>
     );
   };
+
+  // ***************************************************************
+
 
   let handleDelete = () => {
     console.log("delete ran")
@@ -59,12 +61,6 @@ const UserProfile = () => {
     </div>
   );
 
-  let msgUserOption = (
-    <button>
-      <Link to={`/messages/${authUser}/create`}>Message {userData.username}</Link>
-    </button>
-  )
-
 
   return (
     <div>
@@ -73,8 +69,7 @@ const UserProfile = () => {
       <h2>{userData.username}</h2>
       <p>{userData.bio}</p>
 
-      {authUser == userData.username ? updateForm : msgUserOption}
-
+      {updateForm}
 
     </div>
   );

@@ -5,9 +5,15 @@ import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 
 const SingleMsgDetails = () => {
+
+  // ***************************************************************
+
   let { username, message_id } = useParams();
   const [msgDetails, setMsgDetails] = useState(null);
   let { authUser } = useContext(UserContext);
+
+  // ***************************************************************
+
 
   useEffect(() => {
     async function viewMsgDetails() {
@@ -24,7 +30,7 @@ const SingleMsgDetails = () => {
   }, []);
 
 
-
+  // ***************************************************************
 
   return (
     <div>

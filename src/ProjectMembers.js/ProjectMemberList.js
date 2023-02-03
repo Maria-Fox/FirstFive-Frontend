@@ -27,6 +27,8 @@ const ProjectMemberList = () => {
     viewProjMembers();
   }, [setProjMembers]);
 
+  // ***************************************************************
+
   return (
     <div>
       <h1>Project Members</h1>
@@ -36,7 +38,9 @@ const ProjectMemberList = () => {
           username={user.username}
           bio={user.bio}
         />
-      ) : "Loading..."}
+      )
+        : <p>No project members, yet!</p>}
+
     </div>
   )
 }
