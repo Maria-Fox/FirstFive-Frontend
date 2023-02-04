@@ -47,7 +47,7 @@ function App() {
     getCurrentUser();
   }, [token]);
 
-  async function register(formData) {
+  async function registerUser(formData) {
     try {
       let token = await API.registerUser(formData);
       setToken(token);
@@ -72,6 +72,7 @@ function App() {
 
   async function logout() {
     setAuthtUser(null);
+    localStorage.removeItem('token');
     navigate("/auth/login");
   };
 
@@ -80,7 +81,7 @@ function App() {
       value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIds }}>
       <div className="App-header">
         <NavBar logout={logout} />
-        <NavRoutes register={register} authenticateUser={authenticateUser} logout={logout} />
+        <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />
       </div>
     </UserContext.Provider>
 

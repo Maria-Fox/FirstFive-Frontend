@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AlertNotification from "../Common/AlertNotifications";
 
 const LoginForm = ({ authenticateuser }) => {
 
@@ -36,19 +37,9 @@ const LoginForm = ({ authenticateuser }) => {
         navigate(`/projects/view`);
       };
     } catch (err) {
-      console.log(err);
-      setFormErrors(err);
+      console.log([err]);
+      setFormErrors([err]);
     }
-  };
-
-  // ***************************************************************
-
-
-  let printErrors = () => {
-    let errorsToPrint = formErrors.e[0];
-    return (
-      <h2>{errorsToPrint}</h2>
-    );
   };
 
   // ***************************************************************
@@ -58,7 +49,7 @@ const LoginForm = ({ authenticateuser }) => {
     <div>
       <h1>Sign in</h1>
 
-      {formErrors ? <h1>{printErrors}</h1> : null};
+      {formErrors ? <AlertNotification type="danger" messages={formErrors} /> : null};
 
       <form onSubmit={handleSubmit}>
 

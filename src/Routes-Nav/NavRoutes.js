@@ -14,6 +14,7 @@ import SingleMsgDetails from "../Messages/SingleMsgDetail";
 import MatchedProjectUsers from "../MatchComponents/MatchedProjectUsers";
 import ProjectMemberList from "../ProjectMembers.js/ProjectMemberList";
 import EditProject from "../ProjectComponents/EditProject";
+import UpdateProfileForm from "../UserComponents/UpdateProfileForm";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
 
@@ -36,6 +37,7 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
 
       {/* User route */}
       <Route exact path="/users/:username" element={<UserProfile />}></Route>
+      <Route exact path="/users/update/:username" element={<UpdateProfileForm />}></Route>
 
 
       {/* Project Routes */}

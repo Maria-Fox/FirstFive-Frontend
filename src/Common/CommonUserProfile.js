@@ -24,7 +24,7 @@ const CommonUserProfile = ({ username, bio }) => {
         </p>
       </div>
 
-      {username == authUser ? null : msgUserOption}
+      {username === authUser ? null : msgUserOption}
     </div>
 
   );

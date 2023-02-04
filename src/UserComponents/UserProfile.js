@@ -31,11 +31,8 @@ const UserProfile = () => {
   // Need guidance on how I can update an owner - component wise.
   let handleUpdate = () => {
     console.log("update ran")
-    return (
-      <form>
-        <h1>Update</h1>
-      </form>
-    );
+    navigate(`/users/update/${authUser}`);
+    console.log("nav ran")
   };
 
   // ***************************************************************

@@ -5,7 +5,7 @@ import UserContext from "../UserComponents/UserContext";
 
 
 const MatchedProj = ({ name, owner_username, project_desc
-  , project_id, timeframe, github_repo, handleUnmatch }) => {
+  , project_id, timeframe, github_repo, handleUnmatch, handleDeleteProj }) => {
 
   // ***************************************************************
 
@@ -13,12 +13,19 @@ const MatchedProj = ({ name, owner_username, project_desc
   const { authUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleRequestToEdit = (project_id) => {
+  // ***************************************************************
+
+  const handleNavToEditProj = (project_id) => {
     navigate(`/edit/project/${project_id}`)
   };
 
   // ***************************************************************
 
+  const unMatchOption = (
+    <button onClick={() => handleUnmatch(authUser, project_id)}>Unmatch Project</button>
+  )
+
+  // ***************************************************************
 
   return (
     <div className="MatchedProject">
@@ -47,10 +54,14 @@ const MatchedProj = ({ name, owner_username, project_desc
 
       <Link to={`/projectmembers/view/all/${project_id}`} style={{ color: "aqua" }}> View Project Members</Link>
 
-      <button onClick={() => handleUnmatch(authUser, project_id)}>Unmatch Project</button>
+      {/* Proejct owners cannot remove a match from projects they create*/}
+      {authUser !== owner_username ? unMatchOption : null}
 
       {/* Permit project owner to make edits */}
-      {authUser === owner_username ? <button onClick={() => handleRequestToEdit(project_id)}>Edit Project</button> : null}
+      {authUser === owner_username ? <button onClick={() => handleNavToEditProj(project_id)}>Edit Project</button> : null}
+
+      {authUser === owner_username ?
+        <button onClick={() => handleDeleteProj(project_id)}>Delete Project</button> : null}
 
     </div>
   );

@@ -74,7 +74,7 @@ const ProjectList = () => {
         <p>Loading...</p>}
 
     </div>
-  )
-}
+  );
+};
 
 export default ProjectList;

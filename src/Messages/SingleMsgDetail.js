@@ -50,13 +50,17 @@ const SingleMsgDetails = () => {
             </p>
           </div>
 
+          {msgDetails.to_user.username === authUser ?
+            <Link to={`messages/${authUser}/create`} style={{ color: "aqua" }}>Reply</Link>
+            : null}
+
         </div>
         : <p>Loading ...</p>}
 
 
 
 
-    </div>
+    </div >
   )
 };
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import MatchedProj from "./MatchedProj"
@@ -9,7 +8,6 @@ const MatchList = () => {
   // ***************************************************************
   const { authUser } = useContext(UserContext);
   const [matchData, setMatchData] = useState(null);
-  let navigate = useNavigate();
 
   useEffect(() => {
     async function getMatchData() {
@@ -35,12 +33,26 @@ const MatchList = () => {
       console.log(unmatchRes, "UNMATCH RES****");
       if (unmatchRes.Removed) {
         // reset the projects displayed to all except the deleted project.
-        setMatchData(matchData.filter(ids => ids != !project_id));
+        setMatchData(matchData.filter(ids => ids.project_id != project_id));
+        console.log("new matched data:", matchData)
       };
     } catch (e) {
       console.log(e);
     }
   }
+  // ***************************************************************
+
+  let handleDeleteProj = async (project_id) => {
+    try {
+      let response = API.deleteProject(project_id);
+      setMatchData(matchData.filter(ids => ids.project_id != project_id));
+      alert("Deleted project!");
+    } catch (e) {
+      console.log(e);
+    };
+  };
+
+
   // ***************************************************************
 
 
@@ -58,6 +70,7 @@ const MatchList = () => {
           timeframe={timeframe}
           github_repo={github_repo}
           handleUnmatch={handleUnmatch}
+          handleDeleteProj={handleDeleteProj}
         />
       )
         :

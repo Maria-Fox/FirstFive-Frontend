@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 import { Link, useParams } from "react-router-dom";
-import UserProfile from "../UserComponents/UserProfile";
-import CommonUserProfile from "../CommonUserProfile/CommonUserProfile";
+import CommonUserProfile from "../Common/CommonUserProfile";
 
 
 const MatchedProjectUsers = () => {
@@ -12,36 +12,47 @@ const MatchedProjectUsers = () => {
   const { project_id } = useParams();
   const [projData, setProjData] = useState(null);
   const [matchedUsers, setmatchedUsers] = useState(null);
+  const [projectMembers, setProjectMembers] = useState(null);
+  const { authUser } = useContext(UserContext);
 
   useEffect(() => {
     async function viewAllMatchedUsers() {
       try {
+        // Retrieve the users who matched the project
         let response = await API.viewProjectUserMatches(project_id);
         let { project_data, user_matches } = response;
-        console.log("original:", user_matches);
 
         let vals = Object.values(user_matches);
-        // let userData = vals.map(user => [user.user_matched, user.matched_user_bio]);
-        // console.log(userData);
-
         setmatchedUsers(vals);
 
+        // Retrieve users who are also project members 
+        let projMemberData = await API.viewAllProjMembers(project_id)
+        let project_member_values = Object.values(projMemberData.proj_members);
+        let allProjectMembers = project_member_values.map(user => user.username);
+        setProjectMembers([...allProjectMembers]);
+
+        // Set project data.
         setProjData(project_data);
-        console.log(matchedUsers)
-
-        // console.log("Proj data:", projData);
-
       } catch (e) {
         console.log(e, "********");
       }
     };
 
     viewAllMatchedUsers();
-  }, [setProjData, project_id, setmatchedUsers]);
+  }, [setProjData, project_id, setmatchedUsers, setProjectMembers]);
 
 
   // ***************************************************************
 
+  let addUserToProjectMember = async function (project_id, userToAdd) {
+    try {
+      let response = API.addProjectMember(project_id, userToAdd);
+      console.log(response);
+      alert("User added to project members");
+    } catch (e) {
+      console.log(e);
+    };
+  };
 
 
   return (

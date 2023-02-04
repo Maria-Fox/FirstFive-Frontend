@@ -35,22 +35,14 @@ class API {
   };
 
   static async registerUser(userData) {
-    try {
-      console.log("register user method called")
-      let newUser = await this.request("auth/register", { ...userData }, 'post');
-      return newUser.signedJWT;
-    } catch (e) {
-      throw e;
-    };
+    let newUser = await this.request("auth/register", { ...userData }, 'post');
+    console.log("new user is", newUser)
+    return newUser.signedJWT;
   };
 
   static async authenticateUser(userData) {
-    try {
-      let authUser = await this.request(`auth/login`, { ...userData }, 'post');
-      return authUser.signedJWT;
-    } catch (e) {
-      throw e;
-    };
+    let authUser = await this.request(`auth/login`, { ...userData }, 'post');
+    return authUser.signedJWT;
   };
 
 
@@ -145,8 +137,9 @@ class API {
     return res;
   };
 
-  static async deleteProjectMember(project_id, userToDel) {
-    let res = await this.request(`projectmembers/delete/${project_id}`, { ...userToDel }, 'delete');
+  static async deleteProjectMember(project_id, username) {
+    console.log(project_id, username, "API")
+    let res = await this.request(`projectmembers/delete/${project_id}`, { username }, 'delete');
     return res;
   };
 

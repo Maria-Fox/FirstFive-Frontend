@@ -25,8 +25,8 @@ const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github
     <div className="ProjectCard">
 
       <h2>{name}</h2>
-      <Link to={`/projects/${id}`} style={{ color: "aqua" }}>View Alone</Link>
-      <h3>Created by: {owner_username}</h3>
+      {/* <Link to={`/projects/${id}`} style={{ color: "aqua" }}>View Alone</Link>
+      <h3>Created by: {owner_username}</h3> */}
 
       <p>Expected project duration: {timeframe}</p>
 
