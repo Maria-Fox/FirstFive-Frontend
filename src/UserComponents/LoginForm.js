@@ -14,7 +14,7 @@ const LoginForm = ({ authenticateuser }) => {
   };
 
   let [formData, setFormData] = useState(initial_state);
-  let [formErrors, setFormErrors] = useState(null);
+  let [formErrors, setFormErrors] = useState([]);
 
   // ***************************************************************
 
@@ -30,17 +30,14 @@ const LoginForm = ({ authenticateuser }) => {
   // ***************************************************************
 
   let handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      let response = await authenticateuser(formData);
-      if (response.success) {
-        navigate(`/projects/view`);
-      };
-    } catch (err) {
-      console.log([err]);
-      setFormErrors([err]);
+    e.preventDefault();
+    let response = await authenticateuser(formData);
+    if (response.success) {
+      navigate(`/projects/view`);
+    } else {
+      setFormErrors(response.errors);
     }
-  };
+  }
 
   // ***************************************************************
 
@@ -49,7 +46,7 @@ const LoginForm = ({ authenticateuser }) => {
     <div>
       <h1>Sign in</h1>
 
-      {formErrors ? <AlertNotification type="danger" messages={formErrors} /> : null};
+      {formErrors ? <AlertNotification type="danger" messages={formErrors} /> : null}
 
       <form onSubmit={handleSubmit}>
 

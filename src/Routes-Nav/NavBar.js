@@ -16,7 +16,7 @@ const NavBar = ({ logout }) => {
     return (
       <nav>
         <NavLink to="/auth/login" className="NavBar-item">Log in</NavLink>
-        <NavLink to="/auth/register" className="NavBar-item">Sign up</NavLink>
+        <NavLink to="/auth/register" className="NavBar-item">Register</NavLink>
       </nav>
     );
   } else {
