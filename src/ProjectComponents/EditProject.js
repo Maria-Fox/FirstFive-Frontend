@@ -36,15 +36,14 @@ const EditProject = () => {
       try {
         let response = await API.viewProject(project_id);
         // console.log(response.github_repo, "RES IS ")
-        setProjData({
-          project_desc: {
+        setProjData(
+          {
             "owner_username": authUser,
             "name": response.name,
             "project_desc": response.project_desc,
             "timeframe": response.timeframe,
             "github_repo": response.github_repo
-          }
-        });
+          });
 
         console.log(projData);
 
@@ -71,14 +70,11 @@ const EditProject = () => {
   // ***************************************************************
 
   async function handleSubmit(e) {
-    e.preventDefault();
     try {
-      let response = await API.createProject({ owner_username: authUser, ...projData });
-      // console.log("resp is:", response);
-      // user is instantly matched with project. 
-      // probably navigate elsewhere. temp for now
+      e.preventDefault();
+      let response = await API.editProject(project_id, projData);
       alert("Project was updated successfully.");
-      navigate(`/matches/view/${authUser}/all`);
+      navigate(`/projects/${project_id}`);
     } catch (e) {
       console.log(e);
     };

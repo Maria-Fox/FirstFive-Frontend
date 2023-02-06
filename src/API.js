@@ -46,6 +46,8 @@ class API {
   };
 
 
+
+
   // ******************************************* USER methods
 
   // Need to see about limmited views to only those who matched..
@@ -53,6 +55,12 @@ class API {
 
   static async viewUser(username) {
     let res = await this.request(`users/${username}`);
+    console.log(res.userData);
+    return res.userData;
+  };
+
+  static async viewAuthUserProfile(username) {
+    let res = await this.request(`users/${username}/profile/view`);
     console.log(res.userData);
     return res.userData;
   };

@@ -14,22 +14,26 @@ const UserProfile = () => {
   useEffect(function userProfile() {
     async function viewUserProfile() {
       try {
-        let user = await API.viewUser(username);
-        // console.log("Data is:", userData)
-        setUserData(user);
+        let user = await API.viewAuthUserProfile(username);
+        // console.log("Data is:", user)
+        setUserData({
+          username: user.username,
+          bio: user.bio,
+          email: user.email
+        });
       } catch (e) {
         console.log(e, "***")
       };
     };
 
     viewUserProfile();
-  }, [username]);
+  }, [setUserData, username]);
 
   // ***************************************************************
 
 
   // Need guidance on how I can update an owner - component wise.
-  let handleUpdate = () => {
+  let navigateToUpdate = () => {
     console.log("update ran")
     navigate(`/users/update/${authUser}`);
     console.log("nav ran")
@@ -53,7 +57,7 @@ const UserProfile = () => {
   // The routes are the same jus the type of route (get vs path is diff) how do I move around that?
   let updateForm = (
     <div>
-      <button onClick={handleUpdate}>Update Profile Details</button>
+      <button onClick={navigateToUpdate}>Update Profile Details</button>
       <button onClick={handleDelete}>Delete Profile</button>
     </div>
   );
@@ -63,8 +67,9 @@ const UserProfile = () => {
     <div>
       <h1>Profile</h1>
 
-      <h2>{userData.username}</h2>
-      <p>{userData.bio}</p>
+      <h2>Username: {userData.username}</h2>
+      <p>Bio: {userData.bio}</p>
+      <p>Email: {userData.email}</p>
 
       {updateForm}
 

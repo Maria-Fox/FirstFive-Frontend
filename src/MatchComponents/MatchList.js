@@ -60,7 +60,7 @@ const MatchList = () => {
 
     <div>
       <h1>Matches</h1>
-      {matchData ? matchData.map(({ project_id, project_desc, name, owner_username, timeframe, github_repo }) =>
+      {matchData && matchData.length > 0 ? matchData.map(({ project_id, project_desc, name, owner_username, timeframe, github_repo }) =>
         <MatchedProj
           key={project_id}
           project_id={project_id}
@@ -74,7 +74,7 @@ const MatchList = () => {
         />
       )
         :
-        <p>Loading...</p>}
+        <p>No matches, yet!</p>}
 
     </div>
   );

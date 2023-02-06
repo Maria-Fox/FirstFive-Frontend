@@ -32,7 +32,10 @@ const MessageList = () => {
 
   return (
     <div>
-      {userMessages ?
+      <h1>Messages</h1>
+
+
+      {userMessages && userMessages.length > 0 ?
         userMessages.map(({ id, message_from, message_to, body, sent_at }) =>
           <MessageCard
             key={id}
@@ -43,7 +46,7 @@ const MessageList = () => {
             sent_at={sent_at}
           />
         )
-        : <p>Loading...</p>}
+        : <p>No messages, yet!</p>}
     </div >
   )
 };

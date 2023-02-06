@@ -20,9 +20,11 @@ const ProjectList = () => {
     async function getAllProjects() {
 
       try {
-        if (matchedProjectIds === null) {
+        console.log("IN PROJECTS MATCHED IDS ARE", matchedProjectIds.length)
+        if (matchedProjectIds.length === 0) {
+          console.log("WELL, THIS RAN")
           let response = await API.getAllProjects();
-          setMatchedProjectIds(response);
+          setProjects(response);
         } else {
           let response = await API.getNonMatchedProjects();
           setProjects(response);

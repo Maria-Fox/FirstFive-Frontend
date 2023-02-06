@@ -9,8 +9,9 @@ import useLocalStorage from './Hooks/useLocalStorage';
 import FirstFiveAPI from './API';
 import NavBar from './Routes-Nav/NavBar';
 
+// ***************************************************************
 
-// Key name for storing token in localStorage for "remember me" re-login
+// Key name for storing token in localStorage
 export const token_storage = "token";
 
 function App() {
@@ -19,9 +20,7 @@ function App() {
   const [matchedProjectIds, setMatchedProjectIds] = useState(null);
   const navigate = useNavigate();
 
-  // Load user info from API. Until a user is logged in and they have a token,
-  // this should not run. It only needs to re-run when a user logs out, so
-  // the value of the token is a dependency for this effect.
+  // ***************************************************************
 
   useEffect(function loadUserInfo() {
     // console.debug("App useEffect loadUserInfo", "token=", token);
@@ -47,6 +46,9 @@ function App() {
     getCurrentUser();
   }, [token]);
 
+  // ***************************************************************
+
+
   async function registerUser(formData) {
     try {
       let token = await API.registerUser(formData);
@@ -57,6 +59,8 @@ function App() {
       return { success: false, errors };
     };
   };
+
+  // ***************************************************************
 
 
   async function authenticateUser(formData) {
@@ -70,11 +74,17 @@ function App() {
     };
   };
 
+  // ***************************************************************
+
+
   async function logout() {
     setAuthtUser(null);
     localStorage.removeItem('token');
     navigate("/auth/login");
   };
+
+  // ***************************************************************
+
 
   return (
     <UserContext.Provider
