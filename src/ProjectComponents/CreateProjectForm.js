@@ -42,18 +42,16 @@ const CreateProjectForm = () => {
       // user is instantly matched with project. They can find it under the 'posts' Nav item.
 
       let id = response.id;
-      console.log(id, "THIS BETTER WORK IM DONE")
+      console.log(id, "&&&&&&&&&&&&&&&&");
 
-      // Add the project id from newly created proj. 
-      setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
-      console.log("UPDATED MATCHED PROJ IDS", matchedProjectIds)
-
+      // Newly created proj id goes into matches.
+      setMatchedProjectIds([...matchedProjectIds, id]);
 
       // probably navigate elsewhere. temp for now
-      alert("Project was added successfully.");
+      // alert("Project was added successfully.");
       navigate(`/projects/created/by/${authUser}`);
     } catch (e) {
-      console.log(e)
+      setErrors(e);
       return;
     };
   };

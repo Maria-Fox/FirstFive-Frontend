@@ -46,9 +46,6 @@ const EditProject = () => {
             "github_repo": response.github_repo
           });
 
-        console.log(projData);
-
-
       } catch (e) {
         setErrors(e);
         return;
@@ -76,8 +73,7 @@ const EditProject = () => {
       e.preventDefault();
       let response = await API.editProject(project_id, projData);
       alert("Project was updated successfully.");
-      // The projectCard rendered is a simple/ dumb component so the project data isn't loaded via API call. It's passed down from the projectList.
-      navigate(`/projects/${project_id}`);
+      navigate(`/projects/created/by/${authUser}`);
     } catch (e) {
       setErrors(e);
       return;

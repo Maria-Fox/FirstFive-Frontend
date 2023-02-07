@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../API";
+import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
 import MatchedProj from "./MatchedProj"
 
@@ -10,6 +11,7 @@ const MatchList = () => {
   // ***************************************************************
   const { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
   const [matchData, setMatchData] = useState(null);
+  const [errors, setErrors] = useState(null);
   const { username } = useParams();
 
   useEffect(() => {
@@ -24,7 +26,8 @@ const MatchList = () => {
         // Update based on matching projects at refresh.
         setMatchedProjectIds([...matchedProjectIds]);
       } catch (e) {
-        console.log(e);
+        setErrors(e);
+        return;
       };
     };
 
@@ -58,6 +61,9 @@ const MatchList = () => {
 
     <div>
       <h1>Matches</h1>
+
+      {errors ? <AlertNotification messages={errors} /> : null}
+
       {matchData && matchData.length > 0 ? matchData.map(({ project_id, project_desc, name, owner_username, timeframe, github_repo }) =>
         <MatchedProj
           key={project_id}
