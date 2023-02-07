@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "./UserContext";
 import API from "../API";
+import AlertNotification from "../Common/AlertNotifications";
 
 const UpdateProfileForm = () => {
 
@@ -26,6 +27,7 @@ const UpdateProfileForm = () => {
 
       setFormData({
         username: userData.username,
+        password: "",
         email: userData.email,
         bio: userData.bio
       })
@@ -43,8 +45,9 @@ const UpdateProfileForm = () => {
       let response = await API.editUser(authUser, formData);
       console.log(response);
       navigate(`/users/${authUser}`);
-    } catch (e) {
-      setFormErrors(e);
+    } catch (err) {
+      setFormErrors(err);
+      return;
     }
   }
 
@@ -64,8 +67,12 @@ const UpdateProfileForm = () => {
     <div>
       <h1>Update Profile</h1>
 
+      {formErrors ? <AlertNotification messages={formErrors} /> : null}
+
       {formData ?
         <form onSubmit={handleSubmit}>
+
+          <p>cannot update username*****</p>
 
           <label htmlFor="username" >Username
             <input
@@ -73,6 +80,18 @@ const UpdateProfileForm = () => {
               id="username"
               value={formData.username}
               name="username"
+              required
+              onChange={handleChange}
+            >
+            </input>
+          </label>
+
+          <label htmlFor="password" >Password
+            <input
+              type="password"
+              id="password"
+              value={formData.password}
+              name="password"
               required
               onChange={handleChange}
             >

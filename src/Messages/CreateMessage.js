@@ -1,14 +1,19 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import API from "../API";
+import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
 
 const CreateMessage = () => {
 
+  // message from, message_to
+  const { username, to_username } = useParams();
+  console.log(`FROM USER ${username} TO USER ${to_username}`);
+
   // ***************************************************************
 
   let initial_state = {
-    message_to: "",
+    message_to: to_username,
     body: ""
   };
 
@@ -23,8 +28,8 @@ const CreateMessage = () => {
     let { name, value } = e.target;
 
     setMsgData(msgData => ({
-      [name]: value,
-      ...msgData
+      ...msgData,
+      [name]: value
     }));
   };
 
@@ -34,19 +39,16 @@ const CreateMessage = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      let newMsg = await API.createMessage({ message_from: authUser, ...msgData });
-      navigate("/")
+      console.log({ message_from: authUser, ...msgData })
+      let newMsg = await API.createMessage(authUser, { message_from: authUser, ...msgData });
+      alert("Created msg")
+      navigate(`/messages/${authUser}/all`);
     } catch (e) {
-      console.log(e);
+      setErrors(e);
+      return;
     };
   };
 
-  let printErrors = () => {
-    let errorsToPrint = msgData.e[0];
-    return (
-      <h2>{errorsToPrint}</h2>
-    );
-  };
 
   // ***************************************************************
 
@@ -55,9 +57,11 @@ const CreateMessage = () => {
     <div>
       <h1>New Message</h1>
 
-      {errors ? printErrors() : null}
+      {errors ? <AlertNotification messages={errors} /> : null}
 
       <form onSubmit={handleSubmit}>
+
+        <p>Message to: {to_username}</p>
 
         <label htmlFor="body" >
           <textarea

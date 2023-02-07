@@ -12,15 +12,11 @@ const ProjectMemberList = () => {
   useEffect(() => {
 
     async function viewProjMembers() {
-      try {
-        let response = await API.viewAllProjMembers(project_id);
-        let returnArr = Object.values(response.proj_members)
-        setProjMembers(returnArr);
+      let response = await API.viewAllProjMembers(project_id);
+      let returnArr = Object.values(response.proj_members)
+      setProjMembers(returnArr);
 
-        let projectData = await API.viewProject(project_id);
-      } catch (e) {
-        console.log(e);
-      };
+      let projectData = await API.viewProject(project_id);
     };
 
     viewProjMembers();
@@ -49,7 +45,7 @@ const ProjectMemberList = () => {
   return (
     <div>
       <h1>Project Members</h1>
-      {projMembers ? projMembers.map(user =>
+      {projMembers && projMembers.length > 0 ? projMembers.map(user =>
         <ProjectMember
           key={user.username}
           username={user.username}

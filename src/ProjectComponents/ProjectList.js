@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import ProjectCard from "./ProjectCard";
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+
 
 const ProjectList = () => {
 
   // ***************************************************************
 
 
-  let { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
+  let { authUser, matchedProjectIds, setMatchedProjectIdss } = useContext(UserContext);
   console.log("********************", matchedProjectIds);
 
   let [projects, setProjects] = useState(null);
@@ -22,7 +24,7 @@ const ProjectList = () => {
       try {
         console.log("IN PROJECTS MATCHED IDS ARE", matchedProjectIds.length)
         if (matchedProjectIds.length === 0) {
-          console.log("WELL, THIS RAN")
+          console.log("USER DOES NOT HAVE MATCHES")
           let response = await API.getAllProjects();
           setProjects(response);
         } else {
@@ -36,19 +38,20 @@ const ProjectList = () => {
 
     getAllProjects();
 
-  }, [matchedProjectIds, setMatchedProjectIds]);
+  }, [matchedProjectIds, setMatchedProjectIdss]);
 
   // ***************************************************************
 
 
   let handleMatch = async function (authuser, id) {
     try {
-      console.log("matched ids are", matchedProjectIds);
+      console.log("matched ids BEFORE", matchedProjectIds);
       await API.addMatch(authUser, id);
       // Add in the new Proejct ID into state. ProjectList sends off a new request to get the ones not added.
-      setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
-      // some JS function for interactive/ fun match visual.
-      alert("You've been matched!");
+      setMatchedProjectIdss(matchedProjectIds => [...matchedProjectIds, id]);
+      console.log("after matched id", matchedProjectIds)
+      // alert("You've been matched!");
+      confetti();
     } catch (e) {
       console.log(e);
     };

@@ -8,6 +8,7 @@ import { decodeToken } from "react-jwt";
 import useLocalStorage from './Hooks/useLocalStorage';
 import FirstFiveAPI from './API';
 import NavBar from './Routes-Nav/NavBar';
+import Example from './Routes-Nav/Example';
 
 // ***************************************************************
 
@@ -17,13 +18,13 @@ export const token_storage = "token";
 function App() {
   const [authUser, setAuthtUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
-  const [matchedProjectIds, setMatchedProjectIds] = useState(null);
+  const [matchedProjectIds, setMatchedProjectIdss] = useState(null);
   const navigate = useNavigate();
 
   // ***************************************************************
 
   useEffect(function loadUserInfo() {
-    // console.debug("App useEffect loadUserInfo", "token=", token);
+    console.debug("App useEffect loadUserInfo", "token=", token);
 
     async function getCurrentUser() {
       if (token) {
@@ -34,7 +35,7 @@ function App() {
           FirstFiveAPI.token = token;
           let userMatches = await API.viewUsernameMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
-          setMatchedProjectIds([...matchIds])
+          setMatchedProjectIdss([...matchIds])
           console.log(matchedProjectIds, "matched id's");
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
@@ -88,9 +89,10 @@ function App() {
 
   return (
     <UserContext.Provider
-      value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIds }}>
+      value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIdss }}>
       <div className="App-header">
         <NavBar logout={logout} />
+        {/* <Example /> */}
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />
       </div>
     </UserContext.Provider>

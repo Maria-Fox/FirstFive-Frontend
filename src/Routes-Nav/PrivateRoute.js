@@ -1,12 +1,12 @@
-import React, {Children, useContext} from "react";
+import React, { Children, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 
 const PrivateRoute = () => {
-  let {authUser} = useContext(UserContext); 
+  let { authUser } = useContext(UserContext);
   console.log("In private route user is", authUser)
 
-  return authUser === true ? Children : <Navigate to = "/auth/register" ></Navigate>
+  return authUser ? Children : <Navigate to="/auth/register" ></Navigate>
 };
 
 export default PrivateRoute;

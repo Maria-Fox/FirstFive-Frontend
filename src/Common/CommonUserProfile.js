@@ -10,7 +10,7 @@ const CommonUserProfile = ({ username, bio }) => {
 
   let msgUserOption = (
     <button>
-      <Link to={`/messages/${authUser}/create`}>Message {username}</Link>
+      <Link to={`/messages/${authUser}/create/${username}`}>Message {username}</Link>
     </button>
   )
 

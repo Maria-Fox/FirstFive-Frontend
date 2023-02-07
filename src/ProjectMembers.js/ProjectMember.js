@@ -10,7 +10,7 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
 
   let msgUserOption = (
     <button>
-      <Link to={`/messages/${authUser}/create`}>Message {username}</Link>
+      <Link to={`/messages/${authUser}/create/${username}`}>Message {username}</Link>
     </button>
   )
   return (
@@ -20,7 +20,10 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
       {username == authUser ? null : msgUserOption}
 
       {/* Need to limit to just the project_owner. */}
-      <button onClick={() => handleRemoveProjMember(project_id, username)}>Remove</button>
+      <p>THIS SHOULD ONLY BE FOR PROJECT_OWNER</p>
+      <button >Remove</button>
+
+
 
     </div>
   )

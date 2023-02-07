@@ -3,6 +3,7 @@ import UserContext from "../UserComponents/UserContext";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import API from "../API";
+import AlertNotification from "../Common/AlertNotifications";
 
 const EditProject = () => {
 
@@ -49,7 +50,8 @@ const EditProject = () => {
 
 
       } catch (e) {
-        console.log(e);
+        setErrors(e);
+        return;
       }
     }
 
@@ -74,20 +76,14 @@ const EditProject = () => {
       e.preventDefault();
       let response = await API.editProject(project_id, projData);
       alert("Project was updated successfully.");
+      // The projectCard rendered is a simple/ dumb component so the project data isn't loaded via API call. It's passed down from the projectList.
       navigate(`/projects/${project_id}`);
     } catch (e) {
-      console.log(e);
+      setErrors(e);
+      return;
     };
   };
 
-  // ***************************************************************
-
-  let printErrors = () => {
-    let errorsToPrint = errors.e[0];
-    return (
-      <h2>{errorsToPrint}</h2>
-    );
-  };
 
   // ***************************************************************
 
@@ -98,7 +94,7 @@ const EditProject = () => {
           <h1>Update: {projData.name}</h1>
 
           <div>
-            {errors ? printErrors() : null}
+            {errors ? <AlertNotification messages={errors} /> : null}
 
             <form onSubmit={handleSubmit}>
 

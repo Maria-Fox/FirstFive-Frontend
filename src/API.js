@@ -85,13 +85,16 @@ class API {
 
   static async getAllProjects() {
     let res = await this.request(`projects/all`);
-    console.log("Res is", res)
     return res;
   };
 
   static async getNonMatchedProjects() {
     let res = await this.request(`projects/view`);
-    console.log("Res is", res)
+    return res;
+  };
+
+  static async getUserCreatedProjects(username) {
+    let res = await this.request(`projects/created/by/${username}`);
     return res;
   };
 
@@ -106,7 +109,7 @@ class API {
   };
 
   static async deleteProject(project_id) {
-    let res = await this.request(`delete/${project_id}`, {}, 'delete');
+    let res = await this.request(`projects/${project_id}`, {}, 'delete');
     return res;
   };
 

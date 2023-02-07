@@ -1,18 +1,21 @@
 import React, { useEffect, useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import MatchedProj from "./MatchedProj"
+
 
 const MatchList = () => {
 
   // ***************************************************************
   const { authUser } = useContext(UserContext);
   const [matchData, setMatchData] = useState(null);
+  const { username } = useParams();
 
   useEffect(() => {
     async function getMatchData() {
       try {
-        let response = await API.viewUsernameMatches(authUser);
+        let response = await API.viewUsernameMatches(authUser || username);
         console.log("Match res", response)
         setMatchData(response);
         console.log("data looks like this !!!", matchData)
@@ -39,19 +42,7 @@ const MatchList = () => {
     } catch (e) {
       console.log(e);
     }
-  }
-  // ***************************************************************
-
-  let handleDeleteProj = async (project_id) => {
-    try {
-      let response = API.deleteProject(project_id);
-      setMatchData(matchData.filter(ids => ids.project_id != project_id));
-      alert("Deleted project!");
-    } catch (e) {
-      console.log(e);
-    };
   };
-
 
   // ***************************************************************
 
@@ -70,7 +61,6 @@ const MatchList = () => {
           timeframe={timeframe}
           github_repo={github_repo}
           handleUnmatch={handleUnmatch}
-          handleDeleteProj={handleDeleteProj}
         />
       )
         :

@@ -2,13 +2,14 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
+import AlertNotification from "../Common/AlertNotifications";
 
 
 const CreateProjectForm = () => {
 
   // ***************************************************************
   let navigate = useNavigate();
-  let { authUser } = useContext(UserContext);
+  let { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
 
   let initial_state = {
     name: "",
@@ -37,25 +38,24 @@ const CreateProjectForm = () => {
     // console.log(projData)
     try {
       let response = await API.createProject({ owner_username: authUser, ...projData });
-      // console.log("resp is:", response);
-      // user is instantly matched with project. They can find it under the 'projects' Nav item.
-      let proj_id = response.id;
+      console.log("resp is:", response);
+      // user is instantly matched with project. They can find it under the 'posts' Nav item.
+
+      let id = response.id;
+      console.log(id, "THIS BETTER WORK IM DONE")
+
+      // Add the project id from newly created proj. 
+      setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
+      console.log("UPDATED MATCHED PROJ IDS", matchedProjectIds)
+
 
       // probably navigate elsewhere. temp for now
       alert("Project was added successfully.");
-      navigate(`/matches/view/${authUser}/all`);
+      navigate(`/projects/created/by/${authUser}`);
     } catch (e) {
-      console.log(e);
+      console.log(e)
+      return;
     };
-  };
-
-  // ***************************************************************
-
-  let printErrors = () => {
-    let errorsToPrint = errors.e[0];
-    return (
-      <h2>{errorsToPrint}</h2>
-    );
   };
 
   // ***************************************************************
@@ -65,7 +65,7 @@ const CreateProjectForm = () => {
     <div>
       <h1>Create Project</h1>
 
-      {errors ? printErrors() : null}
+      {errors ? <AlertNotification messages={errors} /> : null}
 
       <form onSubmit={handleSubmit}>
 

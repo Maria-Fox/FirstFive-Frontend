@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 // key = const firstfive_token = "token". If the key given does not exist it will default.
 function useLocalStorage(key, defaultValue = null) {
-  const initialValue = sessionStorage.getItem(key) || defaultValue;
+  const initialValue = localStorage.getItem(key) || defaultValue;
 
   // Initiates state
   let [item, setItem] = useState(initialValue);
