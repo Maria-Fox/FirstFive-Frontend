@@ -8,17 +8,21 @@ import MatchedProj from "./MatchedProj"
 const MatchList = () => {
 
   // ***************************************************************
-  const { authUser } = useContext(UserContext);
+  const { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
   const [matchData, setMatchData] = useState(null);
   const { username } = useParams();
 
   useEffect(() => {
     async function getMatchData() {
       try {
+        console.log(matchedProjectIds)
         let response = await API.viewUsernameMatches(authUser || username);
-        console.log("Match res", response)
         setMatchData(response);
-        console.log("data looks like this !!!", matchData)
+
+        // Update user matches state/ array.
+        let matchingNumbers = response.map(proj => proj.project_id);
+        // Update based on matching projects at refresh.
+        setMatchedProjectIds([...matchedProjectIds]);
       } catch (e) {
         console.log(e);
       };
@@ -37,7 +41,10 @@ const MatchList = () => {
       if (unmatchRes.Removed) {
         // reset the projects displayed to all except the deleted project.
         setMatchData(matchData.filter(ids => ids.project_id != project_id));
-        console.log("new matched data:", matchData)
+
+        // Update the matchedIds in state for project rendering.
+        let newIds = matchedProjectIds.filter(id => id != project_id);
+        setMatchedProjectIds(newIds);
       };
     } catch (e) {
       console.log(e);

@@ -18,7 +18,7 @@ export const token_storage = "token";
 function App() {
   const [authUser, setAuthtUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
-  const [matchedProjectIds, setMatchedProjectIdss] = useState(null);
+  const [matchedProjectIds, setMatchedProjectIds] = useState(null);
   const navigate = useNavigate();
 
   // ***************************************************************
@@ -35,7 +35,7 @@ function App() {
           FirstFiveAPI.token = token;
           let userMatches = await API.viewUsernameMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
-          setMatchedProjectIdss([...matchIds])
+          setMatchedProjectIds([...matchIds])
           console.log(matchedProjectIds, "matched id's");
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
@@ -89,7 +89,7 @@ function App() {
 
   return (
     <UserContext.Provider
-      value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIdss }}>
+      value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIds }}>
       <div className="App-header">
         <NavBar logout={logout} />
         {/* <Example /> */}

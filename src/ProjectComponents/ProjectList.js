@@ -11,8 +11,8 @@ const ProjectList = () => {
   // ***************************************************************
 
 
-  let { authUser, matchedProjectIds, setMatchedProjectIdss } = useContext(UserContext);
-  console.log("********************", matchedProjectIds);
+  let { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
+  // console.log("*****Matched proejct ids:", matchedProjectIds);
 
   let [projects, setProjects] = useState(null);
 
@@ -38,7 +38,7 @@ const ProjectList = () => {
 
     getAllProjects();
 
-  }, [matchedProjectIds, setMatchedProjectIdss]);
+  }, [matchedProjectIds, setMatchedProjectIds]);
 
   // ***************************************************************
 
@@ -48,7 +48,7 @@ const ProjectList = () => {
       console.log("matched ids BEFORE", matchedProjectIds);
       await API.addMatch(authUser, id);
       // Add in the new Proejct ID into state. ProjectList sends off a new request to get the ones not added.
-      setMatchedProjectIdss(matchedProjectIds => [...matchedProjectIds, id]);
+      setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
       console.log("after matched id", matchedProjectIds)
       // alert("You've been matched!");
       confetti();

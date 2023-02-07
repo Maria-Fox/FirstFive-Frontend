@@ -5,26 +5,31 @@ import API from "../API";
 import UserProject from "./UserProject";
 import AlertNotification from "../Common/AlertNotifications";
 
+// ***************************************************************
+
 const UserCreatedProjects = () => {
 
-  const { authUser, matchedProjectIds, setMatchedProjectIdss } = useContext(UserContext);
+  const { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
   const [projects, setProjects] = useState(null);
   const [errors, setErrors] = useState(null);
   const { username } = useParams();
   const navigate = useNavigate();
+
+  // ***************************************************************
+
 
   useEffect(() => {
 
     // Ensure signed in user only accesses their projects.
     if (authUser !== username) navigate(`/projects/created/by/${authUser}`);
 
+    console.log(matchedProjectIds, "##############")
+
     async function getUserProjects() {
       try {
-        console.log("useeffect is running!!!!!!!", matchedProjectIds, "**************")
         let userProjects = await API.getUserCreatedProjects(username);
-        console.group("res is", userProjects)
         setProjects(userProjects);
-        console.log("State:", projects)
+        console.log(projects, "%%%%%%%%%%")
       } catch (e) {
         setErrors(e);
         return;
@@ -33,7 +38,7 @@ const UserCreatedProjects = () => {
 
     getUserProjects();
 
-  }, [setProjects, setMatchedProjectIdss]);
+  }, [setProjects, setMatchedProjectIds]);
 
 
   // ***************************************************************
@@ -46,17 +51,15 @@ const UserCreatedProjects = () => {
 
   let handleDeleteProj = async (project_id) => {
     try {
-      console.log("PROJ ID IS", project_id)
       let response = await API.deleteProject(project_id);
+      let newIds = matchedProjectIds.filter(id => id != project_id);
 
-      console.log(response, matchedProjectIds);
+      // Update the projects the user is matched with.
+      setMatchedProjectIds(newIds);
 
-      // setMatchData(matchData.filter(ids => ids.project_id != project_id));
-
-      setMatchedProjectIdss(matchedProjectIds.filter(ids => ids.id != project_id));
-
-      console.log("NEW MATVCHED IDS:", matchedProjectIds);
-      alert("Deleted project!");
+      // Cause re-render for user
+      setProjects(projects.filter(p => p.id != project_id));
+      // alert("Deleted project!");
     } catch (e) {
       console.log(e);
       return;

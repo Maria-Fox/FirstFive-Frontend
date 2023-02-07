@@ -8,6 +8,7 @@ const UserProject = ({ id, owner_username, name, project_desc, timeframe, github
   return (
     <div className="UserProject">
 
+      <h1>tid: {id}</h1>
       <h1>{name}</h1>
       <p>Created by: {owner_username}</p>
       <p>Timeframe: {timeframe}</p>
