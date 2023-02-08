@@ -1,0 +1,13 @@
+.MatchedUser-Div{
+  border: 2px solid whitesmoke;
+  padding: 15px;
+  margin: 20px;
+}
+
+.MatchedUser{
+  background-color: red;
+};
+
+.ProjectMember{
+  background-color: limegreen;
+};

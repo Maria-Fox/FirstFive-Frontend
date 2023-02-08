@@ -138,8 +138,8 @@ class API {
 
   // ******************************************* Project Member methods
 
-  static async addProjectMember(project_id, userToAdd) {
-    let res = await this.request(`projects/add/${project_id}`, { ...userToAdd }, 'post');
+  static async addProjectMember(project_id, username) {
+    let res = await this.request(`projectmembers/add/${project_id}`, { username }, 'post');
     return res;
   };
 

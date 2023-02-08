@@ -94,7 +94,9 @@ const EditProject = () => {
 
             <form onSubmit={handleSubmit}>
 
-              <label htmlFor="name" >Project Name
+              <p>******The name doesn't work unless the user changes the name- otherwise it duplicate key entry is observed.</p>
+
+              {/* <label htmlFor="name" >Project Name
                 <input
                   type="text"
                   id="name"
@@ -104,7 +106,7 @@ const EditProject = () => {
                   onChange={handleChange}
                 >
                 </input>
-              </label>
+              </label> */}
 
               <label htmlFor="project_desc" >Project Description
                 <textarea

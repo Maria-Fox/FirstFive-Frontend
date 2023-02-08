@@ -42,7 +42,7 @@ const CreateProjectForm = () => {
       // user is instantly matched with project. They can find it under the 'posts' Nav item.
 
       let id = response.id;
-      console.log(id, "&&&&&&&&&&&&&&&&");
+      console.log(id, "&&&&&&&&&&&&&&&&", "State is not updating.");
 
       // Newly created proj id goes into matches.
       setMatchedProjectIds([...matchedProjectIds, id]);

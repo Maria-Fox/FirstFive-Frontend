@@ -8,16 +8,17 @@ import PrivateRoute from "./PrivateRoute";
 import UserProfile from "../UserComponents/UserProfile";
 import CreateProjectForm from "../ProjectComponents/CreateProjectForm";
 import ProjectCard from "../ProjectComponents/ProjectCard";
-import MatchList from "../MatchComponents/MatchList";
+import MatchList from "../MatchComponents/MatchedProjectList";
 import MessageList from "../Messages/MessaageList";
 import CreateMessage from "../Messages/CreateMessage";
 import SingleMsgDetails from "../Messages/SingleMsgDetail";
-import MatchedProjectUsers from "../MatchComponents/MatchedProjectUsers";
+import MatchedProjectUsers from "../MatchComponents/MatchedUserList";
 import ProjectMemberList from "../ProjectMembers.js/ProjectMemberList";
 import EditProject from "../ProjectComponents/EditProject";
 import UpdateProfileForm from "../UserComponents/UpdateProfileForm";
 import About from "../About/About";
-import UserCreatedProjects from "../ProjectComponents/UserCreatedProjects";
+import UserCreatedProjects from "../ProjectComponents/UserCreatedProjectList";
+import UpdateProjectMembers from "../ProjectMembers.js/UpdateProjectMembers";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
 
@@ -54,6 +55,8 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
       <Route path="/projects/new" element={<CreateProjectForm />}></Route>
       <Route path="/projects/view" element={<ProjectList />}></Route>
       <Route path="/projects/:id" element={<ProjectCard />}></Route>
+      <Route path="/edit/project/:project_id" element={<EditProject />}></Route>
+
       <Route path="/projects/created/by/:username" element={<UserCreatedProjects />}></Route>
 
 
@@ -66,9 +69,8 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
 
 
       {/* Project Member Routes */}
-      <Route exact path="projectmembers/view/all/:project_id" element={<ProjectMemberList />}></Route>
-      <Route path="/edit/project/:project_id" element={<EditProject />}></Route>
-
+      <Route exact path="/projectmembers/view/all/:project_id" element={<ProjectMemberList />}></Route>
+      <Route exact path="/projectmembers/update/:project_id" element={<UpdateProjectMembers />}></Route>
 
 
       {/* Message Routes */}

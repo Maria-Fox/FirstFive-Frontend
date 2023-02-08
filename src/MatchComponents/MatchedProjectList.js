@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
-import MatchedProj from "./MatchedProj"
+import MatchedProj from "./MatchedProject"
 
 
-const MatchList = () => {
+const MatchedProjectList = () => {
 
   // ***************************************************************
   const { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
@@ -22,9 +22,9 @@ const MatchList = () => {
         setMatchData(response);
 
         // Update user matches state/ array.
-        let matchingNumbers = response.map(proj => proj.project_id);
+        let matchingIDS = response.map(proj => proj.project_id);
         // Update based on matching projects at refresh.
-        setMatchedProjectIds([...matchedProjectIds]);
+        setMatchedProjectIds([...matchingIDS]);
       } catch (e) {
         setErrors(e);
         return;
@@ -32,7 +32,7 @@ const MatchList = () => {
     };
 
     getMatchData();
-  }, [setMatchData, authUser]);
+  }, [setMatchData, authUser, setMatchedProjectIds, username]);
 
   // ***************************************************************
 
@@ -43,10 +43,10 @@ const MatchList = () => {
       console.log(unmatchRes, "UNMATCH RES****");
       if (unmatchRes.Removed) {
         // reset the projects displayed to all except the deleted project.
-        setMatchData(matchData.filter(ids => ids.project_id != project_id));
+        setMatchData(matchData.filter(ids => ids.project_id !== project_id));
 
         // Update the matchedIds in state for project rendering.
-        let newIds = matchedProjectIds.filter(id => id != project_id);
+        let newIds = matchedProjectIds.filter(id => id !== project_id);
         setMatchedProjectIds(newIds);
       };
     } catch (e) {
@@ -83,4 +83,4 @@ const MatchList = () => {
   );
 };
 
-export default MatchList;
+export default MatchedProjectList;

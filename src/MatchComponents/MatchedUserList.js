@@ -2,17 +2,18 @@ import React, { useEffect, useState, useContext } from "react";
 import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 import { Link, useParams } from "react-router-dom";
-import CommonUserProfile from "../Common/CommonUserProfile";
+import AlertNotification from "../Common/AlertNotifications";
+import MatchedUser from "./MatchedUser";
 
-
-const MatchedProjectUsers = () => {
+const MatchedUserList = () => {
   // ***************************************************************
 
   // const { authUser } = useContext(UserContext);
   const { project_id } = useParams();
   const [projData, setProjData] = useState(null);
   const [matchedUsers, setmatchedUsers] = useState(null);
-  const [projectMembers, setProjectMembers] = useState(null);
+  const [projectMembers, setProjectMembers] = useState(new Set([]));
+  const [errors, setErrors] = useState(null);
   const { authUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -22,19 +23,21 @@ const MatchedProjectUsers = () => {
         let response = await API.viewProjectUserMatches(project_id);
         let { project_data, user_matches } = response;
 
-        let vals = Object.values(user_matches);
-        setmatchedUsers(vals);
+        let users = Object.values(user_matches);
+        setmatchedUsers(users);
+
+        // Set project data.
+        setProjData(project_data);
 
         // Retrieve users who are also project members 
         let projMemberData = await API.viewAllProjMembers(project_id)
         let project_member_values = Object.values(projMemberData.proj_members);
         let allProjectMembers = project_member_values.map(user => user.username);
-        setProjectMembers([...allProjectMembers]);
-
-        // Set project data.
-        setProjData(project_data);
+        setProjectMembers(new Set(allProjectMembers));
+        console.log("ALL THE PROJ MEMBERS :", projectMembers);
       } catch (e) {
-        console.log(e, "********");
+        setErrors(e);
+        return;
       }
     };
 
@@ -44,29 +47,45 @@ const MatchedProjectUsers = () => {
 
   // ***************************************************************
 
-  let addUserToProjectMember = async function (project_id, userToAdd) {
+  let addUserToProjectMember = async function (project_id, username) {
     try {
-      let response = API.addProjectMember(project_id, userToAdd);
+      // If the user is already a project member escape.
+      // if (isUserProjectMember(username)) return;
+
+      console.log(`Adding ${username} to project id: ${project_id}`)
+      let response = await API.addProjectMember(project_id, username);
       console.log(response);
-      alert("User added to project members");
+      setProjectMembers(new Set(projectMembers, username));
+      // alert("User added to project members");
     } catch (e) {
-      console.log(e);
+      setErrors(e);
+      return;
     };
   };
+
+
+  // ***************************************************************
+
+  function isUserProjectMember(username) {
+    // evaluates to true or false
+    console.log(`${username}`, projectMembers.has(username))
+    return projectMembers.has(username);
+  };
+
+  // ***************************************************************
 
 
   return (
     <div>
       <h1>Matched Users for: </h1>
+
+      {errors ? <AlertNotification messages={errors} /> : null}
+
+
       {projData && matchedUsers ?
         <div>
 
           <h1>{projData.proj_name}</h1>
-          <small>
-            <Link to={`/users/${projData.proj_owner}`}>
-              {projData.proj_owner}
-            </Link>
-          </small>
 
 
           <p>
@@ -80,11 +99,18 @@ const MatchedProjectUsers = () => {
           <div>
             <h2>Matched Users</h2>
             {matchedUsers.map(({ user_matched, matched_user_bio }) =>
-              <CommonUserProfile
-                key={user_matched}
-                username={user_matched}
-                bio={matched_user_bio}
-              />
+              <div key={user_matched}>
+
+                <MatchedUser
+                  user_matched={user_matched}
+                  matched_user_bio={matched_user_bio}
+                  project_owner={projData.proj_owner}
+                  addUserToProjectMember={addUserToProjectMember}
+                  project_id={project_id}
+                  isUserProjectMember={isUserProjectMember}
+                />
+
+              </div>
             )}
           </div>
 
@@ -95,5 +121,5 @@ const MatchedProjectUsers = () => {
   )
 };
 
-export default MatchedProjectUsers;
+export default MatchedUserList;
 

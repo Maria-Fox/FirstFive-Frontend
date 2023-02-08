@@ -2,12 +2,12 @@ import React, { useEffect, useContext, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import API from "../API";
-import UserProject from "./UserProject";
 import AlertNotification from "../Common/AlertNotifications";
+import UserCreatedProject from "./UserCreatedProject";
 
 // ***************************************************************
 
-const UserCreatedProjects = () => {
+const UserCreatedProjectList = () => {
 
   const { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
   const [projects, setProjects] = useState(null);
@@ -22,8 +22,6 @@ const UserCreatedProjects = () => {
 
     // Ensure signed in user only accesses their projects.
     if (authUser !== username) navigate(`/projects/created/by/${authUser}`);
-
-    console.log(matchedProjectIds, "##############")
 
     async function getUserProjects() {
       try {
@@ -89,7 +87,7 @@ const UserCreatedProjects = () => {
   let noProjects = (
     <div>
       <h1>No projects, yet!</h1>
-      <Link to="/projects/new">Create a projects</Link>
+      <Link to="/projects/new">Create a project</Link>
     </div>
   )
 
@@ -105,7 +103,7 @@ const UserCreatedProjects = () => {
 
       {projects && projects.length > 0 ?
         projects.map(({ id, owner_username, project_desc, timeframe, github_repo, name }) =>
-          <UserProject
+          <UserCreatedProject
             key={id}
             id={id}
             owner_username={owner_username}
@@ -123,4 +121,4 @@ const UserCreatedProjects = () => {
   )
 };
 
-export default UserCreatedProjects;
+export default UserCreatedProjectList;

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./UserProject.css"
 
-const UserProject = ({ id, owner_username, name, project_desc, timeframe, github_repo, handleNavToEditProj, handleDeleteProj }) => {
+const UserCreatedProject = ({ id, owner_username, name, project_desc, timeframe, github_repo, handleNavToEditProj, handleDeleteProj }) => {
 
 
   return (
@@ -22,11 +22,11 @@ const UserProject = ({ id, owner_username, name, project_desc, timeframe, github
       <button onClick={() => handleNavToEditProj(id)}>Edit</button>
       <button onClick={() => handleDeleteProj(id)}>Delete</button>
 
-      <button>Update Project Members</button>
+      <Link to={`/projectmembers/update/${id}`} style={{ "color": "aqua" }}>view/ Edit Project Members</Link>
 
-    </div>
+    </div >
   )
 
 }
 
-export default UserProject;
+export default UserCreatedProject;

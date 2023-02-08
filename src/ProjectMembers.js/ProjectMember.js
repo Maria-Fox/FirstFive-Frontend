@@ -4,6 +4,8 @@ import UserContext from "../UserComponents/UserContext";
 
 const ProjectMember = ({ username, handleRemoveProjMember }) => {
 
+  // console.log(project_owner)
+
   const { authUser } = useContext(UserContext);
   const { project_id } = useParams();
 
@@ -12,19 +14,23 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
     <button>
       <Link to={`/messages/${authUser}/create/${username}`}>Message {username}</Link>
     </button>
-  )
+  );
+
+  let removeProjectMemberOption = (
+    <button onClick={() => handleRemoveProjMember(project_id, username)}>
+      Remove
+    </button>
+  );
+
+
+
   return (
-    <div>
+    <div style={{ border: "solid 2px whitesmoke" }}>
       <h1>{username}</h1>
 
-      {username == authUser ? null : msgUserOption}
+      {username != authUser ? msgUserOption : null}
 
-      {/* Need to limit to just the project_owner. */}
-      <p>THIS SHOULD ONLY BE FOR PROJECT_OWNER</p>
-      <button >Remove</button>
-
-
-
+      {/* {project_owner === authUser ? removeProjectMemberOption : null} */}
     </div>
   )
 }

@@ -4,7 +4,7 @@ import "./MatchedProject.css";
 import UserContext from "../UserComponents/UserContext";
 
 
-const MatchedProj = ({ name, owner_username, project_desc
+const MatchedProject = ({ name, owner_username, project_desc
   , project_id, timeframe, github_repo, handleUnmatch }) => {
 
   // ***************************************************************
@@ -28,6 +28,17 @@ const MatchedProj = ({ name, owner_username, project_desc
 
       <small>Created by {owner_username}</small>
 
+      <div>
+        {authUser !== owner_username ?
+          <div>
+            <p>Want to jump onto the project right away?</p>
+            <Link to={`/messages/${authUser}/create/${owner_username}`} style={{ color: "aqua" }} >Message Project owner</Link>
+          </div>
+          :
+          null}
+      </div>
+
+
       <p>
         {github_repo ?
           <a href={github_repo} target="_blank" rel="noreferrer" style={{ color: "aqua" }}> View Repo for: {name} </a>
@@ -50,13 +61,8 @@ const MatchedProj = ({ name, owner_username, project_desc
       {/* Proejct owners cannot remove a match from projects they create*/}
       {authUser !== owner_username ? unMatchOption : null}
 
-      {authUser !== owner_username ?
-        <Link to={`/messages/${authUser}/create/${owner_username}`} style={{ color: "aqua" }} >Message Project owner</Link>
-        :
-        null}
-
     </div>
   );
 };
 
-export default MatchedProj;
+export default MatchedProject;
