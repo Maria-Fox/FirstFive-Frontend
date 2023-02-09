@@ -4,6 +4,7 @@ import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import MessageCard from "./MessageCard";
 
+
 const MessageList = () => {
 
   // ***************************************************************
@@ -21,7 +22,6 @@ const MessageList = () => {
       try {
         let response = await API.getAllUserMessages(username);
         setUserMessages(response);
-        console.log(userMessages);
       } catch (e) {
         console.log(e);
       }

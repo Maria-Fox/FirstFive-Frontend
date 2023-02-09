@@ -31,6 +31,7 @@ const NavBar = ({ logout }) => {
         <NavLink to={`/messages/${authUser}/all`} className="NavBar-item">Messages</NavLink>
         <NavLink to={`/users/${authUser}`} className="NavBar-item">Profile</NavLink>
         <NavLink to={`/projects/created/by/${authUser}`} className="NavBar-item">Posts</NavLink>
+        <NavLink to="/seratonin/hit" className="NavBar-item">Seratonin Hit</NavLink>
         <Link to="/auth/login" onClick={logout} className="NavBar-item">Logout</Link>
       </nav>
     );

@@ -4,3 +4,9 @@
   padding-bottom: 20px;;
   margin: 5px;
 };
+
+/* Isn't working. */
+.MessageCard-Button{
+  border: 2px solid whitesmoke;
+  color: aqua;
+};

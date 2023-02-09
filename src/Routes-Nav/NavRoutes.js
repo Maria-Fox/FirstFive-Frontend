@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import UserContext from "../UserComponents/UserContext";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import RegisterForm from "../UserComponents/RegisterForm";
 import LoginForm from "../UserComponents/LoginForm";
@@ -19,19 +18,21 @@ import UpdateProfileForm from "../UserComponents/UpdateProfileForm";
 import About from "../About/About";
 import UserCreatedProjects from "../ProjectComponents/UserCreatedProjectList";
 import UpdateProjectMembers from "../ProjectMembers.js/UpdateProjectMembers";
+import ProjectCarousel from "../ProjectComponents/ProjectCarousel";
+import Seratonin from "../UserComponents/Seratonin";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
 
-  const { authUser } = useContext(UserContext)
 
   return (
     <Routes>
 
-      {/* {<Route path="/projects/view" element={
+      {/* <Route exact path="/projects/view">
         <PrivateRoute>
-          <ProjectList />
-        </PrivateRoute>} >
-      </Route>} */}
+          <ProjectList path="/projects/view" />
+        </PrivateRoute>
+      </Route> */}
+
 
       {/* Auth user routes */}
       <Route path="/auth/register"
@@ -42,6 +43,9 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
       </Route>
       <Route path="/about"
         element={<About />}>
+      </Route>
+      <Route path="/seratonin/hit"
+        element={<Seratonin />}>
       </Route>
 
 
@@ -54,6 +58,7 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
       {/* Project Routes */}
       <Route path="/projects/new" element={<CreateProjectForm />}></Route>
       <Route path="/projects/view" element={<ProjectList />}></Route>
+      <Route path="/projects/carousel" element={<ProjectCarousel />}></Route>
       <Route path="/projects/:id" element={<ProjectCard />}></Route>
       <Route path="/edit/project/:project_id" element={<EditProject />}></Route>
 

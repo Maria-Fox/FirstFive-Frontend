@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import "./MessageCard.css"
 import UserContext from "../UserComponents/UserContext";
+import {
+  Card, CardTitle, CardSubtitle, CardText
+} from "reactstrap"
 
 
 const MessageCard = ({ id, message_from, message_to, body, sent_at, read_at = null }) => {
@@ -16,12 +19,13 @@ const MessageCard = ({ id, message_from, message_to, body, sent_at, read_at = nu
 
   return (
     <div className="MessageCard">
-      {message_from == authUser ? null : <p>Message from: {message_from}</p>}
-      {message_to == authUser ? null : <p>Message to: {message_to}</p>}
+      <Card>
+        {message_from == authUser ? null : <CardTitle>Message from: {message_from}</CardTitle>}
+        {message_to == authUser ? null : <CardTitle>Message to: {message_to}</CardTitle>}
 
-
-      <p>See Additional Details</p>
-      <Link to={`/messages/${authUser}/read/${id}`}>See additional Details</Link>
+        <CardSubtitle>See Additional Details</CardSubtitle>
+        <Link to={`/messages/${authUser}/read/${id}`} className="MessageCard-Button">See additional Details</Link>
+      </Card>
     </div>
   );
 };

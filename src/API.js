@@ -93,6 +93,11 @@ class API {
     return res;
   };
 
+  static async carouselProjects() {
+    let res = await this.request(`projects/carousel`);
+    return res;
+  };
+
   static async getUserCreatedProjects(username) {
     let res = await this.request(`projects/created/by/${username}`);
     return res;

@@ -4,6 +4,7 @@ import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import ProjectCard from "./ProjectCard";
 import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+import AlertNotification from "../Common/AlertNotifications";
 
 
 const ProjectList = () => {
@@ -15,6 +16,7 @@ const ProjectList = () => {
   // console.log("*****Matched proejct ids:", matchedProjectIds);
 
   let [projects, setProjects] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   // ***************************************************************
 
@@ -32,7 +34,8 @@ const ProjectList = () => {
           setProjects(response);
         }
       } catch (e) {
-        console.log(e);
+        setErrors(e);
+        return;
       };
     };
 
@@ -62,6 +65,15 @@ const ProjectList = () => {
   return (
     <div>
       <h1>Projects</h1>
+
+      {errors ? <AlertNotification messages={errors} /> : null}
+
+      <div>
+        <p>Prefer to view project through a carousel?</p>
+        <Link to="/projects/carousel" style={{ color: "aqua" }} >Click here!</Link>
+      </div>
+
+
       <Link to="/projects/new" style={{ color: "aqua" }}>Create Project</Link>
       {projects ? projects.map(({ id, owner_username, name, project_desc, timeframe, github_repo }) =>
         <ProjectCard
