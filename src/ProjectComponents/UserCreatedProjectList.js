@@ -36,7 +36,7 @@ const UserCreatedProjectList = () => {
 
     getUserProjects();
 
-  }, [setProjects, setMatchedProjectIds]);
+  }, [setProjects, setMatchedProjectIds, authUser]);
 
 
   // ***************************************************************
@@ -49,38 +49,21 @@ const UserCreatedProjectList = () => {
 
   let handleDeleteProj = async (project_id) => {
     try {
-      let response = await API.deleteProject(project_id);
-      let newIds = matchedProjectIds.filter(id => id != project_id);
+      await API.deleteProject(project_id);
+      let newIds = matchedProjectIds.filter(id => id !== project_id);
 
       // Update the projects the user is matched with.
       setMatchedProjectIds(newIds);
 
       // Cause re-render for user
-      setProjects(projects.filter(p => p.id != project_id));
+      setProjects(projects.filter(p => p.id !== project_id));
       // alert("Deleted project!");
     } catch (e) {
-      console.log(e);
+      setErrors(e);
       return;
     };
   };
 
-
-  // ***************************************************************
-
-
-  // let handleRemoveProjMember = async function (project_id, username) {
-  //   try {
-  //     console.log(projMembers, "b4")
-  //     console.log("USER TO DELETE", username, "!!!!!")
-  //     let deletedUser = await API.deleteProjectMember(project_id, username);
-  //     setProjMembers(projMembers.filter(users => users.username != username));
-  //     console.log(projMembers, "After");
-  //     alert("deleted user");
-
-  //   } catch (e) {
-  //     console.log(e);
-  //   };
-  // };
 
   // ***************************************************************
 

@@ -24,7 +24,6 @@ const NavBar = ({ logout }) => {
   } else {
     return (
       <nav className="">
-        <input type="text"></input>
 
         <NavLink to="/projects/view" className="NavBar-item">Projects</NavLink>
         <NavLink to={`/matches/view/${authUser}/all`} className="NavBar-item">Matches</NavLink>

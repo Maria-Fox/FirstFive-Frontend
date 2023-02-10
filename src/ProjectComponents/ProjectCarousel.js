@@ -2,11 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserComponents/UserContext';
 import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import API from '../API';
-import {
-  Button,
-  Card
-} from 'reactstrap';
 import CarouselItem from "./CarouselItem";
+import AlertNotification from '../Common/AlertNotifications';
 
 
 function ProjectCarousel(args) {
@@ -14,7 +11,8 @@ function ProjectCarousel(args) {
   // **************************************************************
 
   const [projects, setProjects] = useState(null);
-  const { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext)
+  const { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
+  const [errors, setErrors] = useState(null);
 
   useEffect(() => {
     async function initiateCarousel() {
@@ -23,7 +21,7 @@ function ProjectCarousel(args) {
         console.log(response, "RES WAS")
         setProjects(response);
       } catch (e) {
-        console.log(e);
+        setErrors(e);
       }
     };
 
@@ -45,7 +43,8 @@ function ProjectCarousel(args) {
       let newProjToDisplay = await API.carouselProjects();
       setProjects(newProjToDisplay);
     } catch (e) {
-      console.log(e);
+      setErrors(e);
+      return;
     };
   };
 
@@ -63,6 +62,8 @@ function ProjectCarousel(args) {
     <div>
       <h1>Projects</h1>
       <p>Swipe right to match a project, left to skip!</p>
+
+      {errors ? <AlertNotification messages={errors} /> : null}
 
       {!projects ? <p>Loading...</p> :
         <div>

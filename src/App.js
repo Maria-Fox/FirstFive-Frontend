@@ -8,7 +8,6 @@ import { decodeToken } from "react-jwt";
 import useLocalStorage from './Hooks/useLocalStorage';
 import FirstFiveAPI from './API';
 import NavBar from './Routes-Nav/NavBar';
-import Example from './Routes-Nav/Example';
 
 // ***************************************************************
 

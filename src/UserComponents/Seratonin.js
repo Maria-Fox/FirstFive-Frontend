@@ -10,6 +10,12 @@ const Seratonin = () => {
 
       <p>Seratonin fact ....</p>
       <button onClick={() => confetti()} className="SButton">Click</button>
+
+      <button onClick={() => confetti()} >Click</button>
+
+      <button onClick={() => confetti()} >Click</button>
+
+
     </div >
   )
 }

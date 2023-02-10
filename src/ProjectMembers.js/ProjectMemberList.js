@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../API";
+import AlertNotification from "../Common/AlertNotifications";
 import ProjectMember from "./ProjectMember";
 
 const ProjectMemberList = () => {
 
   // ***************************************************************
   const [projMembers, setProjMembers] = useState(null);
+  const [errors, setErrors] = useState(null);
   const { project_id } = useParams();
 
   useEffect(() => {
@@ -27,13 +29,14 @@ const ProjectMemberList = () => {
     try {
       console.log(projMembers, "b4")
       console.log("USER TO DELETE", username, "!!!!!")
-      let deletedUser = await API.deleteProjectMember(project_id, username);
-      setProjMembers(projMembers.filter(users => users.username != username));
+      await API.deleteProjectMember(project_id, username);
+      setProjMembers(projMembers.filter(users => users.username !== username));
       console.log(projMembers, "After");
       alert("deleted user");
 
     } catch (e) {
-      console.log(e);
+      setErrors(e);
+      return;
     };
   };
 
@@ -43,6 +46,9 @@ const ProjectMemberList = () => {
   return (
     <div>
       <h1>Project Members</h1>
+
+      {errors ? <AlertNotification messages={errors} /> : null}
+
       {projMembers && projMembers.length > 0 ? projMembers.map(user =>
         <ProjectMember
           key={user.username}

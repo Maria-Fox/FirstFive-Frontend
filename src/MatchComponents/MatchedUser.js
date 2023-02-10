@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./MatchedUser.css"
 
@@ -14,6 +15,11 @@ const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToP
 
   // ***************************************************************
 
+  let msgButton = (
+    <Link to={`/messages/${authUser}/create/${user_matched}`}>Message {user_matched}</Link>
+  );
+
+  // ***************************************************************
 
 
   return (
@@ -23,7 +29,11 @@ const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToP
 
       {authUser === project_owner ?
         <button onClick={() => addUserToProjectMember(project_id, user_matched)}
-          className={buttonStyle} >Add</button> : null}
+          className={buttonStyle} >Add To Project Members</button> : null}
+
+      {authUser !== user_matched ? msgButton : null}
+
+
 
     </div>
   );

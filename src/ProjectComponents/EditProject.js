@@ -53,7 +53,7 @@ const EditProject = () => {
     }
 
     preloadProjData();
-  }, [setProjData]);
+  }, [setProjData, authUser, project_id]);
 
   // ***************************************************************
 
@@ -71,7 +71,7 @@ const EditProject = () => {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      let response = await API.editProject(project_id, projData);
+      await API.editProject(project_id, projData);
       alert("Project was updated successfully.");
       navigate(`/projects/created/by/${authUser}`);
     } catch (e) {
@@ -96,7 +96,7 @@ const EditProject = () => {
 
               <p>******The name doesn't work unless the user changes the name- otherwise it duplicate key entry is observed.</p>
 
-              {/* <label htmlFor="name" >Project Name
+              <label htmlFor="name" >Project Name
                 <input
                   type="text"
                   id="name"
@@ -106,7 +106,7 @@ const EditProject = () => {
                   onChange={handleChange}
                 >
                 </input>
-              </label> */}
+              </label>
 
               <label htmlFor="project_desc" >Project Description
                 <textarea

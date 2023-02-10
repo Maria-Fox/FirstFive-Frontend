@@ -13,6 +13,6 @@ function AlertNotification({ type = "danger", messages = [] }) {
       ))}
     </div>
   );
-}
+};
 
 export default AlertNotification;

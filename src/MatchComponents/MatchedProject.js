@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./MatchedProject.css";
 import UserContext from "../UserComponents/UserContext";
 
@@ -11,8 +11,6 @@ const MatchedProject = ({ name, owner_username, project_desc
 
 
   const { authUser } = useContext(UserContext);
-  const navigate = useNavigate();
-
 
   // ***************************************************************
 

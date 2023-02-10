@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./MessageCard.css"
 import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 import {
-  Card, CardTitle, CardSubtitle, CardText
+  Card
 } from "reactstrap";
 import "./SingleMsgDetails.css"
+import AlertNotification from "../Common/AlertNotifications";
 
 const SingleMsgDetails = () => {
 
   // ***************************************************************
 
-  let { username, message_id } = useParams();
+  const { username, message_id } = useParams();
+  const { authUser } = useContext(UserContext);
+
   const [msgDetails, setMsgDetails] = useState(null);
-  let { authUser } = useContext(UserContext);
+  const [errors, setErrors] = useState(null);
 
   // ***************************************************************
 
@@ -26,18 +29,21 @@ const SingleMsgDetails = () => {
         console.log("Deets:", response);
         setMsgDetails(response)
       } catch (e) {
-        console.log(e);
+        setErrors(e);
+        return;
       };
     };
 
     viewMsgDetails();
-  }, []);
+  }, [username, message_id]);
 
 
   // ***************************************************************
 
   return (
     <div>
+
+      {errors ? <AlertNotification messages={errors} /> : null}
       {msgDetails ?
         <div>
           <Card className="SingleMsgDetail-div">

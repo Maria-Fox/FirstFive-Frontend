@@ -1,20 +1,17 @@
-import React, { useEffect, useState, useContext } from "react";
-import UserContext from "../UserComponents/UserContext";
+import React, { useEffect, useState } from "react";
 import API from "../API";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
 import MatchedUser from "./MatchedUser";
 
 const MatchedUserList = () => {
   // ***************************************************************
 
-  // const { authUser } = useContext(UserContext);
   const { project_id } = useParams();
   const [projData, setProjData] = useState(null);
   const [matchedUsers, setmatchedUsers] = useState(null);
   const [projectMembers, setProjectMembers] = useState(new Set([]));
   const [errors, setErrors] = useState(null);
-  const { authUser } = useContext(UserContext);
 
   useEffect(() => {
     async function viewAllMatchedUsers() {
@@ -22,6 +19,7 @@ const MatchedUserList = () => {
         // Retrieve the users who matched the project
         let response = await API.viewProjectUserMatches(project_id);
         let { project_data, user_matches } = response;
+        console.log(project_data, "!@#$%^&*(*&^%$")
 
         let users = Object.values(user_matches);
         setmatchedUsers(users);

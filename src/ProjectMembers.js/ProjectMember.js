@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 
@@ -28,7 +28,7 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
     <div style={{ border: "solid 2px whitesmoke" }}>
       <h1>{username}</h1>
 
-      {username != authUser ? msgUserOption : null}
+      {username !== authUser ? msgUserOption : null}
 
       {/* {project_owner === authUser ? removeProjectMemberOption : null} */}
     </div>

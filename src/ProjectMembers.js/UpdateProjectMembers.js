@@ -57,7 +57,9 @@ const UpdateProjectMembers = () => {
 
             <p>Looking to add project members?<p>
             </p>View the users who have matched with this project and click, "Add" when you find someone you're looking for!</p>
-            <Link to={`/matches/view/${project_id}/users`}>View Project Members</Link>
+
+
+            <Link to={`/matches/view/${project_id}/users`}>View Matched Users</Link>
           </p>
         </div>
       }

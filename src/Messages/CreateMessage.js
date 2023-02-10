@@ -40,8 +40,8 @@ const CreateMessage = () => {
     try {
       e.preventDefault();
       console.log({ message_from: authUser, ...msgData })
-      let newMsg = await API.createMessage(authUser, { message_from: authUser, ...msgData });
-      alert("Created msg")
+      await API.createMessage(authUser, { message_from: authUser, ...msgData });
+      alert("Created msg");
       navigate(`/messages/${authUser}/all`);
     } catch (e) {
       setErrors(e);

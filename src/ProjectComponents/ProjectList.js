@@ -5,6 +5,7 @@ import UserContext from "../UserComponents/UserContext";
 import ProjectCard from "./ProjectCard";
 import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import AlertNotification from "../Common/AlertNotifications";
+import "./ProjectList.css"
 
 
 const ProjectList = () => {
@@ -13,7 +14,6 @@ const ProjectList = () => {
 
 
   let { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
-  // console.log("*****Matched proejct ids:", matchedProjectIds);
 
   let [projects, setProjects] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -56,7 +56,8 @@ const ProjectList = () => {
       // alert("You've been matched!");
       confetti();
     } catch (e) {
-      console.log(e);
+      setErrors(e);
+      return;
     };
   };
 
@@ -68,7 +69,7 @@ const ProjectList = () => {
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      <div>
+      <div className="ProjectList-Carousel">
         <p>Prefer to view project through a carousel?</p>
         <Link to="/projects/carousel" style={{ color: "aqua" }} >Click here!</Link>
       </div>

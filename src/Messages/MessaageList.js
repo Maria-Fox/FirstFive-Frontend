@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import API from "../API";
+import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
 import MessageCard from "./MessageCard";
 
@@ -9,10 +10,10 @@ const MessageList = () => {
 
   // ***************************************************************
 
-  const [userMessages, setUserMessages] = useState(null);
-  const { authUser } = useContext(UserContext);
   const { username } = useParams();
-  console.log("Messages - user is ", authUser);
+  const { authUser } = useContext(UserContext);
+  const [userMessages, setUserMessages] = useState(null);
+  const [errors, setErrors] = useState(null)
 
 
   // ***************************************************************
@@ -23,11 +24,11 @@ const MessageList = () => {
         let response = await API.getAllUserMessages(username);
         setUserMessages(response);
       } catch (e) {
-        console.log(e);
+        setErrors(e);
       }
     };
     viewUserMessages();
-  }, [setUserMessages]);
+  }, [setUserMessages, username]);
 
   // ***************************************************************
 
@@ -35,6 +36,8 @@ const MessageList = () => {
   return (
     <div>
       <h1>Messages</h1>
+
+      {errors ? <AlertNotification messages={errors} /> : null};
 
       {
         userMessages && userMessages.length > 0 ?

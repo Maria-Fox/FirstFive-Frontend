@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
-import API from "../API";
 
 const RegisterForm = ({ registerUser }) => {
 

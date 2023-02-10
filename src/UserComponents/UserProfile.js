@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "./UserContext";
+import AlertNotification from "../Common/AlertNotifications";
 
 const UserProfile = () => {
-  let { username } = useParams();
-  let [userData, setUserData] = useState(null);
-  let { authUser } = useContext(UserContext);
+  const { username } = useParams();
+  const { authUser } = useContext(UserContext);
+  const [userData, setUserData] = useState(null);
+  const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
 
   // ***************************************************************
@@ -45,10 +47,11 @@ const UserProfile = () => {
   let handleDelete = () => {
     console.log("delete ran")
     try {
-      let res = API.deleteUser(authUser);
+      API.deleteUser(authUser);
       navigate("/auth/register");
     } catch (e) {
-      console.log(e);
+      setErrors(e);
+      return;
     }
   };
 
@@ -65,6 +68,7 @@ const UserProfile = () => {
 
   return (
     <div>
+      {errors ? <AlertNotification messages={errors} /> : null}
       <h1>Profile</h1>
 
       <h2>Username: {userData.username}</h2>

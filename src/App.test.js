@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { render } from '@testing-library/react';
 import App from './App';
+"loader: { '.js': 'jsx' }";
 
-test('renders learn react link', () => {
+it("Renders app without crashing", function () {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
 });

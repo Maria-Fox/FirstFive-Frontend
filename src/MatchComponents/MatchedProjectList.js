@@ -50,7 +50,8 @@ const MatchedProjectList = () => {
         setMatchedProjectIds(newIds);
       };
     } catch (e) {
-      console.log(e);
+      setErrors(e);
+      return;
     }
   };
 
