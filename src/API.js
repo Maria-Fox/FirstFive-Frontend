@@ -36,12 +36,14 @@ class API {
 
   static async registerUser(userData) {
     let newUser = await this.request("auth/register", { ...userData }, 'post');
-    console.log("new user is", newUser)
+    // console.log("new user is", newUser)
+    this.token = newUser.signedJWT
     return newUser.signedJWT;
   };
 
   static async authenticateUser(userData) {
     let authUser = await this.request(`auth/login`, { ...userData }, 'post');
+    this.token = authUser.signedJWT;
     return authUser.signedJWT;
   };
 

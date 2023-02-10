@@ -37,7 +37,7 @@ const MessageList = () => {
     <div>
       <h1>Messages</h1>
 
-      {errors ? <AlertNotification messages={errors} /> : null};
+      {errors ? <AlertNotification messages={errors} /> : null}
 
       {
         userMessages && userMessages.length > 0 ?

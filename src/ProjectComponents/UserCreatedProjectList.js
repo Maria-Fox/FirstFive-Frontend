@@ -27,7 +27,6 @@ const UserCreatedProjectList = () => {
       try {
         let userProjects = await API.getUserCreatedProjects(username);
         setProjects(userProjects);
-        console.log(projects, "%%%%%%%%%%")
       } catch (e) {
         setErrors(e);
         return;

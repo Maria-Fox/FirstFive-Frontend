@@ -32,13 +32,13 @@ function App() {
           setAuthtUser(username);
           // put the token on the Api class so it can use it to call the API.
           FirstFiveAPI.token = token;
+          console.log(token, "token was assigned");
           let userMatches = await API.viewUsernameMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
           setMatchedProjectIds([...matchIds])
           console.log(matchedProjectIds, "matched id's");
         } catch (err) {
-          console.error("App loadUserInfo: problem loading", err);
-          // setCurrentUser(null);
+          setAuthtUser(null)
         }
       }
     }
@@ -55,7 +55,6 @@ function App() {
       setToken(token);
       return { success: true };
     } catch (errors) {
-      console.error("signup failed", errors);
       return { success: false, errors };
     };
   };
@@ -69,7 +68,6 @@ function App() {
       setToken(token);
       return { success: true };
     } catch (errors) {
-      console.error("login failed", errors);
       return { success: false, errors };
     };
   };
@@ -91,7 +89,6 @@ function App() {
       value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIds }}>
       <div className="App-header">
         <NavBar logout={logout} />
-        {/* <Example /> */}
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />
       </div>
     </UserContext.Provider>
