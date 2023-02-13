@@ -6,14 +6,10 @@ import './Seratonin.css';
 const Seratonin = () => {
   return (
     <div className="Seratonin-Div">
-      <h1>Click away!</h1>
+      <h1 classname="PageTitle">Click away!</h1>
 
       <p>Seratonin fact ....</p>
       <button onClick={() => confetti()} className="SButton">Click</button>
-
-      <button onClick={() => confetti()} >Click</button>
-
-      <button onClick={() => confetti()} >Click</button>
 
 
     </div >

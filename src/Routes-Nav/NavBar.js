@@ -15,22 +15,23 @@ const NavBar = ({ logout }) => {
 
   if (!authUser) {
     return (
-      <nav>
-        <NavLink to="/auth/login" className="NavBar-item">Log in</NavLink>
+      <nav style={{ textAlign: "right" }}>
+        <NavLink to="/auth/login" className="NavBar-item">Login</NavLink>
         <NavLink to="/auth/register" className="NavBar-item">Register</NavLink>
         <NavLink to="/about" className="NavBar-item">About</NavLink>
       </nav >
     );
   } else {
     return (
-      <nav className="">
+      <nav style={{ textAlign: "right" }} >
+        <NavLink to="/" className="NavBar-item" style={{ textAlign: "left" }}>FirstFive</NavLink>
 
         <NavLink to="/projects/view" className="NavBar-item">Projects</NavLink>
         <NavLink to={`/matches/view/${authUser}/all`} className="NavBar-item">Matches</NavLink>
         <NavLink to={`/messages/${authUser}/all`} className="NavBar-item">Messages</NavLink>
         <NavLink to={`/users/${authUser}`} className="NavBar-item">Profile</NavLink>
         <NavLink to={`/projects/created/by/${authUser}`} className="NavBar-item">Posts</NavLink>
-        <NavLink to="/seratonin/hit" className="NavBar-item">Seratonin Hit</NavLink>
+        <NavLink to="/seratonin/hit" className="NavBar-item">Seratonin Hit </NavLink>
         <Link to="/auth/login" onClick={logout} className="NavBar-item">Logout</Link>
       </nav>
     );

@@ -1,41 +1,40 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./CarouselItem.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+
 
 const CarouselItem = function ({ id, owner_username, name, project_desc, timeframe, github_repo, handleMatch, skip }) {
 
-  const [isHover, setHover] = useState(false);
-
-  const updateBackground = async function () {
-    console.log("UPDATING BACKGROUND")
-    setHover(true);
-  }
-
-  const hoverAddition = (
-    <p style={{ color: "aqua" }} >Matching!</p>
-  )
-
-  // onMouseEnter={updateBackground}
-  //         onMouseLeave={() => setHover(false)}
-
   return (
-    <div style={{ border: "2px solid white", padding: "20px" }}>
+    <div className="CarouselItem-div">
+
       <h2>{name}</h2>
+
 
       <p>Expected project duration: {timeframe}</p>
 
-      <p>{project_desc}</p>
+      {github_repo ?
+        <Link to={github_repo} style={{ color: "aqua" }}>Github Repo</Link>
+        : null}
 
-      {isHover ? hoverAddition : null}
-
-
-      <button onClick={skip}>Skip</button>
-
-      <>
-        <button onClick={handleMatch}
-        >Match</button>
-      </>
+      < p > {project_desc}</p>
 
 
-    </div>
+      <div className="MatchOption">
+
+        <button onClick={skip} className="SkipButton">
+          X</button>
+
+        <button onClick={handleMatch} className="MatchButton"
+        ><FontAwesomeIcon icon={regular('heart')} /></button>
+
+
+      </div>
+
+
+    </div >
   )
 };
 

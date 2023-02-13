@@ -1,3 +1,5 @@
-.ProjectList-Carousel{
-  background-color: green;
-}
+.ProjectList-Carousel,
+.CreateProject,
+.PageTitle{
+  text-align: center;
+};

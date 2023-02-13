@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
+import "./LoginForm.css";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Card,
+  CardBody,
+  Button,
+  Alert
+} from "reactstrap";
+
 
 const LoginForm = ({ authenticateuser }) => {
 
@@ -34,8 +46,11 @@ const LoginForm = ({ authenticateuser }) => {
     let response = await authenticateuser(formData);
     if (response.success) {
       navigate(`/projects/view`);
+      console.log("Successful authentication *******")
+
     } else {
       setFormErrors(response.errors);
+      return;
     }
   }
 
@@ -43,41 +58,45 @@ const LoginForm = ({ authenticateuser }) => {
 
 
   return (
-    <div>
-      <h1>Sign in</h1>
-
-      {formErrors ? <AlertNotification type="danger" messages={formErrors} /> : null}
-
-      <form onSubmit={handleSubmit}>
-
-        <label htmlFor="username" >Username
-          <input
-            type="text"
-            id="username"
-            value={formData.username}
-            name="username"
-            required
-            onChange={handleChange}
-          >
-          </input>
-        </label>
-
-        <label htmlFor="password" >Password
-          <input
-            type="password"
-            id="password"
-            value={formData.password}
-            name="password"
-            required
-            onChange={handleChange}
-          >
-          </input>
-        </label>
+    <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 
 
-        <button>Login</button>
-      </form>
-    </div>
+      <h2 className="mb-3">Login</h2>
+      <Card>
+
+        {formErrors ? <AlertNotification messages={formErrors} /> : null}
+
+        < CardBody >
+          <Form className="LoginForm" >
+            <FormGroup>
+              <Label for="username" className="mt-3">
+                Username
+              </Label>
+              <Input
+                id="username"
+                name="username"
+                type="text"
+                onChange={handleChange}
+              />
+
+              <Label for="password" className="mt-3">
+                Password
+              </Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="on"
+                onChange={handleChange}
+              />
+            </FormGroup>
+
+
+            <Button type="submit" onClick={handleSubmit}>Submit</Button>
+          </Form>
+        </CardBody>
+      </Card>
+    </div >
   )
 };
 

@@ -61,7 +61,7 @@ const CreateProjectForm = () => {
 
   return (
     <div>
-      <h1>Create Project</h1>
+      <h1 classname="PageTitle">Create Project</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

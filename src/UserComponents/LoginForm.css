@@ -1,0 +1,11 @@
+
+.LoginForm{
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 4px solid hsl(0, 0%, 90%);
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  flex-direction: column;
+};
+

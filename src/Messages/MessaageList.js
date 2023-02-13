@@ -35,7 +35,7 @@ const MessageList = () => {
 
   return (
     <div>
-      <h1>Messages</h1>
+      <h1 style={{ textAlign: "center" }}>Messages</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

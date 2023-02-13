@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
+import "./RegisterForm.css";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Card,
+  CardBody,
+  Button
+} from "reactstrap";
 
 const RegisterForm = ({ registerUser }) => {
 
@@ -51,67 +61,62 @@ const RegisterForm = ({ registerUser }) => {
 
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+      <h2 className="mb-3">Register</h2>
 
-      {errors ? <AlertNotification type="danger" messages={errors} /> : null}
+      <Card>
 
-      <form onSubmit={handleSubmit}>
+        {errors ? <AlertNotification messages={errors} /> : null}
 
-        <label htmlFor="username" >Username
-          <input
-            type="text"
-            id="username"
-            value={formData.username}
-            name="username"
-            required
-            onChange={handleChange}
-          >
-          </input>
-        </label>
 
-        <label htmlFor="password" >Password
-          <input
-            type="password"
-            id="password"
-            value={formData.password}
-            name="password"
-            required
-            minLength={6}
-            onChange={handleChange}
-          >
-          </input>
-        </label>
+        <CardBody>
+          <Form className="RegisterForm">
+            <FormGroup>
+              <Label for="username" className="mt-3">Username
+                <Input
+                  id="username"
+                  name="username"
+                  type="text"
 
-        <label htmlFor="Email" >Email
-          <input
-            type="email"
-            id="email"
-            value={formData.email}
-            name="email"
-            required
-            onChange={handleChange}
-          >
-          </input>
-        </label>
+                  onChange={handleChange} />
+              </Label>
 
-        <label htmlFor="bio" >Bio
-          <input
-            type="text"
-            id="bio"
-            value={formData.bio}
-            name="bio"
-            required
-            onChange={handleChange}
-          >
-          </input>
-        </label>
+              <Label for="password" className="mt-3">Password
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="on"
+                  onChange={handleChange}
+                  className="RegisterInput" />
+              </Label>
 
-        <button>Join</button>
+              <Label for="firstName" className="mt-3">Email
+                <Input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  onChange={handleChange} />
+              </Label>
 
-      </form>
-    </div>
-  )
+              <Label for="lastName" className="mt-3">Bio
+                <Input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  onChange={handleChange} />
+              </Label>
+
+
+            </FormGroup>
+
+
+            <Button onClick={handleSubmit}>Submit</Button>
+          </Form>
+        </CardBody>
+      </Card>
+    </div >
+  );
 };
 
 export default RegisterForm;

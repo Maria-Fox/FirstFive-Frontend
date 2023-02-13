@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "./UserContext";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
+import "./UserProfile.css";
+import { Card } from "reactstrap";
 
 const UpdateProfileForm = () => {
 
@@ -23,7 +25,6 @@ const UpdateProfileForm = () => {
       };
 
       let userData = await API.viewAuthUserProfile(username);
-      console.log(userData, "!!!!!!!!!!!from update profile")
 
       setFormData({
         username: userData.username,
@@ -64,71 +65,71 @@ const UpdateProfileForm = () => {
   // ***************************************************************
 
   return (
-    <div>
-      <h1>Update Profile</h1>
+    <Card>
+      <h1 classname="PageTitle">Update Profile</h1>
 
       {formErrors ? <AlertNotification messages={formErrors} /> : null}
 
-      {formData ?
-        <form onSubmit={handleSubmit}>
+      <div className="UpdateProfileForm">
+        {formData ?
+          <form onSubmit={handleSubmit}>
 
-          <p>cannot update username*****</p>
+            <label htmlFor="username" >Username
+              <input
+                type="text"
+                id="username"
+                value={formData.username}
+                name="username"
+                required
+                onChange={handleChange}
+              >
+              </input>
+            </label>
 
-          <label htmlFor="username" >Username
-            <input
-              type="text"
-              id="username"
-              value={formData.username}
-              name="username"
-              required
-              onChange={handleChange}
-            >
-            </input>
-          </label>
+            <label htmlFor="password" >Password
+              <input
+                type="password"
+                id="password"
+                value={formData.password}
+                name="password"
+                required
+                onChange={handleChange}
+              >
+              </input>
+            </label>
 
-          <label htmlFor="password" >Password
-            <input
-              type="password"
-              id="password"
-              value={formData.password}
-              name="password"
-              required
-              onChange={handleChange}
-            >
-            </input>
-          </label>
+            <label htmlFor="Email" >Email
+              <input
+                type="email"
+                id="email"
+                value={formData.email}
+                name="email"
+                required
+                onChange={handleChange}
+              >
+              </input>
+            </label>
 
-          <label htmlFor="Email" >Email
-            <input
-              type="email"
-              id="email"
-              value={formData.email}
-              name="email"
-              required
-              onChange={handleChange}
-            >
-            </input>
-          </label>
+            <label htmlFor="bio" >Bio
+              <input
+                type="text"
+                id="bio"
+                value={formData.bio}
+                name="bio"
+                required
+                onChange={handleChange}
+              >
+              </input>
+            </label>
 
-          <label htmlFor="bio" >Bio
-            <input
-              type="text"
-              id="bio"
-              value={formData.bio}
-              name="bio"
-              required
-              onChange={handleChange}
-            >
-            </input>
-          </label>
+            <button>Update</button>
 
-          <button>Update</button>
+          </form>
+          :
+          <p>Loading....</p>}
 
-        </form>
-        :
-        <p>Loading....</p>}
-
-    </div>
+      </div>
+    </Card>
   )
 };
 

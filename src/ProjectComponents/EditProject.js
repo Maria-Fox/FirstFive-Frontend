@@ -87,7 +87,7 @@ const EditProject = () => {
     <div>
       {!projData ? <p>Loading...</p> :
         <div>
-          <h1>Update: {projData.name}</h1>
+          <h1 classname="PageTitle">Update: {projData.name}</h1>
 
           <div>
             {errors ? <AlertNotification messages={errors} /> : null}

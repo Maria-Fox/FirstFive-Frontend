@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
-import MatchedProj from "./MatchedProject"
+import MatchedProject from "./MatchedProject";
 
 
 const MatchedProjectList = () => {
@@ -61,12 +61,12 @@ const MatchedProjectList = () => {
   return (
 
     <div>
-      <h1>Matches</h1>
+      <h1 className="PageTitle">Matches</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
       {matchData && matchData.length > 0 ? matchData.map(({ project_id, project_desc, name, owner_username, timeframe, github_repo }) =>
-        <MatchedProj
+        <MatchedProject
           key={project_id}
           project_id={project_id}
           project_desc={project_desc}

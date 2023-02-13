@@ -1,0 +1,8 @@
+.ProfilePage,
+.UpdateProfileForm{
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+  padding: 10%;
+  margin: 10%;
+  text-align: center;
+};

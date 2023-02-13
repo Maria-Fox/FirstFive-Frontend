@@ -39,7 +39,7 @@ const UpdateProjectMembers = () => {
 
   return (
     <div>
-      <h1>Project Members - Update</h1>
+      <h1 classname="PageTitle">Project Members - Update</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

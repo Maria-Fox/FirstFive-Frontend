@@ -18,13 +18,14 @@ const MessageCard = ({ id, message_from, message_to, body, sent_at, read_at = nu
 
 
   return (
-    <div className="MessageCard">
+    <div className="MessageCard container">
       <Card>
         {message_from === authUser ? null : <CardTitle>Message from: {message_from}</CardTitle>}
         {message_to === authUser ? null : <CardTitle>Message to: {message_to}</CardTitle>}
 
-        <CardSubtitle>See Additional Details</CardSubtitle>
-        <Link to={`/messages/${authUser}/read/${id}`} className="MessageCard-Button">See additional Details</Link>
+
+        <Link style={{ color: "aqua" }}
+          to={`/messages/${authUser}/read/${id}`} className="MessageCard-Button">See additional Details</Link>
       </Card>
     </div>
   );

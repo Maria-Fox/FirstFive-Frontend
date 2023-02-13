@@ -55,7 +55,7 @@ const CreateMessage = () => {
 
   return (
     <div>
-      <h1>New Message</h1>
+      <h1 classname="PageTitle">New Message</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

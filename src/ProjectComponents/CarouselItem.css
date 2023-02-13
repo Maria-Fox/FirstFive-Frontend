@@ -1,0 +1,56 @@
+body{
+  margin: 0px;
+  height: 100vh;
+  /* place-items: center; */
+  display: flex;
+  justify-content: center;
+}
+
+.CarouselItem-div{
+  border: solid 2px red;
+  margin: 20px;
+  padding: 20px;
+  width: 30vmin;
+  aspect-ratio: 5/7;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 1vmin;
+  /* transform: translateX(-10%) rotate(-1deg) */
+};
+
+.Match-Button-Options{
+  margin-top: 8vmin;
+  display: flex;
+  justify-content: space-around;
+  background-color: purple;
+  border: 2px solid pink;
+}
+
+.MatchOption {
+  margin-top: 8vmin;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.SkipButton{
+  font-size: 2.5vmin;
+  border: 0.4vmin solid rgb(200, 200, 200);
+  border-radius: 100%;
+  color: red;
+  background-color: transparent;
+  height: 7vmin;
+  width: 7vmin;
+  cursor: pointer;
+  
+}
+
+.MatchButton{
+  font-size: 2.5vmin;
+  border: 0.4vmin solid rgb(200, 200, 200);
+  border-radius: 100%;
+  color: green;
+  background-color: transparent;
+  height: 7vmin;
+  width: 7vmin;
+  cursor: pointer;
+}

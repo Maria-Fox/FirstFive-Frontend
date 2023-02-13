@@ -75,7 +75,7 @@ const MatchedUserList = () => {
 
   return (
     <div>
-      <h1>Matched Users for: </h1>
+      <h1 className="PageTitle">Matched Users for: </h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

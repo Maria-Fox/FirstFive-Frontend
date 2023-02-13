@@ -43,7 +43,9 @@ class API {
 
   static async authenticateUser(userData) {
     let authUser = await this.request(`auth/login`, { ...userData }, 'post');
-    this.token = authUser.signedJWT;
+    // this.token = authUser.signedJWT;
+    console.log("TOKEN RET.")
+    console.log(authUser.signedJWT)
     return authUser.signedJWT;
   };
 

@@ -6,7 +6,7 @@ const UserCreatedProject = ({ id, owner_username, name, project_desc, timeframe,
 
 
   return (
-    <div className="UserProject">
+    <div className="UserProject" >
 
       <h1>tid: {id}</h1>
       <h1>{name}</h1>

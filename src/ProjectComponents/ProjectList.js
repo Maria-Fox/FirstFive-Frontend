@@ -65,17 +65,21 @@ const ProjectList = () => {
 
   return (
     <div>
-      <h1>Projects</h1>
+      <h1 className="PageTitle">Projects</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
       <div className="ProjectList-Carousel">
-        <p>Prefer to view project through a carousel?</p>
-        <Link to="/projects/carousel" style={{ color: "aqua" }} >Click here!</Link>
+        <p>Prefer to view the projects through match-cards?
+          <Link to="/projects/carousel" style={{ color: "aqua" }} >Click here!</Link>
+        </p>
       </div>
 
+      <p className="CreateProject">Don't see anything you are interested in?
+        <Link to="/projects/new" style={{ color: "aqua" }}>Create a project!</Link>
+      </p>
 
-      <Link to="/projects/new" style={{ color: "aqua" }}>Create Project</Link>
+
       {projects ? projects.map(({ id, owner_username, name, project_desc, timeframe, github_repo }) =>
         <ProjectCard
           key={id}

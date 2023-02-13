@@ -62,6 +62,7 @@ function ProjectCarousel(args) {
     <div>
       <h1>Projects</h1>
       <p>Swipe right to match a project, left to skip!</p>
+      <small>Note: The projects displayed are all the projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project!</small>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

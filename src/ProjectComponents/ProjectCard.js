@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./ProjectCard.css";
+import { Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
+
 
 const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github_repo, handleMatch }) => {
 
@@ -18,24 +20,32 @@ const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github
     navigate(`/edit/project/${id}`);
   };
 
-
+  // className="ProjectCard"
   // ***************************************************************
 
   return (
-    <div className="ProjectCard">
+    <div >
+      <Card className="ProjectCard">
 
-      <h2>{name}</h2>
+        <CardBody>
 
-      <p>Expected project duration: {timeframe}</p>
+          <CardTitle className="ProjectName">{name}</CardTitle>
+          <CardSubtitle>Expected project duration: {timeframe}</CardSubtitle>
 
-      <p>{project_desc}</p>
+          <CardBody style={{ padding: "20px" }}>
+            {project_desc}
+          </CardBody>
 
-      {/* If the authUser is also the proejct owner - allow for updates. Otherwise, allow user to match project. */}
-      {authUser === owner_username ? <button onClick={handleUpdateRequest}>Edit Project</button> :
-        <button onClick={() => handleMatch(authUser, id)}>Match</button>
-      }
+          {/* If the authUser is also the proejct owner - allow for updates. Otherwise, allow user to match project. */}
+          {authUser === owner_username ? <button onClick={handleUpdateRequest}>Edit Project</button> :
+            <button onClick={() => handleMatch(authUser, id)}>Match</button>
+          }
 
-    </div>
+        </CardBody>
+
+      </Card>
+
+    </div >
   )
 };
 

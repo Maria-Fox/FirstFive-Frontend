@@ -15,13 +15,16 @@ const MatchedProject = ({ name, owner_username, project_desc
   // ***************************************************************
 
   const unMatchOption = (
-    <button onClick={() => handleUnmatch(authUser, project_id)}>Unmatch Project</button>
+    <button onClick={() => handleUnmatch(authUser, project_id)}
+      className="unMatchButton" style={{}}>Unmatch Project</button>
   )
+
 
   // ***************************************************************
 
   return (
     <div className="MatchedProject">
+
       <h1>{name}</h1>
 
       <small>Created by {owner_username}</small>
@@ -29,8 +32,9 @@ const MatchedProject = ({ name, owner_username, project_desc
       <div>
         {authUser !== owner_username ?
           <div>
-            <p>Want to jump onto the project right away?</p>
-            <Link to={`/messages/${authUser}/create/${owner_username}`} style={{ color: "aqua" }} >Message Project owner</Link>
+            <p>Want to jump onto the project right away?
+              <Link to={`/messages/${authUser}/create/${owner_username}`} style={{ color: "aqua" }} > Message Project owner</Link>
+            </p>
           </div>
           :
           null}
@@ -50,14 +54,18 @@ const MatchedProject = ({ name, owner_username, project_desc
         <p>{project_desc}</p>
       </div>
 
-      {/* Links to View Project user matches, and project members */}
+      <div className="Match-Options">
 
-      <Link to={`/matches/view/${project_id}/users`} style={{ color: "aqua", margin: "20px" }}> View Project User Matches</Link>
+        {/* Links to View Project user matches, and project members */}
 
-      <Link to={`/projectmembers/view/all/${project_id}`} style={{ color: "aqua" }}> View Project Members</Link>
+        <Link to={`/matches/view/${project_id}/users`} style={{ color: "aqua", margin: "20px" }}> View Project User Matches</Link>
 
-      {/* Proejct owners cannot remove a match from projects they create*/}
-      {authUser !== owner_username ? unMatchOption : null}
+        <Link to={`/projectmembers/view/all/${project_id}`} style={{ color: "aqua" }}> View Project Members</Link>
+
+        {/* Proejct owners cannot remove a match from projects they create*/}
+        {authUser !== owner_username ? unMatchOption : null}
+
+      </div>
 
     </div>
   );

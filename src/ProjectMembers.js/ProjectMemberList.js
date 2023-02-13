@@ -45,7 +45,7 @@ const ProjectMemberList = () => {
 
   return (
     <div>
-      <h1>Project Members</h1>
+      <h1 classname="PageTitle">Project Members</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "./UserContext";
 import AlertNotification from "../Common/AlertNotifications";
+import "./UserProfile.css";
 
 const UserProfile = () => {
   const { username } = useParams();
@@ -59,9 +60,12 @@ const UserProfile = () => {
 
   // The routes are the same jus the type of route (get vs path is diff) how do I move around that?
   let updateForm = (
-    <div>
+    <div className="ProfileOptions">
       <button onClick={navigateToUpdate}>Update Profile Details</button>
-      <button onClick={handleDelete}>Delete Profile</button>
+      <div>
+        <p>Danger Zone</p>
+        <button onClick={handleDelete} style={{ backgroundColor: "red" }}>Delete Profile</button>
+      </div>
     </div>
   );
 
@@ -69,14 +73,16 @@ const UserProfile = () => {
   return (
     <div>
       {errors ? <AlertNotification messages={errors} /> : null}
-      <h1>Profile</h1>
+      <h1 style={{ textAlign: "center" }}>Profile</h1>
 
-      <h2>Username: {userData.username}</h2>
-      <p>Bio: {userData.bio}</p>
-      <p>Email: {userData.email}</p>
+      <div className="ProfilePage">
 
-      {updateForm}
+        <h2>Username: {userData.username}</h2>
+        <p>Bio: {userData.bio}</p>
+        <p>Email: {userData.email}</p>
 
+        {updateForm}
+      </div>
     </div>
   );
 };

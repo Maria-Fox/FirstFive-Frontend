@@ -1,15 +1,16 @@
+
+
+
 .Seratonin-Div{
-  background-color: red;
-}
-
-
-
+  background-color: blue;
+  display: flex;
+  justify-content: center
+};
 
 
 .SButton{
-  background-color: #4CAF50; /* Green */
   border: none;
-  color: white;
+  color: red;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;

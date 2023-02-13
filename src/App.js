@@ -52,6 +52,7 @@ function App() {
   async function registerUser(formData) {
     try {
       let token = await API.registerUser(formData);
+      console.log("TOKEN IS !!!!", token)
       setToken(token);
       return { success: true };
     } catch (errors) {
@@ -87,7 +88,7 @@ function App() {
   return (
     <UserContext.Provider
       value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIds }}>
-      <div className="App-header">
+      <div className="App">
         <NavBar logout={logout} />
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />
       </div>
