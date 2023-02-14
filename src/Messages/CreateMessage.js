@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
+import { Form, Label, Input, Button, Card } from "reactstrap"
 
 const CreateMessage = () => {
 
@@ -54,34 +55,34 @@ const CreateMessage = () => {
 
 
   return (
-    <div>
+    <Card>
       <h1 classname="PageTitle">New Message</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
 
         <p>Message to: {to_username}</p>
 
-        <label htmlFor="body" >
-          <textarea
-            type="text"
+        <Label htmlFor="body" >
+          <Input
+            type="textarea"
             id="body"
             value={msgData.body}
             name="body"
-            placeholder="Hi - I am interested in hearing more about your project. Are you looking to take on more project members?"
+            placeholder="Hi - I am interested in hearing more about your project. I have frontend expereince. Can you use a new project member?"
             required
             cols="100"
             rows="10"
             onChange={handleChange}
           >
-          </textarea>
-        </label>
+          </Input>
+        </Label>
 
-        <button>Send</button>
+        <Button>Send</Button>
 
-      </form>
-    </div >
+      </Form>
+    </Card >
   )
 };
 

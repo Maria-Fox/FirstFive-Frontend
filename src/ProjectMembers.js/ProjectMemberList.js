@@ -45,7 +45,7 @@ const ProjectMemberList = () => {
 
   return (
     <div>
-      <h1 classname="PageTitle">Project Members</h1>
+      <h1 style={{ textAlign: "center" }}>Project Members</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

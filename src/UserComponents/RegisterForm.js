@@ -111,7 +111,7 @@ const RegisterForm = ({ registerUser }) => {
                   id="bio"
                   name="bio"
                   type="text"
-                  placeholder="New software engineer!"
+                  placeholder="CS student"
                   onChange={handleChange} />
               </Label>
             </FormGroup>

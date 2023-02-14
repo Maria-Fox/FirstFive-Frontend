@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
+import { Card, CardTitle, Button } from "reactstrap";
 
 const ProjectMember = ({ username, handleRemoveProjMember }) => {
 
@@ -11,27 +12,27 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
 
 
   let msgUserOption = (
-    <button>
+    <Button outline color="info">
       <Link to={`/messages/${authUser}/create/${username}`}>Message {username}</Link>
-    </button>
+    </Button>
   );
 
   let removeProjectMemberOption = (
-    <button onClick={() => handleRemoveProjMember(project_id, username)}>
+    <Button onClick={() => handleRemoveProjMember(project_id, username)}>
       Remove
-    </button>
+    </Button>
   );
 
 
 
   return (
-    <div style={{ border: "solid 2px whitesmoke" }}>
-      <h1>{username}</h1>
+    <Card style={{ border: "solid 2px whitesmoke" }}>
+      <CardTitle >{username}</CardTitle>
 
       {username !== authUser ? msgUserOption : null}
 
       {/* {project_owner === authUser ? removeProjectMemberOption : null} */}
-    </div>
+    </Card>
   )
 }
 

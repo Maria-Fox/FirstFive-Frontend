@@ -30,16 +30,19 @@ const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github
         <CardBody>
 
           <CardTitle className="ProjectName">{name}</CardTitle>
-          <CardSubtitle>Expected project duration: {timeframe}</CardSubtitle>
+          <CardSubtitle>Project timeframe: {timeframe}</CardSubtitle>
 
           <CardBody style={{ padding: "20px" }}>
             {project_desc}
           </CardBody>
 
           {/* If the authUser is also the proejct owner - allow for updates. Otherwise, allow user to match project. */}
-          {authUser === owner_username ? <button onClick={handleUpdateRequest}>Edit Project</button> :
-            <button onClick={() => handleMatch(authUser, id)}>Match</button>
-          }
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            {authUser === owner_username ?
+              <button onClick={handleUpdateRequest}>Edit Project</button> :
+              <button onClick={() => handleMatch(authUser, id)}>Match</button>
+            }
+          </div>
 
         </CardBody>
 

@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./MatchedUser.css"
+import { Card } from "reactstrap";
 
 const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToProjectMember, project_id, isUserProjectMember }) => {
-  console.log("PLS WORK", project_owner, project_id)
 
   const { authUser } = useContext(UserContext);
 
@@ -23,7 +23,7 @@ const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToP
 
 
   return (
-    <div key={user_matched} className="MatchedUser-Div">
+    <Card key={user_matched} className="MatchedUser-Div">
       <h1>{user_matched}</h1>
       <p>{matched_user_bio}</p>
 
@@ -35,7 +35,7 @@ const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToP
 
 
 
-    </div>
+    </Card>
   );
 };
 

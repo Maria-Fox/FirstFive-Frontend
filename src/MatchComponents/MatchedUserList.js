@@ -3,6 +3,7 @@ import API from "../API";
 import { useParams } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
 import MatchedUser from "./MatchedUser";
+import { Card, CardText, CardTitle } from "reactstrap";
 
 const MatchedUserList = () => {
   // ***************************************************************
@@ -75,25 +76,23 @@ const MatchedUserList = () => {
 
   return (
     <div>
-      <h1 className="PageTitle">Matched Users for: </h1>
-
+      <h1 style={{ textAlign: "center" }}>Matched Users</h1>
       {errors ? <AlertNotification messages={errors} /> : null}
 
 
       {projData && matchedUsers ?
-        <div>
+        <Card style={{ padding: "20px" }}>
 
-          <h1>{projData.proj_name}</h1>
+          <CardTitle style={{ textAlign: "center" }}>{projData.proj_name}</CardTitle>
 
-
-          <p>
+          <p style={{ textAlign: "center" }}>
             {projData.github_repo ?
               <a href={projData.github_repo} target="_blank" rel="noreferrer" style={{ color: "aqua" }}> View Repo </a>
               : null}
           </p>
 
-          <p>{projData.proj_desc}</p>
-
+          <p >Project Description: </p>
+          <CardText style={{ textAlign: "center" }}>{projData.proj_desc}</CardText>
           <div>
             <h2>Matched Users</h2>
             {matchedUsers.map(({ user_matched, matched_user_bio }) =>
@@ -112,9 +111,9 @@ const MatchedUserList = () => {
             )}
           </div>
 
-        </div>
+        </Card>
 
-        : "loading.."}
+        : <p>"Loading..."</p>}
     </div>
   )
 };
