@@ -4,6 +4,7 @@ import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import API from '../API';
 import CarouselItem from "./CarouselItem";
 import AlertNotification from '../Common/AlertNotifications';
+import { Card } from 'reactstrap';
 
 
 function ProjectCarousel(args) {
@@ -61,8 +62,11 @@ function ProjectCarousel(args) {
   return (
     <div>
       <h1>Projects</h1>
-      <p>Swipe right to match a project, left to skip!</p>
-      <small>Note: The projects displayed are all the projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project!</small>
+
+      <Card style={{ alignContent: "center" }}>
+        <p>Swipe right to match a project, left to skip!</p>
+        <small>Note: The projects displayed are all random projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project!</small>
+      </Card>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

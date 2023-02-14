@@ -32,6 +32,12 @@ const MessageList = () => {
 
   // ***************************************************************
 
+  let noMsgs = (
+    <div >
+      <p style={{ textAlign: "center" }}>No messages, yet!</p>
+    </div>
+  )
+
 
   return (
     <div>
@@ -51,7 +57,7 @@ const MessageList = () => {
               sent_at={sent_at}
             />
           )
-          : <p>No messages, yet!</p>
+          : noMsgs
       }
     </div >
   )

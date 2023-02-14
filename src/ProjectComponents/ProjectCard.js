@@ -25,7 +25,7 @@ const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github
 
   return (
     <div >
-      <Card className="ProjectCard">
+      <Card className="ProjectCard container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 
         <CardBody>
 

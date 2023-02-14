@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
-import "./RegisterForm.css";
 import {
   Form,
   FormGroup,
@@ -61,8 +60,8 @@ const RegisterForm = ({ registerUser }) => {
 
 
   return (
-    <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-      <h2 className="mb-3">Register</h2>
+    <div >
+      <h2 style={{ textAlign: "center" }}>Register</h2>
 
       <Card>
 
@@ -70,44 +69,51 @@ const RegisterForm = ({ registerUser }) => {
 
 
         <CardBody>
-          <Form className="RegisterForm">
-            <FormGroup>
+          <Form >
+            <FormGroup  >
               <Label for="username" className="mt-3">Username
                 <Input
                   id="username"
                   name="username"
                   type="text"
-
+                  placeholder="Username"
                   onChange={handleChange} />
               </Label>
+            </FormGroup>
 
+            <FormGroup >
               <Label for="password" className="mt-3">Password
                 <Input
                   id="password"
                   name="password"
                   type="password"
                   autoComplete="on"
+                  placeholder="@ least 6 characters long"
                   onChange={handleChange}
                   className="RegisterInput" />
               </Label>
+            </FormGroup>
 
-              <Label for="firstName" className="mt-3">Email
+            <FormGroup >
+              <Label for="email" className="mt-3">Email
                 <Input
-                  id="firstName"
-                  name="firstName"
+                  id="email"
+                  name="email"
                   type="text"
+                  placeholder="email@aol.com"
                   onChange={handleChange} />
               </Label>
+            </FormGroup>
 
-              <Label for="lastName" className="mt-3">Bio
+            <FormGroup >
+              <Label for="bio" className="mt-3">Bio
                 <Input
-                  id="lastName"
-                  name="lastName"
+                  id="bio"
+                  name="bio"
                   type="text"
+                  placeholder="New software engineer!"
                   onChange={handleChange} />
               </Label>
-
-
             </FormGroup>
 
 

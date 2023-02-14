@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import AlertNotification from "../Common/AlertNotifications";
-
+import { Form, FormGroup, Button, CardBody, Card, Label, Input, textarea } from "reactstrap"
 
 const CreateProjectForm = () => {
 
@@ -60,66 +60,81 @@ const CreateProjectForm = () => {
 
 
   return (
-    <div>
-      <h1 classname="PageTitle">Create Project</h1>
+    <Card>
+      <h1 style={{ textAlign: "center" }}>Create Project</h1>
+
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      <form onSubmit={handleSubmit}>
+      <CardBody>
+        <Form onSubmit={handleSubmit} className="container col-md-12 offset-md-3 col-lg-4 offset-lg-4">
 
-        <label htmlFor="name" >Project Name
-          <input
-            type="text"
-            id="name"
-            value={projData.name}
-            name="name"
-            required
-            onChange={handleChange}
-          >
-          </input>
-        </label>
+          <FormGroup>
+            <Label htmlFor="name" >Project Name
+              <Input
+                type="text"
+                id="name"
+                value={projData.name}
+                name="name"
+                required
+                placeholder="Workout App"
+                onChange={handleChange}
+              >
+              </Input>
+            </Label>
+          </FormGroup>
 
-        <label htmlFor="project_desc" >Project Description
-          <textarea
-            type="text"
-            id="project_desc"
-            value={projData.project_desc}
-            name="project_desc"
-            required
-            onChange={handleChange}
-          >
-          </textarea>
-        </label>
+          <FormGroup>
+            <Label htmlFor="project_desc" col>Project Description
+              <Input
+                type="textarea"
+                id="project_desc"
+                value={projData.project_desc}
+                name="project_desc"
+                required
+                placeholder="Create a full-stack application where users can track their workouts!"
+                onChange={handleChange}
+              >
+              </Input>
+            </Label>
+          </FormGroup>
 
-        <label htmlFor="timeframe" >Timeframe
-          <input
-            type="text"
-            id="timeframe"
-            value={projData.timeframe}
-            name="timeframe"
-            placeholder="3 weeks"
-            required
-            onChange={handleChange}
-          >
-          </input>
-        </label>
 
-        <label htmlFor="github_repo" >Github Repo
-          <input
-            type="text"
-            id="github_repo"
-            value={projData.github_repo}
-            name="github_repo"
-            required
-            onChange={handleChange}
-          >
-          </input>
-        </label>
+          <FormGroup>
+            <Label htmlFor="timeframe" >Timeframe
+              <Input
+                type="text"
+                id="timeframe"
+                value={projData.timeframe}
+                name="timeframe"
+                placeholder="3 weeks"
+                required
+                onChange={handleChange}
+              >
+              </Input>
+            </Label>
+          </FormGroup>
 
-        <button>Submit</button>
+          <FormGroup>
+            <Label htmlFor="github_repo" >Github Repo
+              <Input
+                type="text"
+                id="github_repo"
+                value={projData.github_repo}
+                name="github_repo"
+                required
+                placeholder="https://github.com/"
+                onChange={handleChange}
+              >
+              </Input>
+            </Label>
+          </FormGroup>
 
-      </form>
-    </div>
+          <Button>Submit</Button>
+
+        </Form>
+      </CardBody>
+    </Card>
   )
 }
 

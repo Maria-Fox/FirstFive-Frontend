@@ -4,7 +4,7 @@ import UserContext from "./UserContext";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import "./UserProfile.css";
-import { Card } from "reactstrap";
+import { Card, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const UpdateProfileForm = () => {
 
@@ -13,7 +13,7 @@ const UpdateProfileForm = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(null);
-  const [formErrors, setFormErrors] = useState([]);
+  const [formErrors, setFormErrors] = useState(null);
 
   // ***************************************************************
 
@@ -66,65 +66,74 @@ const UpdateProfileForm = () => {
 
   return (
     <Card>
-      <h1 classname="PageTitle">Update Profile</h1>
-
       {formErrors ? <AlertNotification messages={formErrors} /> : null}
 
-      <div className="UpdateProfileForm">
+      <h1 classname="PageTitle">Update Profile</h1>
+
+
+      <div >
         {formData ?
-          <form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
 
-            <label htmlFor="username" >Username
-              <input
-                type="text"
-                id="username"
-                value={formData.username}
-                name="username"
-                required
-                onChange={handleChange}
-              >
-              </input>
-            </label>
+            <FormGroup>
+              <Label htmlFor="username" >Username
+                <Input
+                  type="text"
+                  id="username"
+                  value={formData.username}
+                  name="username"
+                  required
+                  onChange={handleChange}
+                >
+                </Input>
+              </Label>
+            </FormGroup>
 
-            <label htmlFor="password" >Password
-              <input
-                type="password"
-                id="password"
-                value={formData.password}
-                name="password"
-                required
-                onChange={handleChange}
-              >
-              </input>
-            </label>
+            <FormGroup>
+              <Label htmlFor="password" >Password
+                <Input
+                  type="password"
+                  id="password"
+                  value={formData.password}
+                  name="password"
+                  required
+                  onChange={handleChange}
+                >
+                </Input>
+              </Label>
+            </FormGroup>
 
-            <label htmlFor="Email" >Email
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                name="email"
-                required
-                onChange={handleChange}
-              >
-              </input>
-            </label>
+            <FormGroup>
+              <Label htmlFor="Email" >Email
+                <Input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  name="email"
+                  required
+                  onChange={handleChange}
+                >
+                </Input>
+              </Label>
+            </FormGroup>
 
-            <label htmlFor="bio" >Bio
-              <input
-                type="text"
-                id="bio"
-                value={formData.bio}
-                name="bio"
-                required
-                onChange={handleChange}
-              >
-              </input>
-            </label>
+            <FormGroup>
+              <Label htmlFor="bio" >Bio
+                <Input
+                  type="text"
+                  id="bio"
+                  value={formData.bio}
+                  name="bio"
+                  required
+                  onChange={handleChange}
+                >
+                </Input>
+              </Label>
+            </FormGroup>
 
-            <button>Update</button>
+            <Button type="submit">Update</Button>
 
-          </form>
+          </Form>
           :
           <p>Loading....</p>}
 

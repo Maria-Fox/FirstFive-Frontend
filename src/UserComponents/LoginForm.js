@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
-import "./LoginForm.css";
 import {
   Form,
   FormGroup,
@@ -10,7 +9,6 @@ import {
   Card,
   CardBody,
   Button,
-  Alert
 } from "reactstrap";
 
 
@@ -26,7 +24,7 @@ const LoginForm = ({ authenticateuser }) => {
   };
 
   let [formData, setFormData] = useState(initial_state);
-  let [formErrors, setFormErrors] = useState([]);
+  let [formErrors, setFormErrors] = useState(null);
 
   // ***************************************************************
 
@@ -58,10 +56,10 @@ const LoginForm = ({ authenticateuser }) => {
 
 
   return (
-    <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+    <div className="container " >
 
 
-      <h2 className="mb-3">Login</h2>
+      <h2 className="mb-5">Login</h2>
       <Card>
 
         {formErrors ? <AlertNotification messages={formErrors} /> : null}

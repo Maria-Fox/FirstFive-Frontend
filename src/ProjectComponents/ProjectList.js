@@ -64,7 +64,7 @@ const ProjectList = () => {
   // ***************************************************************
 
   return (
-    <div>
+    <div >
       <h1 className="PageTitle">Projects</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
@@ -75,10 +75,11 @@ const ProjectList = () => {
         </p>
       </div>
 
-      <p className="CreateProject">Don't see anything you are interested in?
-        <Link to="/projects/new" style={{ color: "aqua" }}>Create a project!</Link>
-      </p>
-
+      <div >
+        <p className="CreateProject">Don't see anything you are interested in?
+          <Link to="/projects/new" style={{ color: "aqua" }}>Create a project!</Link>
+        </p>
+      </div>
 
       {projects ? projects.map(({ id, owner_username, name, project_desc, timeframe, github_repo }) =>
         <ProjectCard
@@ -94,7 +95,6 @@ const ProjectList = () => {
       )
         :
         <p>Loading...</p>}
-
     </div>
   );
 };
