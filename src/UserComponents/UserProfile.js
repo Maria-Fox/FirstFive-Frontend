@@ -62,8 +62,8 @@ const UserProfile = () => {
   let updateForm = (
     <div className="ProfileOptions">
       <button onClick={navigateToUpdate}>Update Profile Details</button>
-      <div>
-        <p>Danger Zone</p>
+      <div style={{ paddingTop: "20px" }}>
+        <p style={{ color: "red" }}>Danger Zone</p>
         <button onClick={handleDelete} style={{ backgroundColor: "red" }}>Delete Profile</button>
       </div>
     </div>

@@ -45,7 +45,7 @@ const SingleMsgDetails = () => {
 
       {errors ? <AlertNotification messages={errors} /> : null}
       {msgDetails ?
-        <div>
+        <div className="container" style={{ marginTop: "40px" }}>
           <Card className="SingleMsgDetail-div">
             <h1>Message from: {msgDetails.from_user.username}</h1>
             <small>{msgDetails.from_user.bio}</small>

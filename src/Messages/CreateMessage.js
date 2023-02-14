@@ -55,34 +55,36 @@ const CreateMessage = () => {
 
 
   return (
-    <Card>
-      <h1 classname="PageTitle">New Message</h1>
+    <>
+      <h1 style={{ textAlign: "center" }}>New Message</h1>
+      <Card>
 
-      {errors ? <AlertNotification messages={errors} /> : null}
+        {errors ? <AlertNotification messages={errors} /> : null}
 
-      <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} >
 
-        <p>Message to: {to_username}</p>
+          <p style={{ color: "navy" }}>Message to: {to_username}</p>
 
-        <Label htmlFor="body" >
-          <Input
-            type="textarea"
-            id="body"
-            value={msgData.body}
-            name="body"
-            placeholder="Hi - I am interested in hearing more about your project. I have frontend expereince. Can you use a new project member?"
-            required
-            cols="100"
-            rows="10"
-            onChange={handleChange}
-          >
-          </Input>
-        </Label>
+          <Label htmlFor="body" >
+            <Input
+              type="textarea"
+              id="body"
+              value={msgData.body}
+              name="body"
+              placeholder="Hi - I am interested in hearing more about your project. I have frontend expereince. Can you use a new project member?"
+              required
+              cols="100"
+              rows="10"
+              onChange={handleChange}
+            >
+            </Input>
+          </Label>
 
-        <Button>Send</Button>
+          <Button>Send</Button>
 
-      </Form>
-    </Card >
+        </Form>
+      </Card >
+    </>
   )
 };
 

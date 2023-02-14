@@ -60,81 +60,85 @@ const CreateProjectForm = () => {
 
 
   return (
-    <Card>
+    <>
       <h1 style={{ textAlign: "center" }}>Create Project</h1>
 
+      <Card>
+        {errors ? <AlertNotification messages={errors} /> : null}
 
-      {errors ? <AlertNotification messages={errors} /> : null}
+        <CardBody>
+          <Form onSubmit={handleSubmit} className="container col-md-12 offset-md-3 col-lg-4 offset-lg-4">
 
-      <CardBody>
-        <Form onSubmit={handleSubmit} className="container col-md-12 offset-md-3 col-lg-4 offset-lg-4">
+            <FormGroup>
+              <Label htmlFor="name" >Project Name
+                <Input
+                  type="text"
+                  id="name"
+                  value={projData.name}
+                  name="name"
+                  required
+                  placeholder="Workout App"
+                  onChange={handleChange}
+                >
+                </Input>
+              </Label>
+            </FormGroup>
 
-          <FormGroup>
-            <Label htmlFor="name" >Project Name
-              <Input
-                type="text"
-                id="name"
-                value={projData.name}
-                name="name"
-                required
-                placeholder="Workout App"
-                onChange={handleChange}
-              >
-              </Input>
-            </Label>
-          </FormGroup>
-
-          <FormGroup>
-            <Label htmlFor="project_desc" col>Project Description
-              <Input
-                type="textarea"
-                id="project_desc"
-                value={projData.project_desc}
-                name="project_desc"
-                required
-                placeholder="Create a full-stack application where users can track their workouts!"
-                onChange={handleChange}
-              >
-              </Input>
-            </Label>
-          </FormGroup>
+            <FormGroup>
+              <Label htmlFor="project_desc" col>Project Description
+                <Input
+                  type="textarea"
+                  id="project_desc"
+                  value={projData.project_desc}
+                  name="project_desc"
+                  required
+                  cols="35"
+                  rows="8"
+                  placeholder="Create a full-stack application where users can track their workouts!"
+                  onChange={handleChange}
+                >
+                </Input>
+              </Label>
+            </FormGroup>
 
 
-          <FormGroup>
-            <Label htmlFor="timeframe" >Timeframe
-              <Input
-                type="text"
-                id="timeframe"
-                value={projData.timeframe}
-                name="timeframe"
-                placeholder="3 weeks"
-                required
-                onChange={handleChange}
-              >
-              </Input>
-            </Label>
-          </FormGroup>
+            <FormGroup>
+              <Label htmlFor="timeframe" >Timeframe
+                <Input
+                  type="text"
+                  id="timeframe"
+                  value={projData.timeframe}
+                  name="timeframe"
+                  placeholder="3 weeks"
+                  required
+                  onChange={handleChange}
+                >
+                </Input>
+              </Label>
+            </FormGroup>
 
-          <FormGroup>
-            <Label htmlFor="github_repo" >Github Repo
-              <Input
-                type="text"
-                id="github_repo"
-                value={projData.github_repo}
-                name="github_repo"
-                required
-                placeholder="https://github.com/"
-                onChange={handleChange}
-              >
-              </Input>
-            </Label>
-          </FormGroup>
+            <FormGroup>
+              <Label htmlFor="github_repo" >Github Repo
+                <Input
+                  type="text"
+                  id="github_repo"
+                  value={projData.github_repo}
+                  name="github_repo"
+                  required
+                  placeholder="https://github.com/"
+                  onChange={handleChange}
+                >
+                </Input>
+              </Label>
+            </FormGroup>
 
-          <Button> Submit</Button>
+            <Button> Submit</Button>
 
-        </Form>
-      </CardBody>
-    </Card>
+          </Form>
+        </CardBody>
+      </Card>
+    </>
+
   )
 }
 
