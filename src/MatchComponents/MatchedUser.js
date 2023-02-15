@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./MatchedUser.css"
 import { Card, Button } from "reactstrap";
@@ -7,6 +7,7 @@ import { Card, Button } from "reactstrap";
 const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToProjectMember, project_id, isUserProjectMember }) => {
 
   const { authUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
 
   // ***************************************************************
@@ -16,10 +17,15 @@ const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToP
   // ***************************************************************
 
   let msgButton = (
-    <Link to={`/messages/${authUser}/create/${user_matched}`}
-      className="msgButton"
-    >Message {user_matched}</Link>
+    <Button outline color="info" onClick={sendMsgRequest}
+    > Message {user_matched}</Button>
   );
+
+  // ***************************************************************
+
+  function sendMsgRequest() {
+    navigate(`/messages/${authUser}/create/${user_matched}`)
+  };
 
   // ***************************************************************
 

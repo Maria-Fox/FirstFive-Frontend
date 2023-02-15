@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import { Card, CardTitle, Button } from "reactstrap";
 
@@ -9,12 +9,13 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
 
   const { authUser } = useContext(UserContext);
   const { project_id } = useParams();
+  const navigate = useNavigate();
 
   // ***************************************************************
 
   let msgUserOption = (
     <Button outline color="info"
-      href={`/messages/${authUser}/create/${username}`}
+      onClick={sendMsgRequest}
     > Message {username}
     </Button >
   );
@@ -26,6 +27,12 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
       Remove
     </Button>
   );
+
+  // ***************************************************************
+
+  function sendMsgRequest() {
+    navigate(`/messages/${authUser}/create/${username}`);
+  };
 
 
   // ***************************************************************

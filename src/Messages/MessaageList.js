@@ -4,6 +4,7 @@ import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
 import MessageCard from "./MessageCard";
+import { Card, CardText } from "reactstrap";
 
 
 const MessageList = () => {
@@ -33,14 +34,16 @@ const MessageList = () => {
   // ***************************************************************
 
   let noMsgs = (
-    <div >
-      <p style={{ textAlign: "center" }}>No messages, yet!</p>
-    </div>
-  )
+    <Card >
+      <CardText style={{ textAlign: "center" }}>No messages, yet!</CardText>
+    </Card>
+  );
+
+  // ***************************************************************
 
 
   return (
-    <div>
+    <div className="container">
       <h1 style={{ textAlign: "center" }}>Messages</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}

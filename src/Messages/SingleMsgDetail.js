@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./MessageCard.css"
 import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 import {
+  Button,
   Card
 } from "reactstrap";
-import "./SingleMsgDetails.css"
 import AlertNotification from "../Common/AlertNotifications";
 
 const SingleMsgDetails = () => {
@@ -26,7 +25,6 @@ const SingleMsgDetails = () => {
     async function viewMsgDetails() {
       try {
         let response = await API.viewSingleMsgData(message_id, username);
-        console.log("Deets:", response);
         setMsgDetails(response)
       } catch (e) {
         setErrors(e);
@@ -41,28 +39,28 @@ const SingleMsgDetails = () => {
   // ***************************************************************
 
   return (
-    <div>
+    <div className="container">
 
       {errors ? <AlertNotification messages={errors} /> : null}
       {msgDetails ?
-        <div className="container" style={{ marginTop: "40px" }}>
-          <Card className="SingleMsgDetail-div">
+        <div className="container p-5" >
+          <Card className="p-4">
             <h1>Message from: {msgDetails.from_user.username}</h1>
-            <small>{msgDetails.from_user.bio}</small>
 
             <h2>Message to: {msgDetails.to_user.username}</h2>
 
             <p>Sent: {msgDetails.sent_at}</p>
+
             {msgDetails.read_at ? <p>Read: {msgDetails.read_at}</p> : null}
 
-            <div>
+            <Card className="text-center container m-1">
               <p>
                 {msgDetails.body}
               </p>
-            </div>
+            </Card>
 
             {msgDetails.to_user.username === authUser ?
-              <Link to={`/messages/${authUser}/create/${msgDetails.from_user.username}`} style={{ color: "aqua" }}>Reply</Link>
+              <Button href={`/messages/${authUser}/create/${msgDetails.from_user.username}`} tag="a" style={{ color: "aqua" }}>Reply</Button>
               : null}
           </Card>
         </div>

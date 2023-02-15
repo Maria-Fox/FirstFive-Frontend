@@ -92,7 +92,7 @@ const MatchedUserList = () => {
           </p>
 
           <p >Project Description: </p>
-          <CardText style={{ textAlign: "center" }}>{projData.proj_desc}</CardText>
+          <CardText>{projData.proj_desc}</CardText>
 
 
           <div className="container">

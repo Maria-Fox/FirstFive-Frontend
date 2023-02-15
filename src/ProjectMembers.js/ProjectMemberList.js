@@ -28,13 +28,9 @@ const ProjectMemberList = () => {
 
   let handleRemoveProjMember = async function (project_id, username) {
     try {
-      console.log(projMembers, "b4")
-      console.log("USER TO DELETE", username, "!!!!!")
       await API.deleteProjectMember(project_id, username);
       setProjMembers(projMembers.filter(users => users.username !== username));
-      console.log(projMembers, "After");
-      alert("deleted user");
-
+      // alert("deleted user");
     } catch (e) {
       setErrors(e);
       return;
