@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./ProjectCard.css";
-import { Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
+import { Card, CardBody, CardSubtitle, CardTitle, Button } from "reactstrap";
 
 
 const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github_repo, handleMatch }) => {
@@ -15,12 +15,12 @@ const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github
 
   // ***************************************************************
 
-
+  // LIKELY TO REMOVE.
   const handleUpdateRequest = () => {
     navigate(`/edit/project/${id}`);
   };
 
-  // className="ProjectCard"
+
   // ***************************************************************
 
   return (
@@ -40,7 +40,9 @@ const ProjectCard = ({ id, owner_username, name, project_desc, timeframe, github
           <div style={{ display: "flex", justifyContent: "center" }}>
             {authUser === owner_username ?
               <button onClick={handleUpdateRequest}>Edit Project</button> :
-              <button onClick={() => handleMatch(authUser, id)}>Match</button>
+              <Button onClick={() => handleMatch(authUser, id)}
+                color="info"
+              >Match</Button>
             }
           </div>
 

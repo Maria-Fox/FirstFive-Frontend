@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import "./CarouselItem.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import { Card } from "reactstrap";
 
 
-const CarouselItem = function ({ id, owner_username, name, project_desc, timeframe, github_repo, handleMatch, skip }) {
+const CarouselItem = function ({ id, name, project_desc, timeframe, github_repo, handleMatch, skip }) {
 
   return (
-    <div className="CarouselItem-div">
+    <Card className="CarouselItem-div">
 
       <h2>{name}</h2>
 
@@ -19,8 +20,8 @@ const CarouselItem = function ({ id, owner_username, name, project_desc, timefra
         <Link to={github_repo} style={{ color: "aqua" }}>Github Repo</Link>
         : null}
 
-      < p > {project_desc}</p>
 
+      <p> {project_desc}</p>
 
       <div className="MatchOption">
 
@@ -34,7 +35,7 @@ const CarouselItem = function ({ id, owner_username, name, project_desc, timefra
       </div>
 
 
-    </div >
+    </Card >
   )
 };
 

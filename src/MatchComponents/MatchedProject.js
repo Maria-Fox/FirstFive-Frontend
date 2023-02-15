@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./MatchedProject.css";
 import UserContext from "../UserComponents/UserContext";
+import { Card, CardTitle, CardText, Button } from "reactstrap";
 
 
 const MatchedProject = ({ name, owner_username, project_desc
@@ -15,17 +16,18 @@ const MatchedProject = ({ name, owner_username, project_desc
   // ***************************************************************
 
   const unMatchOption = (
-    <button onClick={() => handleUnmatch(authUser, project_id)}
-      className="unMatchButton" style={{}}>Unmatch Project</button>
+    <Button outline color="danger" className="unmatchButton"
+      onClick={() => handleUnmatch(authUser, project_id)}
+    >Unmatch Project</Button>
   )
 
 
   // ***************************************************************
 
   return (
-    <div className="MatchedProject">
+    <Card className="MatchedProject container">
 
-      <h1>{name}</h1>
+      <CardTitle tag="h2">{name}</CardTitle>
 
       <small>Created by {owner_username}</small>
 
@@ -47,12 +49,14 @@ const MatchedProject = ({ name, owner_username, project_desc
           : null}
       </p>
 
-      <p>Duration of project (estimated): {timeframe}</p>
+      <CardText>Project Timeframe: {timeframe}</CardText>
 
 
-      <div>
-        <p>{project_desc}</p>
+      <div >
+        <CardText>{project_desc}</CardText>
       </div>
+
+
 
       <div className="Match-Options">
 
@@ -67,7 +71,7 @@ const MatchedProject = ({ name, owner_username, project_desc
 
       </div>
 
-    </div>
+    </Card>
   );
 };
 

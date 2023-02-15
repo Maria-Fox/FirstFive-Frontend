@@ -88,7 +88,7 @@ const RegisterForm = ({ registerUser }) => {
                   name="password"
                   type="password"
                   autoComplete="on"
-                  placeholder="@ least 6 characters long"
+                  placeholder="@ least 6 characters"
                   onChange={handleChange}
                   className="RegisterInput" />
               </Label>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
+import { FormGroup, Form, Card, Label, Input, Button } from "reactstrap"
 
 const EditProject = () => {
 
@@ -87,68 +88,76 @@ const EditProject = () => {
     <div>
       {!projData ? <p>Loading...</p> :
         <div>
-          <h1 classname="PageTitle">Update: {projData.name}</h1>
+          <h1 style={{ textAlign: "center" }}>Update: {projData.name}</h1>
 
-          <div>
+          <Card>
             {errors ? <AlertNotification messages={errors} /> : null}
 
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
 
-              <p>******The name doesn't work unless the user changes the name- otherwise it duplicate key entry is observed.</p>
+              <FormGroup>
+                <Label htmlFor="name" >Project Name
+                  <Input
+                    type="text"
+                    id="name"
+                    value={projData.name}
+                    name="name"
+                    required
+                    onChange={handleChange}
+                  >
+                  </Input>
+                </Label>
+              </FormGroup>
 
-              <label htmlFor="name" >Project Name
-                <input
-                  type="text"
-                  id="name"
-                  value={projData.name}
-                  name="name"
-                  required
-                  onChange={handleChange}
-                >
-                </input>
-              </label>
+              <FormGroup>
+                <Label htmlFor="project_desc" >Project Description
+                  <Input
+                    type="textarea"
+                    id="project_desc"
+                    value={projData.project_desc}
+                    name="project_desc"
+                    required
+                    cols="35"
+                    rows="8"
+                    onChange={handleChange}
+                  >
+                  </Input>
+                </Label>
+              </FormGroup>
 
-              <label htmlFor="project_desc" >Project Description
-                <textarea
-                  type="text"
-                  id="project_desc"
-                  value={projData.project_desc}
-                  name="project_desc"
-                  required
-                  onChange={handleChange}
-                >
-                </textarea>
-              </label>
+              <FormGroup>
+                <Label htmlFor="timeframe" >Timeframe
+                  <Input
+                    type="text"
+                    id="timeframe"
+                    value={projData.timeframe}
+                    name="timeframe"
+                    placeholder="3 weeks"
+                    required
+                    onChange={handleChange}
+                  >
+                  </Input>
+                </Label>
+              </FormGroup>
 
-              <label htmlFor="timeframe" >Timeframe
-                <input
-                  type="text"
-                  id="timeframe"
-                  value={projData.timeframe}
-                  name="timeframe"
-                  placeholder="3 weeks"
-                  required
-                  onChange={handleChange}
-                >
-                </input>
-              </label>
+              <FormGroup>
+                <Label htmlFor="github_repo" >Github Repo
+                  <Input
+                    type="text"
+                    id="github_repo"
+                    value={projData.github_repo}
+                    name="github_repo"
+                    required
+                    onChange={handleChange}
+                  >
+                  </Input>
+                </Label>
+              </FormGroup>
 
-              <label htmlFor="github_repo" >Github Repo
-                <input
-                  type="text"
-                  id="github_repo"
-                  value={projData.github_repo}
-                  name="github_repo"
-                  required
-                  onChange={handleChange}
-                >
-                </input>
-              </label>
+              <Button>Submit</Button>
 
-              <button>Submit</button>
-
-            </form>
-          </div>
+            </Form>
+          </Card>
         </div>
       }
     </div>

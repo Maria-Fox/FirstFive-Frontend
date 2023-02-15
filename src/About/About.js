@@ -1,11 +1,13 @@
 import React from "react";
+import { Card, CardTitle, CardText } from "reactstrap";
+import "./About.css";
 
 const About = () => {
   return (
-    <div>
-      <h1>About FirstFive</h1>
+    <Card className="AboutDiv container">
+      <CardTitle tag="h1" className="text-center">About FirstFive</CardTitle>
 
-      <div>
+      <CardText>
         <h2>What is FirstFive?</h2>
         <p>FirstFive is a group project collaboration app with a "dating-app" aspect for added fun!</p>
 
@@ -20,10 +22,10 @@ const About = () => {
         </p>
 
         <p>FirstFive is intended for people with 0 - 5 years of experience in an indsutry. Instead of completing a degree or bootcamp with little or no projects. Here, users can slowly build up their resume while aquiring necessary collaboration skills.</p>
-        <p></p>
-      </div>
-    </div>
-  )
-}
+
+      </CardText>
+    </Card>
+  );
+};
 
 export default About;

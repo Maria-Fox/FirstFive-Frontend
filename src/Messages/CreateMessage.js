@@ -63,7 +63,7 @@ const CreateMessage = () => {
 
         <Form onSubmit={handleSubmit} >
 
-          <p style={{ color: "navy" }}>Message to: {to_username}</p>
+          <p style={{ color: "navy", fontSize: "1.5rem" }}>Message to: {to_username}</p>
 
           <Label htmlFor="body" >
             <Input
@@ -80,6 +80,7 @@ const CreateMessage = () => {
             </Input>
           </Label>
 
+          <br />
           <Button>Send</Button>
 
         </Form>

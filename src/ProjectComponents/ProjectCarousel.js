@@ -34,12 +34,10 @@ function ProjectCarousel(args) {
 
   let handleMatch = async function (authuser, id) {
     try {
-      console.log(`Matching this ID : ${id}`)
-      console.log("matched ids BEFORE", matchedProjectIds);
+      // console.log(`Matching this ID : ${id}`)
+      // console.log("matched ids BEFORE", matchedProjectIds);
       await API.addMatch(authUser, id);
       setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
-      console.log("after matched id", matchedProjectIds)
-      // alert("You've been matched!");
       confetti();
       let newProjToDisplay = await API.carouselProjects();
       setProjects(newProjToDisplay);
@@ -58,28 +56,30 @@ function ProjectCarousel(args) {
     setProjects(newRandomProj);
   };
 
+  // **************************************************************
+
 
   return (
-    <div>
-      <h1>Projects</h1>
+    <div className="text-center">
 
-      <Card style={{ alignContent: "center" }}>
-        <p>Swipe right to match a project, left to skip!</p>
+      <h1 mar>Projects</h1>
+
+      <Card >
+        <p>Heart projects to match, "X" to skip!</p>
         <small>Note: The projects displayed are all random projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project!</small>
       </Card>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
       {!projects ? <p>Loading...</p> :
-        <div>
-          {projects.map(({ id, owner_username, name, project_desc, tiemframe, github_repo }) =>
+        <div class="mx-auto">
+          {projects.map(({ id, name, project_desc, timeframe, github_repo }) =>
             <CarouselItem
               key={id}
               id={id}
-              owner_username={owner_username}
               name={name}
               project_desc={project_desc}
-              tiemframe={tiemframe}
+              timeframe={timeframe}
               github_repo={github_repo}
               handleMatch={() => handleMatch(authUser, id)}
               skip={skip}

@@ -56,8 +56,7 @@ const LoginForm = ({ authenticateuser }) => {
 
 
   return (
-    <div className="container " >
-
+    <div className="container" >
 
       <h2 className="mb-5">Login</h2>
       <Card>

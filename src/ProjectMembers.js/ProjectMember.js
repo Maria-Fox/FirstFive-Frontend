@@ -10,12 +10,16 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
   const { authUser } = useContext(UserContext);
   const { project_id } = useParams();
 
+  // ***************************************************************
 
   let msgUserOption = (
-    <Button outline color="info">
-      <Link to={`/messages/${authUser}/create/${username}`}>Message {username}</Link>
-    </Button>
+    <Button outline color="info"
+      href={`/messages/${authUser}/create/${username}`}
+    > Message {username}
+    </Button >
   );
+
+  // ***************************************************************
 
   let removeProjectMemberOption = (
     <Button onClick={() => handleRemoveProjMember(project_id, username)}>
@@ -24,9 +28,10 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
   );
 
 
+  // ***************************************************************
 
   return (
-    <Card style={{ border: "solid 2px whitesmoke" }}>
+    <Card className="container m-4 p-4">
       <CardTitle >{username}</CardTitle>
 
       {username !== authUser ? msgUserOption : null}

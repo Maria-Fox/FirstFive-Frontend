@@ -83,9 +83,9 @@ const MatchedUserList = () => {
       {projData && matchedUsers ?
         <Card style={{ padding: "20px" }}>
 
-          <CardTitle style={{ textAlign: "center" }}>{projData.proj_name}</CardTitle>
+          <CardTitle >{projData.proj_name}</CardTitle>
 
-          <p style={{ textAlign: "center" }}>
+          <p >
             {projData.github_repo ?
               <a href={projData.github_repo} target="_blank" rel="noreferrer" style={{ color: "aqua" }}> View Repo </a>
               : null}
@@ -93,8 +93,9 @@ const MatchedUserList = () => {
 
           <p >Project Description: </p>
           <CardText style={{ textAlign: "center" }}>{projData.proj_desc}</CardText>
-          <div>
-            <h2>Matched Users</h2>
+
+
+          <div className="container">
             {matchedUsers.map(({ user_matched, matched_user_bio }) =>
               <div key={user_matched}>
 

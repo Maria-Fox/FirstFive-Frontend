@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./MatchedUser.css"
-import { Card } from "reactstrap";
+import { Card, Button } from "reactstrap";
 
 const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToProjectMember, project_id, isUserProjectMember }) => {
 
@@ -16,24 +16,24 @@ const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToP
   // ***************************************************************
 
   let msgButton = (
-    <Link to={`/messages/${authUser}/create/${user_matched}`}>Message {user_matched}</Link>
+    <Link to={`/messages/${authUser}/create/${user_matched}`}
+      className="msgButton"
+    >Message {user_matched}</Link>
   );
 
   // ***************************************************************
 
 
   return (
-    <Card key={user_matched} className="MatchedUser-Div">
+    <Card key={user_matched} className="MatchedUser-Div container">
       <h1>{user_matched}</h1>
       <p>{matched_user_bio}</p>
 
       {authUser === project_owner ?
-        <button onClick={() => addUserToProjectMember(project_id, user_matched)}
-          className={buttonStyle} >Add To Project Members</button> : null}
+        <Button onClick={() => addUserToProjectMember(project_id, user_matched)}
+          className={buttonStyle} >Add To Project Members</Button> : null}
 
       {authUser !== user_matched ? msgButton : null}
-
-
 
     </Card>
   );

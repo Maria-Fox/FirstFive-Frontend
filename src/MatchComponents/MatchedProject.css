@@ -7,9 +7,11 @@
 
 .Match-Options{
   align-content: center;
+  margin: 20px
 };
 
-.unMatchButton{
-  background-color: rgba(249, 103, 103, 0.645);
-};
-
+.unmatchButton{
+  display: flex;
+  position: relative;
+  left: 30%;
+}
