@@ -15,7 +15,7 @@ import NavBar from './Routes-Nav/NavBar';
 export const token_storage = "token";
 
 function App() {
-  const [authUser, setAuthtUser] = useState(null);
+  const [authUser, setAuthUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
   const [matchedProjectIds, setMatchedProjectIds] = useState(null);
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function App() {
       if (token) {
         try {
           let { username } = decodeToken(token);
-          setAuthtUser(username);
+          setAuthUser(username);
           // put the token on the Api class so it can use it to call the API.
           FirstFiveAPI.token = token;
           console.log(token, "token was assigned");
@@ -38,7 +38,7 @@ function App() {
           setMatchedProjectIds([...matchIds])
           console.log(matchedProjectIds, "matched id's");
         } catch (err) {
-          setAuthtUser(null)
+          setAuthUser(null)
         }
       }
     }
@@ -77,7 +77,7 @@ function App() {
 
 
   async function logout() {
-    setAuthtUser(null);
+    setAuthUser(null);
     localStorage.removeItem('token');
     navigate("/auth/login");
   };
@@ -87,7 +87,7 @@ function App() {
 
   return (
     <UserContext.Provider
-      value={{ authUser, setAuthtUser, matchedProjectIds, setMatchedProjectIds }}>
+      value={{ authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds }}>
       <div className="App">
         <NavBar logout={logout} />
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />

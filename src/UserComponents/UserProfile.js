@@ -3,11 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "./UserContext";
 import AlertNotification from "../Common/AlertNotifications";
-import "./UserProfile.css";
+// import "./UserProfile.css";
+import { Card, Button } from "reactstrap";
 
 const UserProfile = () => {
   const { username } = useParams();
-  const { authUser } = useContext(UserContext);
+  const { authUser, setAuthUser } = useContext(UserContext);
   const [userData, setUserData] = useState(null);
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
@@ -25,7 +26,8 @@ const UserProfile = () => {
           email: user.email
         });
       } catch (e) {
-        console.log(e, "***")
+        setErrors(e);
+        return;
       };
     };
 
@@ -37,9 +39,7 @@ const UserProfile = () => {
 
   // Need guidance on how I can update an owner - component wise.
   let navigateToUpdate = () => {
-    console.log("update ran")
     navigate(`/users/update/${authUser}`);
-    console.log("nav ran")
   };
 
   // ***************************************************************
@@ -49,6 +49,8 @@ const UserProfile = () => {
     console.log("delete ran")
     try {
       API.deleteUser(authUser);
+      setAuthUser(null);
+      localStorage.removeItem("token");
       navigate("/auth/register");
     } catch (e) {
       setErrors(e);
@@ -59,30 +61,33 @@ const UserProfile = () => {
   if (!userData) return <p>Loading...</p>
 
   // The routes are the same jus the type of route (get vs path is diff) how do I move around that?
-  let updateForm = (
+  let profileOptions = (
     <div className="ProfileOptions">
-      <button onClick={navigateToUpdate}>Update Profile Details</button>
+      <Button onClick={navigateToUpdate}>Update Profile Details</Button>
       <div style={{ paddingTop: "20px" }}>
         <p style={{ color: "red" }}>Danger Zone</p>
-        <button onClick={handleDelete} style={{ backgroundColor: "red" }}>Delete Profile</button>
+        <Button outline color="danger" onClick={handleDelete} >
+          Delete Profile</Button>
       </div>
     </div>
   );
 
 
   return (
-    <div>
+    <div className="container">
       {errors ? <AlertNotification messages={errors} /> : null}
+
       <h1 style={{ textAlign: "center" }}>Profile</h1>
+      <Card>
 
-      <div className="ProfilePage">
+        <div >
+          <h2>Username: {userData.username}</h2>
+          <p>Bio: {userData.bio}</p>
+          <p>Email: {userData.email}</p>
 
-        <h2>Username: {userData.username}</h2>
-        <p>Bio: {userData.bio}</p>
-        <p>Email: {userData.email}</p>
-
-        {updateForm}
-      </div>
+          {profileOptions}
+        </div>
+      </Card>
     </div>
   );
 };

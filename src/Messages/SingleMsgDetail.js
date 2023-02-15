@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 import {
@@ -36,6 +36,8 @@ const SingleMsgDetails = () => {
   }, [username, message_id]);
 
 
+
+
   // ***************************************************************
 
   return (
@@ -53,14 +55,16 @@ const SingleMsgDetails = () => {
 
             {msgDetails.read_at ? <p>Read: {msgDetails.read_at}</p> : null}
 
-            <Card className="text-center container m-1">
-              <p>
+            <Card className="container m-1">
+              <p className="p-2">
                 {msgDetails.body}
               </p>
             </Card>
 
+
+            {/* Would like to make Button component but seeing error. */}
             {msgDetails.to_user.username === authUser ?
-              <Button href={`/messages/${authUser}/create/${msgDetails.from_user.username}`} tag="a" style={{ color: "aqua" }}>Reply</Button>
+              <Link to={`/messages/${authUser}/create/${msgDetails.from_user.username}`} style={{ color: "aqua" }}>Reply</Link>
               : null}
           </Card>
         </div>
