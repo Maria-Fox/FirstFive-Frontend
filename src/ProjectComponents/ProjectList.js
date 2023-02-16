@@ -45,7 +45,7 @@ const ProjectList = () => {
   // ***************************************************************
 
 
-  let handleMatch = async function (authuser, id) {
+  let handleMatch = async function (authUser, id) {
     try {
       console.log("matched ids BEFORE", matchedProjectIds);
       await API.addMatch(authUser, id);

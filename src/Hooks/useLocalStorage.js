@@ -20,7 +20,7 @@ function useLocalStorage(key, defaultValue = null) {
 
 
   console.log("*******Local storage changed******");
-  console.log([item])
+  // console.log([item])
 
   // returns the new piece of state along with a setState function to update.
   return [item, setItem];

@@ -15,6 +15,6 @@ const PrivateRoutes = () => {
 
 export default PrivateRoutes;
 
-// Checks if auth user is trying to access the route. If not, navigated to login.  Once logged in, if there original URL was valid, it will redirect them there.
+// Checks if auth user is trying to access the route (outlet). If not, navigated to login.  Once logged in, if there original URL was valid, it will redirect them there.
 
 // https://medium.com/@dennisivy/creating-protected-routes-with-react-router-v6-2c4bbaf7bc1c

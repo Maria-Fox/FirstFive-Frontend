@@ -15,7 +15,7 @@ const NavBar = ({ logout }) => {
 
   if (!authUser) {
     return (
-      <nav style={{ textAlign: "right" }}>
+      <nav style={{ textAlign: "right", width: "100%" }}>
         <NavLink to="/auth/login" className="NavBar-item">Login</NavLink>
         <NavLink to="/auth/register" className="NavBar-item">Register</NavLink>
         <NavLink to="/about" className="NavBar-item">About</NavLink>

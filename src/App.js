@@ -6,7 +6,6 @@ import API from "./API";
 import UserContext from './UserComponents/UserContext';
 import { decodeToken } from "react-jwt";
 import useLocalStorage from './Hooks/useLocalStorage';
-import FirstFiveAPI from './API';
 import NavBar from './Routes-Nav/NavBar';
 
 // ***************************************************************
@@ -28,20 +27,34 @@ function App() {
     async function getCurrentUser() {
       if (token) {
         try {
+          console.log("TRIGGERED APP EFFECT RE-RENDER")
+
+          // Add in authUser
           let { username } = decodeToken(token);
+          console.log("DESTRUCTURED FROM TOKEN", username);
           setAuthUser(username);
-          // put the token on the Api class so it can use it to call the API.
-          FirstFiveAPI.token = token;
-          console.log(token, "token was assigned");
+
+          // why is this NOT changing the authUser... ???
+          console.log(`${authUser} is logged in.`);
+
+          // put the token on the Api class so it can use it to call the API
+          API.token = token;
+          console.log(API.token, "token was assigned");
+
+          // Even down herer (after some time from original set)
+          console.log(authUser, "AUTH USER IN APP.JS");
+
+          // retrieve the user matches to populate approporiate projects.
+          // of username****
           let userMatches = await API.viewUsernameMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
           setMatchedProjectIds([...matchIds])
           console.log(matchedProjectIds, "matched id's");
         } catch (err) {
           setAuthUser(null)
-        }
-      }
-    }
+        };
+      };
+    };
 
     getCurrentUser();
   }, [token]);
@@ -52,7 +65,6 @@ function App() {
   async function registerUser(formData) {
     try {
       let token = await API.registerUser(formData);
-      console.log("TOKEN IS !!!!", token)
       setToken(token);
       return { success: true };
     } catch (errors) {
@@ -66,7 +78,14 @@ function App() {
   async function authenticateUser(formData) {
     try {
       let token = await API.authenticateUser(formData);
+
+      // the setToken call stack is not finishing before the return statement runs!!!! - How do I ensure it finishes before moving on?
+      // let { username } = decodeToken(token);
+      // setAuthUser(username);
+      // console.log(`${username} is logged in.`)
+
       setToken(token);
+      console.log("SHOULD TRIGGER APP EFFECT");
       return { success: true };
     } catch (errors) {
       return { success: false, errors };
@@ -93,7 +112,6 @@ function App() {
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />
       </div>
     </UserContext.Provider>
-
   );
 }
 

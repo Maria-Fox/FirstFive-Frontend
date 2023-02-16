@@ -5,10 +5,9 @@ const BASE_URL = process.env.REACT_URL || "http://localhost:3001";
 class API {
 
   // Used to authenticate user
-  static token;
+  static token = "";
 
-  // ******************************************* AUTH/ LOGIN methods
-
+  // ******************************************* API send request method
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method, this.token, "**********");
@@ -21,7 +20,7 @@ class API {
 
     if (!this.token) {
       console.log("There's no token")
-      this.token = window.sessionStorage.getItem("token") || "";
+      this.token = window.sessionStorage.getItem("token") || "temp_invalid";
     };
 
     try {
@@ -33,6 +32,9 @@ class API {
       throw Array.isArray(message) ? message : [message];
     };
   };
+
+  // ******************************************* Register/ LOGIN methods
+
 
   static async registerUser(userData) {
     let newUser = await this.request("auth/register", { ...userData }, 'post');

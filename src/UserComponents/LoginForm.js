@@ -41,16 +41,17 @@ const LoginForm = ({ authenticateuser }) => {
 
   let handleSubmit = async (e) => {
     e.preventDefault();
+    // This should be attaching the token & authUser before navigating elsewhere.
     let response = await authenticateuser(formData);
     if (response.success) {
       navigate(`/projects/view`);
       console.log("Successful authentication *******")
-
+      console.log("worked")
     } else {
       setFormErrors(response.errors);
       return;
-    }
-  }
+    };
+  };
 
   // ***************************************************************
 
