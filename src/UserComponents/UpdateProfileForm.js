@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "./UserContext";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
-import "./UserProfile.css";
+// import "./UserProfile.css";
 import { Card, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const UpdateProfileForm = () => {
@@ -65,13 +65,12 @@ const UpdateProfileForm = () => {
   // ***************************************************************
 
   return (
-    <Card>
+    <div>
       {formErrors ? <AlertNotification messages={formErrors} /> : null}
 
-      <h1 classname="PageTitle">Update Profile</h1>
+      <h1 className="text-center">Update Profile</h1>
 
-
-      <div >
+      <Card className="container text-center">
         {formData ?
           <Form onSubmit={handleSubmit}>
 
@@ -131,14 +130,14 @@ const UpdateProfileForm = () => {
               </Label>
             </FormGroup>
 
-            <Button type="submit">Update</Button>
+            <Button outline color="info" type="submit">Update</Button>
 
           </Form>
           :
           <p>Loading....</p>}
 
-      </div>
-    </Card>
+      </Card>
+    </div>
   )
 };
 

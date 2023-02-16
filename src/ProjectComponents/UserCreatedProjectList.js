@@ -4,6 +4,7 @@ import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import UserCreatedProject from "./UserCreatedProject";
+import { Card, CardTitle } from "reactstrap";
 
 // ***************************************************************
 
@@ -67,18 +68,18 @@ const UserCreatedProjectList = () => {
   // ***************************************************************
 
   let noProjects = (
-    <div>
-      <h1>No projects, yet!</h1>
-      <Link to="/projects/new">Create a project</Link>
-    </div>
-  )
+    <Card className="p-3">
+      <CardTitle className="h2">No projects, yet!</CardTitle>
+      <Link to="/projects/new" >Create a project</Link>
+    </Card>
+  );
 
   // ***************************************************************
 
 
   return (
-    <div>
-      <h1 classname="PageTitle">Projects Created</h1>
+    <div className="containerd-flex align-items-center">
+      <h1 className="text-center">Projects Created</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

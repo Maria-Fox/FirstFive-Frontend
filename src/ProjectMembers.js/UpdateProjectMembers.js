@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
-import UserContext from "../UserComponents/UserContext";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
+import { Card, CardBody, CardTitle, Button } from "reactstrap";
 
 const UpdateProjectMembers = () => {
 
@@ -39,31 +39,37 @@ const UpdateProjectMembers = () => {
 
   return (
     <div>
-      <h1 classname="PageTitle">Project Members - Update</h1>
+      <h1 className="text-center">Project Members - Update</h1>
+
+      <Card className="m-2">
+        <CardBody >Looking to add members? To ensure only matched members are added please visit the <Link to={`/matches/view/${project_id}/users`}>users matched</Link> and click "add" under the prefered user.
+        </CardBody>
+      </Card>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
+
       {projMembers && projMembers.length > 0 ? projMembers.map(({ username, bio }) =>
-        <div key={username}>
-          <h1>{username}</h1>
-          <p>{bio}</p>
+        <Card key={username}
+          className="container p -3 m-3 d-flex justify-content-center">
 
-          <button onClick={() => handleRemoveProjMember(project_id, username)}>Remove</button>
+          <CardTitle className="h2">{username}</CardTitle>
 
-        </div>
+
+          <CardBody>User bio: {bio}</CardBody>
+
+          <Button outline color="danger" onClick={() => handleRemoveProjMember(project_id, username)}>Remove</Button>
+
+        </Card>
       ) :
-        <div>
-          <p>No project members, yet!
+        <Card className="container m-3 p-3 d-flex justify-content-center">
+          <CardTitle className="h2">No project members, yet!</CardTitle>
 
-            <p>Looking to add project members?<p>
-            </p>View the users who have matched with this project and click, "Add" when you find someone you're looking for!</p>
-
-
-            <Link to={`/matches/view/${project_id}/users`}>View Matched Users</Link>
-          </p>
-        </div>
+          <CardBody>Looking to add project members?
+            Use the above link to see matched users.</CardBody>
+        </Card>
       }
-    </div>
+    </div >
   )
 }
 

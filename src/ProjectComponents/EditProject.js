@@ -90,10 +90,10 @@ const EditProject = () => {
         <div>
           <h1 style={{ textAlign: "center" }}>Update: {projData.name}</h1>
 
-          <Card>
+          <Card >
             {errors ? <AlertNotification messages={errors} /> : null}
 
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className="container col-md-12 offset-md-3 col-lg-4 offset-lg-4 m-3">
 
               <FormGroup>
                 <Label htmlFor="name" >Project Name
@@ -154,7 +154,7 @@ const EditProject = () => {
                 </Label>
               </FormGroup>
 
-              <Button>Submit</Button>
+              <Button type="submit">Submit</Button>
 
             </Form>
           </Card>

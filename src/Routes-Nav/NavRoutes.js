@@ -19,7 +19,7 @@ import About from "../About/About";
 import UserCreatedProjects from "../ProjectComponents/UserCreatedProjectList";
 import UpdateProjectMembers from "../ProjectMembers.js/UpdateProjectMembers";
 import ProjectCarousel from "../ProjectComponents/ProjectCarousel";
-import Seratonin from "../UserComponents/Seratonin";
+import Dopamine from "../UserComponents/Dopamine";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
 
@@ -72,9 +72,9 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
         <Route exact path="/messages/:username/all" element={<MessageList />}></Route>
         <Route exact path="/messages/:username/read/:message_id" element={<SingleMsgDetails />}></Route>
 
-        {/* Seratonin */}
-        <Route path="/seratonin/hit"
-          element={<Seratonin />}>
+        {/* Dopamine */}
+        <Route path="/dopamine/hit"
+          element={<Dopamine />}>
         </Route>
 
         {/*Closing private routes. */}

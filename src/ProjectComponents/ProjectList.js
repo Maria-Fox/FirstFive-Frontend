@@ -5,7 +5,6 @@ import UserContext from "../UserComponents/UserContext";
 import ProjectCard from "./ProjectCard";
 import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import AlertNotification from "../Common/AlertNotifications";
-import "./ProjectList.css"
 
 
 const ProjectList = () => {
@@ -65,37 +64,39 @@ const ProjectList = () => {
 
   return (
     <div className="container">
-      <h1 className="PageTitle">Projects</h1>
+      <h1 className="text-center">Projects</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      <div className="ProjectList-Carousel">
+      <div className="text-center">
         <p>Prefer to view the projects through match-cards?
           <Link to="/projects/carousel" style={{ color: "aqua" }} >Click here!</Link>
         </p>
       </div>
 
       <div >
-        <p className="CreateProject">Don't see anything you are interested in?
+        <p className="text-center">Don't see anything you are interested in?
           <Link to="/projects/new" style={{ color: "aqua" }}>Create a project!</Link>
         </p>
       </div>
 
-      {projects ? projects.map(({ id, owner_username, name, project_desc, timeframe, github_repo }) =>
-        <ProjectCard
-          key={id}
-          id={id}
-          owner_username={owner_username}
-          name={name}
-          project_desc={project_desc}
-          timeframe={timeframe}
-          github_repo={github_repo}
-          handleMatch={handleMatch}
-        />
-      )
-        :
-        <p>Loading...</p>}
-    </div>
+      {
+        projects ? projects.map(({ id, owner_username, name, project_desc, timeframe, github_repo }) =>
+          <ProjectCard
+            key={id}
+            id={id}
+            owner_username={owner_username}
+            name={name}
+            project_desc={project_desc}
+            timeframe={timeframe}
+            github_repo={github_repo}
+            handleMatch={handleMatch}
+          />
+        )
+          :
+          <p>Loading...</p>
+      }
+    </div >
   );
 };
 

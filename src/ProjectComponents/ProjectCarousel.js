@@ -64,15 +64,15 @@ function ProjectCarousel(args) {
 
       <h1 mar>Projects</h1>
 
-      <Card >
-        <p>Heart projects to match, "X" to skip!</p>
+      <Card className='container m-3 p-3'>
+        <p>Use "X" to skip a project and the heart to match!</p>
         <small>Note: The projects displayed are all random projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project!</small>
       </Card>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
       {!projects ? <p>Loading...</p> :
-        <div class="mx-auto">
+        <div>
           {projects.map(({ id, name, project_desc, timeframe, github_repo }) =>
             <CarouselItem
               key={id}

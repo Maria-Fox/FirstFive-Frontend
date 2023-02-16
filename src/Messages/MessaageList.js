@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
@@ -34,8 +34,10 @@ const MessageList = () => {
   // ***************************************************************
 
   let noMsgs = (
-    <Card >
+    <Card className="container p-3">
       <CardText style={{ textAlign: "center" }}>No messages, yet!</CardText>
+      <CardText>Messages can only be exhanged between users who have mutual project matches. To create a message please visit your matches and click on the user you want to message.</CardText>
+      <Link to={`matches/view/${authUser}/all`}>Matches</Link>
     </Card>
   );
 

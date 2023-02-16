@@ -61,7 +61,7 @@ const RegisterForm = ({ registerUser }) => {
 
   return (
     <div >
-      <h2 style={{ textAlign: "center" }}>Register</h2>
+      <h2 className="mb-3">Register</h2>
 
       <Card>
 

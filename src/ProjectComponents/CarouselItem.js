@@ -14,10 +14,11 @@ const CarouselItem = function ({ id, name, project_desc, timeframe, github_repo,
       <h2>{name}</h2>
 
 
-      <p>Expected project duration: {timeframe}</p>
+      <p>Project Timeframe: {timeframe}</p>
 
       {github_repo ?
-        <Link to={github_repo} style={{ color: "aqua" }}>Github Repo</Link>
+        <Link to={github_repo} style={{ color: "aqua" }}
+        >Github Repo</Link>
         : null}
 
 

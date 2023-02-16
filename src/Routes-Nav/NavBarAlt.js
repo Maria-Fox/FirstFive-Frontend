@@ -65,8 +65,8 @@ function NavBar({ logout }) {
               </NavItem>
 
               <NavItem className="px-2">
-                <NavLink exact to="/seratonin/hit" >
-                  Seratonin
+                <NavLink exact to="/dopamine/hit" >
+                  Dopamine
                 </NavLink>
               </NavItem>
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
 import MatchedProject from "./MatchedProject";
+import { Card, CardText, CardTitle } from "reactstrap";
 
 
 const MatchedProjectList = () => {
@@ -57,6 +58,14 @@ const MatchedProjectList = () => {
 
   // ***************************************************************
 
+  let noMatchesYet = (
+    <Card className="container p-3 text-center">
+      <CardTitle>No matches, yet!</CardTitle>
+      <Link to="/projects/view">Visit projects to match</Link>
+    </Card>
+  );
+
+  // ***************************************************************
 
   return (
 
@@ -78,7 +87,8 @@ const MatchedProjectList = () => {
         />
       )
         :
-        <p>No matches, yet!</p>}
+        noMatchesYet
+      }
 
     </div>
   );

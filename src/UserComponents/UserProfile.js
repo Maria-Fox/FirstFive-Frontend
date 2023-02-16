@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "./UserContext";
 import AlertNotification from "../Common/AlertNotifications";
-// import "./UserProfile.css";
 import { Card, Button } from "reactstrap";
 
 const UserProfile = () => {
@@ -78,7 +77,7 @@ const UserProfile = () => {
       {errors ? <AlertNotification messages={errors} /> : null}
 
       <h1 style={{ textAlign: "center" }}>Profile</h1>
-      <Card>
+      <Card className="p-3 text-center">
 
         <div >
           <h2>Username: {userData.username}</h2>

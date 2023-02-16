@@ -1,5 +1,5 @@
-.UserProject{
-  border: 2px dashed whitesmoke;
-  padding: 20px;
-  margin: 15px;
-};
+.UserCreatedProjects{
+  display: flex;
+  flex-wrap: wrap;
+  
+}
