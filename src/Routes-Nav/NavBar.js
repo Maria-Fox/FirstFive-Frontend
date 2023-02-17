@@ -24,14 +24,20 @@ const NavBar = ({ logout }) => {
   } else {
     return (
       <nav style={{ textAlign: "right" }} >
-        <NavLink to="/" className="NavBar-item" style={{ textAlign: "left" }}>FirstFive</NavLink>
+        <NavLink to="/home" className="NavBar-item" style={{ textAlign: "left" }}>FirstFive</NavLink>
 
         <NavLink to="/projects/view" className="NavBar-item">Projects</NavLink>
+
         <NavLink to={`/matches/view/${authUser}/all`} className="NavBar-item">Matches</NavLink>
+
         <NavLink to={`/messages/${authUser}/all`} className="NavBar-item">Messages</NavLink>
+
         <NavLink to={`/users/${authUser}`} className="NavBar-item">Profile</NavLink>
+
         <NavLink to={`/projects/created/by/${authUser}`} className="NavBar-item">Posts</NavLink>
+
         <NavLink to="/dopamine/hit" className="NavBar-item">Dopamine Hit </NavLink>
+
         <Link to="/auth/login" onClick={logout} className="NavBar-item">Logout</Link>
       </nav>
     );

@@ -21,17 +21,18 @@ const UpdateProfileForm = () => {
     async function confirmPermission() {
       if (authUser !== username) {
         // If not the appropriate user then redirect to that users page.
-        navigate(`/users/update/:${authUser}`);
+        navigate(`/users/update/${authUser}`);
       };
 
       let userData = await API.viewAuthUserProfile(username);
 
+      // Fill form with current data.
       setFormData({
         username: userData.username,
         password: "",
         email: userData.email,
         bio: userData.bio
-      })
+      });
 
 
     };

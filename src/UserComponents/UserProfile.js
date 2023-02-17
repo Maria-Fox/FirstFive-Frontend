@@ -18,7 +18,6 @@ const UserProfile = () => {
     async function viewUserProfile() {
       try {
         let user = await API.viewAuthUserProfile(username);
-        // console.log("Data is:", user)
         setUserData({
           username: user.username,
           bio: user.bio,

@@ -20,7 +20,7 @@ const Dopamine = () => {
 
 
       <Button outline color="info" className="align-items-md-center"
-        onClick={() => confetti()} >Click</Button>
+        onClick={() => confetti()} >Confetti</Button>
 
     </Card >
   )

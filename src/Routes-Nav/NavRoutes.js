@@ -19,6 +19,7 @@ import About from "../About/About";
 import UserCreatedProjects from "../ProjectComponents/UserCreatedProjectList";
 import UpdateProjectMembers from "../ProjectMembers.js/UpdateProjectMembers";
 import ProjectCarousel from "../ProjectComponents/ProjectCarousel";
+import Home from "../Home/Home";
 import Dopamine from "../UserComponents/Dopamine";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
@@ -41,6 +42,7 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
 
       {/* PRIVATE ROUTES */}
       <Route element={<PrivateRoutes />}>
+        <Route path="/home" element={<Home />}></Route>
 
         {/* User routes*/}
         <Route exact path="/users/:username" element={<UserProfile />}></Route>

@@ -62,7 +62,7 @@ function ProjectCarousel(args) {
   return (
     <div className="text-center">
 
-      <h1 mar>Projects</h1>
+      <h1 >Projects</h1>
 
       <Card className='container m-3 p-3'>
         <p>Use "X" to skip a project and the heart to match!</p>

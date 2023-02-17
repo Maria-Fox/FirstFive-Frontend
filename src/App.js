@@ -79,12 +79,13 @@ function App() {
     try {
       let token = await API.authenticateUser(formData);
 
-      // the setToken call stack is not finishing before the return statement runs!!!! - How do I ensure it finishes before moving on?
+      // the setToken call stack is not finishing before the return statement runs!!!! - How do I ensure it finishes before moving on? If I do the commented out code below it let's us auth the user but the rest of the useEffect (matchedIds) are still needed & needs to be udpated when there's changes to tokens, etc.
+
       // let { username } = decodeToken(token);
       // setAuthUser(username);
       // console.log(`${username} is logged in.`)
 
-      setToken(token);
+      let updatedUser = await setToken(token);
       console.log("SHOULD TRIGGER APP EFFECT");
       return { success: true };
     } catch (errors) {
