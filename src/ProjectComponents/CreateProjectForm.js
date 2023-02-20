@@ -12,10 +12,10 @@ const CreateProjectForm = () => {
   let { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
 
   let initial_state = {
-    name: "",
-    project_desc: "",
-    timeframe: "",
-    github_repo: ""
+    name: null,
+    project_desc: null,
+    timeframe: null,
+    github_repo: null
   };
 
   let [projData, setProjData] = useState(initial_state);

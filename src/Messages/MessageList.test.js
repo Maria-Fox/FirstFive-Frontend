@@ -19,10 +19,21 @@ test("Valid user see's MessageList", function () {
     }),
     useRouteMatch: () => ({ url: '/messages/:username/all' }),
   }));
+});
+
+// Create a mock of the useParams React hook 
+jest.mock('react-router', () => ({
+  ...jest.requireActual('react-router'),
+  useParams: jest.fn(),
+}))
+
+// alt: 
+test('It renders the comp w/ URL', async () => {
+  jest.spyOn(MemoryRouter, 'useParams').mockReturnValue({ username: authUser.username });
 
   let { asFragment } = render(
-    <MemoryRouter>
-      <UserProvider>
+    <MemoryRouter >
+      <UserProvider user={authUser}>
         <MessageList />
       </UserProvider>
     </MemoryRouter>
@@ -30,3 +41,5 @@ test("Valid user see's MessageList", function () {
 
   expect(asFragment()).toMatchSnapShot();
 });
+
+// https://kpwags.com/posts/2022/07/01/mocking-react-router-and-useparams

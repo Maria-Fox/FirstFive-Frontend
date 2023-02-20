@@ -13,8 +13,9 @@
     "axios": "^1.2.5",
     "babel-plugin-macros": "^3.1.0",
     "bootstrap": "^5.2.3",
+    "canvas-confetti": "^1.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0", 
+    "react-dom": "^18.2.0",
     "react-jwt": "^1.1.8",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
@@ -22,10 +23,15 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +52,18 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.18.6",
-    "supertest": "^6.3.3"
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "assert": "^2.0.0",
+    "babel-jest": "^29.4.3",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0"
   }
 }

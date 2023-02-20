@@ -17,10 +17,10 @@ const RegisterForm = ({ registerUser }) => {
   // ***************************************************************
 
   let initial_state = {
-    username: "",
-    password: "",
-    email: "",
-    bio: ""
+    username: null,
+    password: null,
+    email: null,
+    bio: null
   };
 
   let navigate = useNavigate();
@@ -50,9 +50,7 @@ const RegisterForm = ({ registerUser }) => {
       console.log("success");
       navigate("/projects/view");
     } else {
-      console.log([response.errors])
       setErrors([response.errors]);
-      console.log(errors, "NEW ERRORS")
     };
   };
 
@@ -101,6 +99,7 @@ const RegisterForm = ({ registerUser }) => {
                   name="email"
                   type="text"
                   placeholder="email@aol.com"
+                  required
                   onChange={handleChange} />
               </Label>
             </FormGroup>

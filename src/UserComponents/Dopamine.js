@@ -1,7 +1,7 @@
 import React from "react";
 import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 // import './Dopamine.css';
-import { Card, CardBody, CardText, CardTitle, Button, CardFooter } from "reactstrap";
+import { Card, CardBody, CardText, CardTitle, Button } from "reactstrap";
 
 
 const Dopamine = () => {
