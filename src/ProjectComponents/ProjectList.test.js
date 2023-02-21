@@ -35,7 +35,7 @@ describe("ProjectList component- approp display", function () {
   //   expect(asFragment()).toMatchSnapshot();
   // });
 
-  // SNAPSHOT doens't match excpected outcome. I expect the project to be displayed but it's a state piece. Only gets updated after API call.
+  // SNAPSHOT doens't match expected outcome. I expect the project to be displayed but it's a state piece. Only gets updated after API call.
   test("Valid user, renders full project list WITH matchedprojects.", function () {
 
     const validUser = { username: "softwareDev1", matchedProjectIds: [1, 2, 3] };

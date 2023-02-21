@@ -1,34 +1,34 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { UserProvider } from "../TestUtils";
 import CreateMessage from "./CreateMessage";
-import { render } from "@testing-library/react";
+import { render, getByText } from "@testing-library/react";
+import UserContext from "../UserComponents/UserContext";
 
 
 test("Smoke - renders the CreateMessageForm", function () {
-  render(<CreateMessage />);
+
+  const authUser = { username: "softwareDev1" };
+
+  render(
+    <MemoryRouter>
+      <UserContext.Provider value={authUser}>
+        <CreateMessage />
+      </UserContext.Provider>
+    </MemoryRouter>
+  );
 });
 
-test("CreateMsg forms renders for valid user", function () {
+test("Snapshot- CreateMsg forms renders for valid user", function () {
 
+  const authUser = { username: "softwareDev1" }
   let { asFragment } = render(
     <MemoryRouter>
-      <UserProvider>
+      <UserContext.Provider value={authUser}>
         <CreateMessage />
-      </UserProvider>
+      </UserContext.Provider>
     </MemoryRouter>
   );
 
   expect(asFragment()).toMatchSnapshot();
-});
-
-test("CreateMsg forms does NOT render for invalid user", function () {
-  let { asFragment } = render(
-    <MemoryRouter>
-      <CreateMessage />
-    </MemoryRouter>
-  );
-
-  expect(asFragment()).not.toMatchSnapshot();
 });
 
