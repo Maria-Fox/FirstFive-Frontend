@@ -1,31 +1,58 @@
 import React from "react";
-import { render, getByText } from "@testing-library/react";
+import { render, getByText, waitFor } from "@testing-library/react";
 import ProjectCarousel from "./ProjectCarousel";
 import UserContext from "../UserComponents/UserContext";
 import { MemoryRouter } from "react-router-dom";
-
+import { authUser } from "../TestUtils";
+import API from "../API";
+jest.mock("../API");
 
 describe("Renders ProjectCarousel", function () {
 
-  test("Smoke - project carousel", function () {
+  test("Smoke - render project carousel", function () {
+
+    const validUser = { username: "softwareDev1", matchedProjectIds: [] };
+
     render(
-      <MemoryRouter>
-        <ProjectCarousel />
-      </MemoryRouter>
-    );
+      <UserContext.Provider value={validUser}>
+        <MemoryRouter>
+          <ProjectCarousel />
+        </MemoryRouter>
+      </UserContext.Provider>
+    )
   });
 
-  // test("Smoke - Render carousel", function () {
-  //   const user = { username: "softwareDev1" };
+  test("Carousel populates projectData post API call", function () {
+    const validUser = { username: "softwareDev1", matchedProjectIds: [] };
 
-  //   const { asFragment } = render(
-  //     <MemoryRouter>
-  //       <UserContext value={user}>
-  //         <ProjectCarousel />
-  //       </UserContext>
-  //     </MemoryRouter>
-  //   );
-  // });
+    // Mock API call & result.
 
-  // expect(asFragment()).toMatchSnapshot();
+    API.mockImplementationOnce(() => {
+      return {
+        request: () => {
+          return {
+            id: 2,
+            owner_username: "uxDesProf",
+            name: "Re-design an existing e-commerce website",
+            project_desc: "Re-design amazon, or target /any larger online corporation..",
+            timeframe: "2-3 months, unsure",
+            github_repo: "https://github.com/"
+          }
+        }
+      }
+    })
+
+    let renderedContent = render(
+      <MemoryRouter>
+        <UserContext.Provider value={validUser}>
+          <ProjectCarousel />
+        </UserContext.Provider>
+      </MemoryRouter>
+    );
+
+    waitFor(() => {
+      expect(getByText("Re-design an existing e-commerce website")).toBeInTheDocument();
+      expect(getByText("2-3 months, unsure"));
+    })
+  });
 });

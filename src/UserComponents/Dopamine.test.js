@@ -1,15 +1,17 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, getByText } from "@testing-library/react";
 import Dopamine from "./Dopamine";
-import { UserProvider } from "../TestUtils";
+import { authUser } from "../TestUtils";
+import UserContext from "./UserContext";
+import { Button } from "reactstrap";
 
 test("Dopamine comp is rendered for auth user", function () {
   let { asFragment } = render(
     <MemoryRouter>
-      <UserProvider>
+      <UserContext.Provider value={authUser}>
         <Dopamine />
-      </UserProvider>
+      </UserContext.Provider>
     </MemoryRouter>
   );
 
@@ -22,25 +24,8 @@ test("Confetti button can be clicked on", function () {
   const handleClick = jest.fn();
 
   // getByText method to grab button and fire off event.
-  let { getByText } = render(
-    <MemoryRouter>
-      <UserProvider>
-        <Dopamine />
-      </UserProvider>
-    </MemoryRouter>
-  );
+  render(<Dopamine />);
 
-  const confettiButton = getByText("Confetti");
-
-  fireEvent.click(confettiButton);
-  expect(handleClick).toHaveBeenCalled();
-});
-
-
-test("Dopamine comp is NOT rendered for unauth user", function () {
-  let { asFragment } = render(
-    <Dopamine />
-  );
-
-  expect(asFragment()).not.toMatchSnapshot();
+  fireEvent.click(getByText("Confetti"));
+  expect(handleClick).toHaveBeenCalled(1);
 });

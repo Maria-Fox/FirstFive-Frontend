@@ -25,6 +25,7 @@ const UpdateProfileForm = () => {
       };
 
       let userData = await API.viewAuthUserProfile(username);
+      console.log(userData, "%%%%%%%%");
 
       // Fill form with current data.
       setFormData({
