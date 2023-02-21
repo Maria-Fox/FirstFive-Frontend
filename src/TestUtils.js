@@ -8,12 +8,12 @@ const testUser = {
 };
 
 // sample / data
-const matchedIds = [1, 2, 3, 4];
+const matchedProjectIds = [1, 2, 3, 4];
 
-// Creating a contect provider and passing in the test user, matching ids. Passing in chidlren.
+// Creating a context provider and passing in the test user, matching ids. Passing in chidlren.
 const UserProvider =
-  ({ children, authUser: testUser, matchedIds }) => {
-    <UserContext.Provider value={{ authUser, matchedIds }}>
+  ({ children, authUser: testUser, matchedProjectIds }) => {
+    <UserContext.Provider value={{ authUser, matchedProjectIds }}>
       {children}
     </UserContext.Provider>
   };

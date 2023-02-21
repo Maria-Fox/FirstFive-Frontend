@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectList compoennt- approp display INVALID user, redirects user to navigation for invalid user / signin. 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <nav
+      style="text-align: right; width: 100%;"
+    >
+      <a
+        class="NavBar-item"
+        href="/auth/login"
+      >
+        Login
+      </a>
+      <a
+        class="NavBar-item"
+        href="/auth/register"
+      >
+        Register
+      </a>
+      <a
+        class="NavBar-item"
+        href="/about"
+      >
+        About
+      </a>
+    </nav>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ProjectList compoennt- approp display Valid user, renders loading if no API call yet. 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <h1
+      class="text-center"
+    >
+      Projects
+    </h1>
+    <div
+      class="text-center"
+    >
+      <p>
+        Prefer to view the projects through match-cards?
+        <a
+          href="/projects/carousel"
+          style="color: aqua;"
+        >
+          Click here!
+        </a>
+      </p>
+    </div>
+    <div>
+      <p
+        class="text-center"
+      >
+        Don't see anything you are interested in?
+        <a
+          href="/projects/new"
+          style="color: aqua;"
+        >
+          Create a project!
+        </a>
+      </p>
+    </div>
+    <p>
+      Loading...
+    </p>
+  </div>
+</DocumentFragment>
+`;

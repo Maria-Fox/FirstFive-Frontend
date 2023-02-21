@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserComponents/UserContext';
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+// import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+import confetti from 'canvas-confetti';
 import API from '../API';
 import CarouselItem from "./CarouselItem";
 import AlertNotification from '../Common/AlertNotifications';
-import { Card } from 'reactstrap';
+import { Card, CardBody, CardTitle } from 'reactstrap';
 
 
 function ProjectCarousel(args) {
@@ -38,7 +39,7 @@ function ProjectCarousel(args) {
       // console.log("matched ids BEFORE", matchedProjectIds);
       await API.addMatch(authUser, id);
       setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
-      confetti();
+      confetti({ spread: 160, particleCount: 250 });
       let newProjToDisplay = await API.carouselProjects();
       setProjects(newProjToDisplay);
     } catch (e) {
@@ -58,6 +59,16 @@ function ProjectCarousel(args) {
 
   // **************************************************************
 
+  const noProjectsToDisplay = (
+    <Card className='container'>
+      <CardTitle> All existing projects have been matched!</CardTitle>
+    </Card>
+  );
+
+
+    // **************************************************************
+
+
 
   return (
     <div className="text-center">
@@ -71,7 +82,7 @@ function ProjectCarousel(args) {
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      {!projects ? <p>Loading...</p> :
+      {!projects ? noProjectsToDisplay :
         <div>
           {projects.map(({ id, name, project_desc, timeframe, github_repo }) =>
             <CarouselItem

@@ -5,7 +5,10 @@ import { MemoryRouter } from "react-router";
 
 // smoke
 test("Should render LoginForm", function () {
-  render(<LoginForm />);
+  render(
+    <MemoryRouter>
+      <LoginForm />
+    </MemoryRouter>);
 });
 
 

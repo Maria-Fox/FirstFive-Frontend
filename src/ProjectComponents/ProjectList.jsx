@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import ProjectCard from "./ProjectCard";
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+// import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+import confetti from "canvas-confetti";
 import AlertNotification from "../Common/AlertNotifications";
 
 
@@ -33,6 +34,7 @@ const ProjectList = () => {
           setProjects(response);
         }
       } catch (e) {
+        console.log(e);
         setErrors(e);
         return;
       };

@@ -4,7 +4,10 @@ import RegisterForm from "./RegisterForm";
 import { MemoryRouter } from "react-router-dom";
 
 test("Renders RegistrationForm componenet", function () {
-  render(<RegisterForm />);
+  render(
+    <MemoryRouter>
+      <RegisterForm />
+    </MemoryRouter>);
 });
 
 test("Rendered RegisterForm correctly", function () {
@@ -16,5 +19,5 @@ test("Rendered RegisterForm correctly", function () {
     </MemoryRouter>
   );
 
-  expect(asFragment().toMatchSnapshot());
+  expect(asFragment()).toMatchSnapshot();
 });

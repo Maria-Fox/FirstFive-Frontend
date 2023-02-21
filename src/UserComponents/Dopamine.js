@@ -1,5 +1,5 @@
 import React from "react";
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+import confetti from "canvas-confetti";
 // import './Dopamine.css';
 import { Card, CardBody, CardText, CardTitle, Button } from "reactstrap";
 
@@ -14,13 +14,13 @@ const Dopamine = () => {
           Click the button to release confetti! This activates a reward-system releasing domaine creating that "feel good" sensation.
         </CardText>
 
-        <CardText>Want to learn more about dopamine and the reards system? Visit <a href="https://www.youtube.com/watch?v=f7E0mTJQ2KM" target="_blank">this two minute video</a>.</CardText>
+        <CardText>Want to learn more about dopamine and the reards system? Visit <a href="https://www.youtube.com/watch?v=f7E0mTJQ2KM" rel="noreferrer" target="_blank">this two minute video</a>.</CardText>
 
       </CardBody>
 
 
       <Button outline color="info" className="align-items-md-center"
-        onClick={() => confetti()} >Confetti</Button>
+        onClick={() => confetti({ spread: 300 })} >Confetti</Button>
 
     </Card >
   )

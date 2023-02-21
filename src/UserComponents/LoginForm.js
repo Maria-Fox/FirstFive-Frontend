@@ -11,7 +11,6 @@ import {
   Button,
 } from "reactstrap";
 
-
 const LoginForm = ({ authenticateuser }) => {
 
   // ***************************************************************
