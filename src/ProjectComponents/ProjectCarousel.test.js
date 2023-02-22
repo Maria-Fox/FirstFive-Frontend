@@ -1,4 +1,3 @@
-import React from "react";
 import { render, getByText, waitFor } from "@testing-library/react";
 import ProjectCarousel from "./ProjectCarousel";
 import UserContext from "../UserComponents/UserContext";

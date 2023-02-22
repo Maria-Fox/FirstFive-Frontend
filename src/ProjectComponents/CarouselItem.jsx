@@ -6,7 +6,7 @@ import { regular } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- 
 import { Card } from "reactstrap";
 
 
-const CarouselItem = function ({ id, name, project_desc, timeframe, github_repo, handleMatch, skip }) {
+const CarouselItem = function ({name, project_desc, timeframe, github_repo, handleMatch, skip }) {
 
   return (
     <Card className="CarouselItem-div">

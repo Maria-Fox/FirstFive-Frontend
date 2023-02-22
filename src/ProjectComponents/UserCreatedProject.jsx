@@ -25,8 +25,8 @@ const UserCreatedProject = ({ id, owner_username, name, project_desc, timeframe,
       <Link to={`/projectmembers/update/${id}`} style={{ "color": "aqua" }}>view/ Edit Project Members</Link>
 
     </Card >
-  )
+  );
 
-}
+};
 
 export default UserCreatedProject;

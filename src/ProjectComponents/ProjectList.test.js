@@ -1,4 +1,3 @@
-import React from "react";
 import { render, getByText, waitFor } from "@testing-library/react";
 import ProjectList from "./ProjectList";
 import { MemoryRouter } from "react-router-dom";
