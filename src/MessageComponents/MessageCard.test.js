@@ -19,8 +19,6 @@ describe("<MessageCard /> ", function () {
 
   test("Component props are passed in & displayed", function () {
 
-    // // id, message_from, message_to : PROPS
-
     let renderedContent = render(
       <MemoryRouter>
         <UserContext.Provider value={userWithMatchState}>
