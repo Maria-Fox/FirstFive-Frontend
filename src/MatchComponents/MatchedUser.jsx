@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import "./MatchedUser.css"
 import { Card, Button } from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
 
 const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToProjectMember, project_id, isUserProjectMember }) => {
 

@@ -17,23 +17,21 @@ const MatchedUserList = () => {
   useEffect(() => {
     async function viewAllMatchedUsers() {
       try {
-        // Retrieve the users who matched the project
+        // Retrieve the users who matched the project + proj data.
         let response = await API.viewProjectUserMatches(project_id);
         let { project_data, user_matches } = response;
-        console.log(project_data, "!@#$%^&*(*&^%$")
+        console.log(project_data, "Data")
 
-        let users = Object.values(user_matches);
-        setmatchedUsers(users);
-
-        // Set project data.
+        // Set matches users + proj data.
+        setmatchedUsers(user_matches);
         setProjData(project_data);
 
         // Retrieve users who are also project members 
-        let projMemberData = await API.viewAllProjMembers(project_id)
-        let project_member_values = Object.values(projMemberData.proj_members);
-        let allProjectMembers = project_member_values.map(user => user.username);
+        let projMemberData = await API.viewAllProjMembers(project_id);
+        let allProjectMembers = projMemberData.map(user => user.username);
+        console.log(allProjectMembers)
         setProjectMembers(new Set(allProjectMembers));
-        console.log("ALL THE PROJ MEMBERS :", projectMembers);
+
       } catch (e) {
         setErrors(e);
         return;
@@ -84,6 +82,7 @@ const MatchedUserList = () => {
         <Card style={{ padding: "20px" }}>
 
           <CardTitle >{projData.proj_name}</CardTitle>
+          <small>Created by {projData.proj_owner}</small>
 
           <p >
             {projData.github_repo ?

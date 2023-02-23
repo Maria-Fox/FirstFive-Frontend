@@ -14,9 +14,15 @@ const UpdateProjectMembers = () => {
   useEffect(() => {
 
     async function viewProjMembers() {
-      let response = await API.viewAllProjMembers(project_id);
-      let allMembers = Object.values(response.proj_members)
-      setProjMembers(allMembers);
+
+      try{
+        let response = await API.viewAllProjMembers(project_id);
+        setProjMembers(response);
+      } catch(e){
+        setErrors(e);
+        return;
+      };
+
     };
 
     viewProjMembers();
@@ -42,7 +48,7 @@ const UpdateProjectMembers = () => {
       <h1 className="text-center">Project Members - Update</h1>
 
       <Card className="m-2">
-        <CardBody >Looking to add members? To ensure only matched members are added please visit the <Link to={`/matches/view/${project_id}/users`}>users matched</Link> and click "add" under the prefered user.
+        <CardBody>Looking to add members? To ensure only matched members are added please visit the <Link to={`/matches/view/${project_id}/users`}>users matched</Link> and click "add" under the prefered user.
         </CardBody>
       </Card>
 
@@ -54,8 +60,6 @@ const UpdateProjectMembers = () => {
           className="container p -3 m-3 d-flex justify-content-center">
 
           <CardTitle className="h2">{username}</CardTitle>
-
-
           <CardBody>User bio: {bio}</CardBody>
 
           <Button outline color="danger" onClick={() => handleRemoveProjMember(project_id, username)}>Remove</Button>
@@ -66,7 +70,7 @@ const UpdateProjectMembers = () => {
           <CardTitle className="h2">No project members, yet!</CardTitle>
 
           <CardBody>Looking to add project members?
-            Use the above link to see matched users.</CardBody>
+            Use the link above to see matched users.</CardBody>
         </Card>
       }
     </div >

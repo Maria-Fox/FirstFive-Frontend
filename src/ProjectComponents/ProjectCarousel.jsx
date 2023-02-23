@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserComponents/UserContext';
-// import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import confetti from 'canvas-confetti';
 import API from '../API';
 import CarouselItem from "./CarouselItem";
 import AlertNotification from '../Common/AlertNotifications';
-import { Card, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardTitle } from 'reactstrap';
 
 
-function ProjectCarousel(args) {
+function ProjectCarousel() {
 
   // **************************************************************
 

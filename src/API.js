@@ -18,10 +18,10 @@ class API {
       ? data
       : {};
 
-    if (!this.token) {
-      console.log("There's no token")
-      this.token = window.sessionStorage.getItem("token") || "temp_invalid";
-    };
+    // if (!this.token) {
+    //   console.log("There's no token")
+    //   this.token = window.sessionStorage.getItem("token") || "temp_invalid";
+    // };
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -184,6 +184,6 @@ class API {
 
 
   // class closing bracket don't delete.
-}
+};
 
 export default API;

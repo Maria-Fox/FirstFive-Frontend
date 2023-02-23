@@ -16,8 +16,7 @@ const ProjectMemberList = () => {
 
     async function viewProjMembers() {
       let response = await API.viewAllProjMembers(project_id);
-      let allMembers = Object.values(response.proj_members)
-      setProjMembers(allMembers);
+      setProjMembers(response);
     };
 
     viewProjMembers();
