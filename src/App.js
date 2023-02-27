@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { flushSync } from 'react-dom';
 import NavRoutes from './Routes-Nav/NavRoutes';
 import API from "./API";
 import UserContext from './UserComponents/UserContext';
@@ -29,15 +28,6 @@ function App() {
       if (token) {
         try {
           console.log("TRIGGERED APP EFFECT RE-RENDER")
-
-          // Add in authUser
-          let { username } = decodeToken(token);
-          console.log("DESTRUCTURED FROM TOKEN", username);
-          setAuthUser(username);
-
-          // why is this NOT changing the authUser... ???
-          console.log(`${username} is logged in.`);
-
           // put the token on the Api class so it can use it to call the API
           API.token = token;
           console.log(API.token, "token was assigned");
@@ -47,7 +37,7 @@ function App() {
 
           // retrieve the user matches to populate approporiate projects.
           // of username****
-          let userMatches = await API.viewUsernameMatches(username);
+          let userMatches = await API.viewUsernameMatches(authUser);
           let matchIds = userMatches.map(match => match.project_id);
           setMatchedProjectIds([...matchIds])
           console.log(matchedProjectIds, "matched id's");
@@ -66,10 +56,14 @@ function App() {
   async function registerUser(formData) {
     try {
       let token = await API.registerUser(formData);
-      // setToken(token);
-      flushSync(() => {
-        setToken(token);
-      });
+      let { username } = decodeToken(token);
+      console.log("DESTRUCTURED FROM TOKEN", username);
+
+      // Add the user so the PrivateRoute comp lets us move on.
+      setAuthUser(username);
+      console.log(authUser);
+      setToken(token);
+
       return { success: true };
     } catch (errors) {
       return { success: false, errors };
@@ -83,28 +77,13 @@ function App() {
     try {
       let token = await API.authenticateUser(formData);
 
-      // the setToken call stack is not finishing before the return statement runs!!!! - How do I ensure it finishes before moving on? If I do the commented out code below it let's us auth the user but the rest of the useEffect (matchedIds) are still needed & needs to be udpated when there's changes to tokens, etc.
-
       let { username } = decodeToken(token);
       setAuthUser(username);
-      console.log(`${username} is logged in.`)
+      console.log(authUser);
+      setToken(token);
 
-      // Call flushSync to force React to flush any pending work and update the DOM synchronously.
-
-      // flushSync(() => {
-      //   setToken(token);
-      // });
-      setToken(token)
-      console.log(`We have set the token ${token}`)
-      console.log("SHOULD TRIGGER APP EFFECT");
-
-      // function returnTrue() {
-      //   return { success: true }
-      // };
-
-      // alt way, doesn't work.
-      // setToken(token, returnTrue);
       return { success: true };
+
     } catch (errors) {
       return { success: false, errors };
     };

@@ -48,7 +48,7 @@ const RegisterForm = ({ registerUser }) => {
 
     if (response.success) {
       console.log("success");
-      navigate("/projects/view");
+      navigate("/home");
     } else {
       setErrors([response.errors]);
     };
@@ -88,6 +88,7 @@ const RegisterForm = ({ registerUser }) => {
                   autoComplete="on"
                   placeholder="@ least 6 characters"
                   onChange={handleChange}
+                  minLength = "6"
                   className="RegisterInput" />
               </Label>
             </FormGroup>
