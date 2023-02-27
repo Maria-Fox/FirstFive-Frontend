@@ -8,9 +8,10 @@ const PrivateRoutes = () => {
   const validToken = localStorage.getItem("token");
 
   console.log("In private route user is", authUser, "$%#%^&$^*%^^%#@$")
+  console.log(validToken ? `Valid token` : "no token")
   console.log(authUser ? true : false)
 
-  return authUser || validToken ? <Outlet /> : <Navigate to="/auth/login" replace state={{ path: location.pathname }}></Navigate>
+  return validToken || authUser ? <Outlet /> : <Navigate to="/auth/login" replace state={{ path: location.pathname }}></Navigate>
 
 };
 

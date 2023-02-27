@@ -1,4 +1,5 @@
-import './App.css';
+import './App.scss';
+import { flushSync } from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavRoutes from './Routes-Nav/NavRoutes';
@@ -27,20 +28,13 @@ function App() {
     async function getCurrentUser() {
       if (token) {
         try {
-          console.log("TRIGGERED APP EFFECT RE-RENDER")
           // put the token on the Api class so it can use it to call the API
           API.token = token;
-          console.log(API.token, "token was assigned");
-
-          // Even down here (after some time from original set.
-          console.log(authUser, "AUTH USER IN APP.JS");
-
+          console.log(API.token, "token was assigned, %%%%%%");
           // retrieve the user matches to populate approporiate projects.
-          // of username****
-          let userMatches = await API.viewUsernameMatches(authUser);
-          let matchIds = userMatches.map(match => match.project_id);
-          setMatchedProjectIds([...matchIds])
-          console.log(matchedProjectIds, "matched id's");
+          // let userMatches = await API.viewUsernameMatches(authUser);
+          // let matchIds = userMatches.map(match => match.project_id);
+          // setMatchedProjectIds([...matchIds]);
         } catch (err) {
           setAuthUser(null)
         };
@@ -56,14 +50,10 @@ function App() {
   async function registerUser(formData) {
     try {
       let token = await API.registerUser(formData);
-      let { username } = decodeToken(token);
-      console.log("DESTRUCTURED FROM TOKEN", username);
-
-      // Add the user so the PrivateRoute comp lets us move on.
-      setAuthUser(username);
-      console.log(authUser);
       setToken(token);
 
+      let { username } = decodeToken(token);
+      setAuthUser(username);
       return { success: true };
     } catch (errors) {
       return { success: false, errors };
@@ -76,14 +66,11 @@ function App() {
   async function authenticateUser(formData) {
     try {
       let token = await API.authenticateUser(formData);
+      setToken(token);
 
       let { username } = decodeToken(token);
       setAuthUser(username);
-      console.log(authUser);
-      setToken(token);
-
       return { success: true };
-
     } catch (errors) {
       return { success: false, errors };
     };

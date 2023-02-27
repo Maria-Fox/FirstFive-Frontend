@@ -1,12 +1,8 @@
-body{
-  margin: 0px;
-  height: 100vh;
-  /* place-items: center; */
-  display: flex;
-  justify-content: center;
-}
-
 .CarouselItem-div{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: (-50%, -50%);
   border: solid 2px red;
   margin: 20px;
   padding: 20px;
@@ -14,8 +10,9 @@ body{
   aspect-ratio: 5/7;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 1vmin;
-  /* transform: translateX(-10%) rotate(-1deg) */
 };
+
+/* need to better center  & style but background color & border, etc don't work yet. */
 
 .Match-Button-Options{
   margin-top: 8vmin;

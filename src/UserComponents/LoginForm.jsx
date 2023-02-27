@@ -46,7 +46,7 @@ const LoginForm = ({ authenticateuser }) => {
         // This needs to happen before anything else.
         navigate(`/home`);
         console.log("Successful authentication *******")
-        console.log("worked")
+        console.log("should happen after navigation")
       } else {
         setFormErrors(response.errors);
         return;

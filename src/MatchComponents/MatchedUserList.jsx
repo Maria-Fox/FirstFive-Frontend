@@ -47,13 +47,12 @@ const MatchedUserList = () => {
   let addUserToProjectMember = async function (project_id, username) {
     try {
       // If the user is already a project member escape.
-      // if (isUserProjectMember(username)) return;
+      if(isUserProjectMember(username)) return;
 
       console.log(`Adding ${username} to project id: ${project_id}`)
       let response = await API.addProjectMember(project_id, username);
       console.log(response);
       setProjectMembers(new Set(projectMembers, username));
-      // alert("User added to project members");
     } catch (e) {
       setErrors(e);
       return;

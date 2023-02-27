@@ -33,7 +33,7 @@ const MatchedProjectList = () => {
     };
 
     getMatchData();
-  }, [setMatchData, authUser, setMatchedProjectIds, username]);
+  }, [setMatchData, setMatchedProjectIds, username]);
 
   // ***************************************************************
 
@@ -41,7 +41,6 @@ const MatchedProjectList = () => {
     try {
       let unmatchRes = await API.removeUserMatch(username, project_id);
 
-      console.log(unmatchRes, "UNMATCH RES****");
       if (unmatchRes.Removed) {
         // reset the projects displayed to all except the deleted project.
         setMatchData(matchData.filter(ids => ids.project_id !== project_id));

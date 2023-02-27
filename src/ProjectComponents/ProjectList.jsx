@@ -13,7 +13,7 @@ const ProjectList = () => {
   // ***************************************************************
 
 
-  let {matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
+  let {authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
 
   let [projects, setProjects] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -24,9 +24,11 @@ const ProjectList = () => {
     async function getAllProjects() {
 
       try {
-        console.log("IN PROJECTS MATCHED IDS ARE", matchedProjectIds.length);
+        let userMatches = await API.viewUsernameMatches(authUser);
+        let matchIds = userMatches.map(match => match.project_id);
+        setMatchedProjectIds([...matchIds]);
 
-        if (matchedProjectIds.length === 0) {
+        if (matchIds.length === 0) {
           console.log("USER DOES NOT HAVE MATCHES")
           let response = await API.getAllProjects();
           setProjects(response);
@@ -44,7 +46,8 @@ const ProjectList = () => {
 
     getAllProjects();
 
-  }, [setMatchedProjectIds, setProjects]);
+    // if I add the authuser into dep. arr the refrload renders but gives unauth error.
+  }, [setMatchedProjectIds, setProjects, authUser]);
 
   // ***************************************************************
 
@@ -87,7 +90,7 @@ const ProjectList = () => {
       </div>
 
       {
-        projects ? projects.map(({ id, owner_username, name, project_desc, timeframe, github_repo }) =>
+        projects && projects.length > 0 ? projects.map(({ id, owner_username, name, project_desc, timeframe, github_repo }) =>
           <ProjectCard
             key={id}
             id={id}

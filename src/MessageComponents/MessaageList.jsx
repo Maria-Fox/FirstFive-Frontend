@@ -37,7 +37,7 @@ const MessageList = () => {
     <Card className="container p-3">
       <CardText style={{ textAlign: "center" }}>No messages, yet!</CardText>
       <CardText>Messages can only be exhanged between users who have mutual project matches. To create a message please visit your matches and click on the user you want to message.</CardText>
-      <Link to={`matches/view/${authUser}/all`}>Matches</Link>
+      <Link to={`/matches/view/${authUser}/all`}>Matches</Link>
     </Card>
   );
 

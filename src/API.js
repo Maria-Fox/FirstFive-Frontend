@@ -12,16 +12,18 @@ class API {
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method, this.token, "**********");
 
+    // can remove later.
+    if (!this.token) {
+      console.log("There's no token")
+      this.token = window.localStorage.getItem("token") || "invalidTemp"
+    };
+
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${API.token}` };
     const params = (method === "get")
       ? data
       : {};
 
-    // if (!this.token) {
-    //   console.log("There's no token")
-    //   this.token = window.sessionStorage.getItem("token") || "temp_invalid";
-    // };
 
     try {
       return (await axios({ url, method, data, params, headers })).data;

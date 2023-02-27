@@ -15,6 +15,7 @@ const MatchedUser = ({ user_matched, matched_user_bio, project_owner, addUserToP
 
   // ***************************************************************
 
+  // If function returns true they're matched. 
   let buttonStyle = isUserProjectMember(user_matched) ? "ProjectMember" : "MatchedUser";
 
   // ***************************************************************
