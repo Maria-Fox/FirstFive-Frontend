@@ -12,7 +12,7 @@ function ProjectCarousel() {
   // **************************************************************
 
   const [projects, setProjects] = useState(null);
-  const { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
+  const { authUser, setMatchedProjectIds } = useContext(UserContext);
   const [errors, setErrors] = useState(null);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function ProjectCarousel() {
       // console.log("matched ids BEFORE", matchedProjectIds);
       await API.addMatch(authUser, id);
       setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
-      confetti({ spread: 160, particleCount: 250 });
+      confetti({ spread: 300, particleCount: 250 });
       let newProjToDisplay = await API.carouselProjects();
       setProjects(newProjToDisplay);
     } catch (e) {

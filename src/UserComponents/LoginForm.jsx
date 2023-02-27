@@ -39,17 +39,18 @@ const LoginForm = ({ authenticateuser }) => {
   // ***************************************************************
 
   let handleSubmit = async (e) => {
-    e.preventDefault();
-    // This should be attaching the token & authUser before navigating elsewhere.
-    let response = await authenticateuser(formData);
-    if (response.success) {
-      navigate(`/projects/view`);
-      console.log("Successful authentication *******")
-      console.log("worked")
-    } else {
-      setFormErrors(response.errors);
-      return;
-    };
+      e.preventDefault();
+      // This should be attaching the token & authUser before navigating elsewhere. The await is not completing
+      let response = await authenticateuser(formData);
+      if (response.success) {
+        // This needs to happen before anything else.
+        navigate(`/home`);
+        console.log("Successful authentication *******")
+        console.log("worked")
+      } else {
+        setFormErrors(response.errors);
+        return;
+      };
   };
 
   // ***************************************************************

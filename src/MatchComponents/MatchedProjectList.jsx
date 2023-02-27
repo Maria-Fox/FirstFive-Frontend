@@ -4,7 +4,7 @@ import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import UserContext from "../UserComponents/UserContext";
 import MatchedProject from "./MatchedProject";
-import { Card, CardText, CardTitle } from "reactstrap";
+import { Card, CardTitle } from "reactstrap";
 
 
 const MatchedProjectList = () => {
