@@ -28,6 +28,8 @@ function App() {
     async function getCurrentUser() {
       if (token) {
         try {
+          let { username } = decodeToken(token);
+          setAuthUser(username);
           // put the token on the Api class so it can use it to call the API
           API.token = token;
           console.log(API.token, "token was assigned, %%%%%%");

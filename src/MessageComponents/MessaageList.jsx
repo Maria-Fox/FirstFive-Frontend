@@ -22,7 +22,7 @@ const MessageList = () => {
   useEffect(() => {
     async function viewUserMessages() {
       try {
-        let response = await API.getAllUserMessages(username);
+        let response = await API.getAllUserMessages(username || authUser);
         setUserMessages(response);
       } catch (e) {
         setErrors(e);

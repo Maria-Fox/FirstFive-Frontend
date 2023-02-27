@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import ProjectCard from "./ProjectCard";
-// import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import confetti from "canvas-confetti";
 import AlertNotification from "../Common/AlertNotifications";
 
@@ -14,6 +13,7 @@ const ProjectList = () => {
 
 
   let {authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
+  console.log( " auth user is in projectList ", authUser, "&&&&&")
 
   let [projects, setProjects] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -34,11 +34,9 @@ const ProjectList = () => {
           setProjects(response);
         } else {
           let response = await API.getNonMatchedProjects();
-          console.log(response);
           setProjects(response);
         }
       } catch (e) {
-        console.log(e);
         setErrors(e);
         return;
       };
@@ -47,7 +45,7 @@ const ProjectList = () => {
     getAllProjects();
 
     // if I add the authuser into dep. arr the refrload renders but gives unauth error.
-  }, [setMatchedProjectIds, setProjects, authUser]);
+  }, [setMatchedProjectIds, setProjects]);
 
   // ***************************************************************
 

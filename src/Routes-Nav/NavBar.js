@@ -9,11 +9,13 @@ const NavBar = ({ logout }) => {
   // ***************************************************************
 
   let { authUser } = useContext(UserContext);
-  console.log("In navBar user is: ", authUser, "*****");
+  console.log("In navBar authUser is: ", authUser, "*****");
+  let validToken = localStorage.getItem("token");
+  console.log(`in navBar token is:  ${validToken}`)
 
   // ***************************************************************
 
-  if (!authUser) {
+  if (!authUser && !validToken) {
     return (
       <nav style={{ textAlign: "right", width: "100%" }}>
         <NavLink to="/auth/login" className="NavBar-item">Login</NavLink>
@@ -42,7 +44,6 @@ const NavBar = ({ logout }) => {
       </nav>
     );
   };
-
 
 };
 
