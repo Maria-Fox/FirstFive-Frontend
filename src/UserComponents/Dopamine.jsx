@@ -1,6 +1,6 @@
 import React from "react";
 import confetti from "canvas-confetti";
-// import './Dopamine.css';
+import './Dopamine.css';
 import { Card, CardBody, CardText, CardTitle, Button } from "reactstrap";
 
 

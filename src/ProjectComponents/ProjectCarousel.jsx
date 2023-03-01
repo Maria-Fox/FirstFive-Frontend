@@ -32,10 +32,8 @@ function ProjectCarousel() {
 
   // ***************************************************************
 
-  let handleMatch = async function (authuser, id) {
+  let handleMatch = async function (authUser, id) {
     try {
-      // console.log(`Matching this ID : ${id}`)
-      // console.log("matched ids BEFORE", matchedProjectIds);
       await API.addMatch(authUser, id);
       setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
       confetti({ spread: 300, particleCount: 250 });

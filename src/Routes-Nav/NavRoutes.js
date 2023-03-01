@@ -19,8 +19,9 @@ import About from "../About/About";
 import UserCreatedProjects from "../ProjectComponents/UserCreatedProjectList";
 import UpdateProjectMembers from "../ProjectMemberComponents/UpdateProjectMembers";
 import ProjectCarousel from "../ProjectComponents/ProjectCarousel";
-import Home from "../Home/Home";
+import Home from "../UserHome/Home";
 import Dopamine from "../UserComponents/Dopamine";
+import LandingPage from "../LandingPage/LandingPage";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
 
@@ -29,6 +30,9 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
     <Routes>
 
       {/* Auth user routes - PUBLIC */}
+      <Route path="/"
+        element={<LandingPage />}>
+      </Route>
       <Route path="/auth/register"
         element={<RegisterForm registerUser={registerUser} />}>
       </Route>

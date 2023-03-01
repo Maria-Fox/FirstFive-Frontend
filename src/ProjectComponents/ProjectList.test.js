@@ -25,7 +25,7 @@ describe("ProjectList component- approp display", function () {
   });
 
 
-  test("Valid user, renders loading if no API call yet.", function () {
+  test("Valid user, renders no project to display if no API call yet.", function () {
 
     const validUser = { username: "softwareDev1", matchedProjectIds: [] };
 

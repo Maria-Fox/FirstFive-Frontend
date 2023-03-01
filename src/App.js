@@ -1,5 +1,5 @@
-import './App.scss';
-import { flushSync } from 'react-dom';
+import './index.scss';
+// import { flushSync } from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavRoutes from './Routes-Nav/NavRoutes';
@@ -23,20 +23,21 @@ function App() {
   // ***************************************************************
 
   useEffect(function loadUserInfo() {
-    console.debug("App useEffect loadUserInfo", "token=", token);
+    console.debug("App useEffect", "token=", token);
 
     async function getCurrentUser() {
       if (token) {
         try {
           let { username } = decodeToken(token);
           setAuthUser(username);
-          // put the token on the Api class so it can use it to call the API
+          // put the token on the API class for user authentication on the backend. Used to send off requests.
+
           API.token = token;
-          console.log(API.token, "token was assigned, %%%%%%");
           // retrieve the user matches to populate approporiate projects.
-          // let userMatches = await API.viewUsernameMatches(authUser);
-          // let matchIds = userMatches.map(match => match.project_id);
-          // setMatchedProjectIds([...matchIds]);
+          let userMatches = await API.viewUsernameMatches(username);
+          let matchIds = userMatches.map(match => match.project_id);
+          setMatchedProjectIds([...matchIds]);
+          console.log(`FROM APP: MATCHEDIDS ARE:`, matchedProjectIds)
         } catch (err) {
           setAuthUser(null)
         };
@@ -70,6 +71,7 @@ function App() {
       let token = await API.authenticateUser(formData);
       setToken(token);
 
+      // Decoding here to allow private route components to render outlet.
       let { username } = decodeToken(token);
       setAuthUser(username);
       return { success: true };
@@ -84,6 +86,7 @@ function App() {
   async function logout() {
     setAuthUser(null);
     localStorage.removeItem('token');
+    API.token = "";
     navigate("/auth/login");
   };
 
