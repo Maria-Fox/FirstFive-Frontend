@@ -18,11 +18,11 @@ const About = () => {
 
       <h4>Why the name FirstFive?</h4>
       <CardText>
-        The typical computer science degree takes 4-5 years. Bootcamps vary. However, a common theme among both graduates is the idea that they have few projects to demonstrate their skills, or they want to build additional projects to build their resume.
+        The typical computer science degree takes 4-5 years. Bootcamps vary. However, a common theme among both graduates is the idea that they have few projects to demonstrate their skills, or they are looking for group proejcts to strengthen their skills.
       </CardText>
 
       <CardText>
-        FirstFive is intended for thos with 0 - 5 years of experience in an indsutry. Instead of completing a degree or bootcamp with little or no projects. Here, users can slowly build up their resume while aquiring necessary collaboration skills.
+        FirstFive is intended for those with 0 - 5 years of experience in an indsutry. Instead of completing a degree or bootcamp with little or no projects. Here, users can slowly build up their resume while aquiring necessary collaboration skills.
       </CardText>
 
       <CardText>

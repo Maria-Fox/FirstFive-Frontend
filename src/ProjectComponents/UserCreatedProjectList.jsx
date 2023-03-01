@@ -78,7 +78,7 @@ const UserCreatedProjectList = () => {
 
 
   return (
-    <div className="containerd-flex align-items-center">
+    <div className="container">
       <h1 className="text-center">Projects Created</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}

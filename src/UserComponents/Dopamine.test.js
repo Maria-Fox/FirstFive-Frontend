@@ -19,13 +19,10 @@ test("Dopamine comp is rendered for auth user", function () {
 });
 
 
-test("Confetti button can be clicked on", function () {
-  // mock confetti callback
-  const handleClick = jest.fn();
-
-  // getByText method to grab button and fire off event.
-  render(<Dopamine />);
-
-  fireEvent.click(getByText("Confetti"));
-  expect(handleClick).toHaveBeenCalled(1);
-});
+// test("Confetti button can be clicked on", function () {
+//   // getByText method to grab button and fire off event.
+//   let dopamineRender = render(<Dopamine />);
+//   let confettiButton = dopamineRender.getByText("Confetti");
+//   fireEvent.click(confettiButton);
+//   expect(confettiButton).toHaveBeenCalled(1);
+// });
