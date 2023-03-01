@@ -1,12 +1,11 @@
 import React from "react";
 import confetti from "canvas-confetti";
-import './Dopamine.css';
 import { Card, CardBody, CardText, CardTitle, Button } from "reactstrap";
 
 
 const Dopamine = () => {
   return (
-    <Card className="text-center container">
+    <Card className="text-center container" id ="Dopamine-Div">
       <CardTitle className="h1 p-3 m-3">Need a pick-me-up?</CardTitle>
 
       <CardBody>

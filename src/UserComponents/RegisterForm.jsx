@@ -58,29 +58,29 @@ const RegisterForm = ({ registerUser }) => {
 
 
   return (
-    <div >
-      <h2 className="mb-3">Register</h2>
+    <div className="container">
+      <h2 className="mb-3 text-white mt-5">Register</h2>
 
       <Card>
 
         {errors ? <AlertNotification messages={errors} /> : null}
 
-
         <CardBody>
-          <Form >
+          <Form className="container">
             <FormGroup  >
-              <Label for="username" className="mt-3">Username
+              <Label for="username" className="mt-2">Username
+              </Label>
                 <Input
                   id="username"
                   name="username"
                   type="text"
                   placeholder="Username"
                   onChange={handleChange} />
-              </Label>
             </FormGroup>
 
             <FormGroup >
-              <Label for="password" className="mt-3">Password
+              <Label for="password" className="mt-2">Password
+              </Label>
                 <Input
                   id="password"
                   name="password"
@@ -90,11 +90,12 @@ const RegisterForm = ({ registerUser }) => {
                   onChange={handleChange}
                   minLength = "6"
                   className="RegisterInput" />
-              </Label>
+              
             </FormGroup>
 
             <FormGroup >
-              <Label for="email" className="mt-3">Email
+              <Label for="email" className="mt-2">Email
+              </Label>
                 <Input
                   id="email"
                   name="email"
@@ -102,22 +103,21 @@ const RegisterForm = ({ registerUser }) => {
                   placeholder="email@aol.com"
                   required
                   onChange={handleChange} />
-              </Label>
             </FormGroup>
 
             <FormGroup >
-              <Label for="bio" className="mt-3">Bio
+              <Label for="bio" className="mt-2">Bio
+              </Label>
                 <Input
                   id="bio"
                   name="bio"
                   type="text"
                   placeholder="CS student"
                   onChange={handleChange} />
-              </Label>
             </FormGroup>
 
 
-            <Button onClick={handleSubmit}>Submit</Button>
+            <Button onClick={handleSubmit} >Submit</Button>
           </Form>
         </CardBody>
       </Card>

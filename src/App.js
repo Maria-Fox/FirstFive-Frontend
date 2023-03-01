@@ -1,5 +1,5 @@
-import './index.scss';
-// import { flushSync } from 'react-dom';
+import "./App.css"
+import { flushSync } from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavRoutes from './Routes-Nav/NavRoutes';
@@ -17,7 +17,7 @@ export const token_storage = "token";
 function App() {
   const [authUser, setAuthUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
-  const [matchedProjectIds, setMatchedProjectIds] = useState(null);
+  const [matchedProjectIds, setMatchedProjectIds] = useState([]);
   const navigate = useNavigate();
 
   // ***************************************************************
@@ -34,6 +34,7 @@ function App() {
 
           API.token = token;
           // retrieve the user matches to populate approporiate projects.
+          // **Note - setting the authUser does not happen quickly enough to use authUser here... therefore using username.
           let userMatches = await API.viewUsernameMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
           setMatchedProjectIds([...matchIds]);
@@ -96,7 +97,7 @@ function App() {
   return (
     <UserContext.Provider
       value={{ authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds }}>
-      <div className="App">
+      <div id="AppID" >
         <NavBar logout={logout} />
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />
       </div>

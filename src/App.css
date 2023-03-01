@@ -1,0 +1,15 @@
+body {
+  height: 100vh;
+  padding: 0;
+};
+
+body {
+  min-height: 100vh;
+  padding: 0;
+};
+
+#AppID{
+  background-color: black;
+  /* height: '100vh';
+  min-height : '100vh' */
+};

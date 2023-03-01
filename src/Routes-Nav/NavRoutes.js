@@ -19,7 +19,7 @@ import About from "../About/About";
 import UserCreatedProjects from "../ProjectComponents/UserCreatedProjectList";
 import UpdateProjectMembers from "../ProjectMemberComponents/UpdateProjectMembers";
 import ProjectCarousel from "../ProjectComponents/ProjectCarousel";
-import Home from "../UserHome/Home";
+import Home from "../Home/Home";
 import Dopamine from "../UserComponents/Dopamine";
 import LandingPage from "../LandingPage/LandingPage";
 

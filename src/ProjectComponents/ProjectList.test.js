@@ -29,7 +29,7 @@ describe("ProjectList component- approp display", function () {
 
     const validUser = { username: "softwareDev1", matchedProjectIds: [] };
 
-    //Not mocking API call- justpassing in 0 matchedProjectIds so user see's "Loading..."
+    //Not mocking API call- instead, disaplying no Projects
 
     const { asFragment, getByText } = render(
       <MemoryRouter>

@@ -6,7 +6,7 @@ exports[`Creates a LoginForm snapshot 1`] = `
     class="container"
   >
     <h2
-      class="mb-3"
+      class="mb-3 text-white mt-5"
     >
       Login
     </h2>
@@ -17,7 +17,7 @@ exports[`Creates a LoginForm snapshot 1`] = `
         class="card-body"
       >
         <form
-          class="LoginForm"
+          class=""
         >
           <div
             class="mb-3"

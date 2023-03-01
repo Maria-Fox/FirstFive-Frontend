@@ -59,13 +59,13 @@ const LoginForm = ({ authenticateuser }) => {
   return (
     <div className="container" >
 
-      <h2 className="mb-3">Login</h2>
+      <h2 className="mb-3 text-white mt-5">Login</h2>
       <Card>
 
         {formErrors ? <AlertNotification messages={formErrors} /> : null}
 
-        < CardBody >
-          <Form className="LoginForm" >
+        <CardBody>
+          <Form  >
             <FormGroup>
               <Label for="username" className="mt-3">
                 Username
