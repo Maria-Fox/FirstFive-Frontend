@@ -1,17 +1,26 @@
-.MatchedProject{
-  border: 2px solid whitesmoke;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 15px;
-};
+/* #Project-Options-Div{
+  display:flex; */
+  /* flex-direction: column; */
+  /* position: absolute;
+  width: fit-content;
+  height: fit-content;
+  left: 65%;
+  justify-content: center;
+  justify-items: center;
 
-.Match-Options{
-  align-content: center;
-  margin: 20px
-};
+}
+ */
 
-.unmatchButton{
-  display: flex;
-  position: relative;
-  left: 30%;
+.Link-Option{
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+}
+
+.Link-Option:hover{
+  background-color: aqua;
+  color: black;
 }

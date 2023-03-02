@@ -70,7 +70,7 @@ const UpdateProfileForm = () => {
     <div>
       {formErrors ? <AlertNotification messages={formErrors} /> : null}
 
-      <h1 className="text-center">Update Profile</h1>
+      <h1 className="text-center text-white pt-2 mt-2"> Update Profile</h1>
 
       <Card className="container text-center">
         {formData ?
@@ -132,7 +132,9 @@ const UpdateProfileForm = () => {
               </Label>
             </FormGroup>
 
-            <Button outline color="info" type="submit">Update</Button>
+            <Button outline color="info" type="submit" className="m-2">
+              Update
+            </Button>
 
           </Form>
           :

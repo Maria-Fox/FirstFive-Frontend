@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import "./MatchedProject.css";
 import UserContext from "../UserComponents/UserContext";
-import { Card, CardTitle, CardText, Button } from "reactstrap";
+import { Card, CardTitle, CardText, Button, CardLink } from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+import "./MatchedProject.css";
+
 
 
 const MatchedProject = ({ name, owner_username, project_desc
@@ -16,7 +19,7 @@ const MatchedProject = ({ name, owner_username, project_desc
   // ***************************************************************
 
   const unMatchOption = (
-    <Button outline color="danger" className="unmatchButton"
+    <Button outline color="danger" className="m-3"
       onClick={() => handleUnmatch(authUser, project_id)}
     >Unmatch Project</Button>
   )
@@ -25,31 +28,31 @@ const MatchedProject = ({ name, owner_username, project_desc
   // ***************************************************************
 
   return (
-    <Card className="MatchedProject container">
+    <Card className="container m-3 p-3">
 
-      <CardTitle tag="h2">{name}</CardTitle>
-
-      <small>Created by {owner_username}</small>
+      <CardTitle  className="fw-bold fs-2">{name}</CardTitle>
+      {/* <small>Created by {owner_username}</small> */}
 
       <div>
+      <small >Created by {owner_username}</small>
         {authUser !== owner_username ?
-          <div>
-            <p>Want to jump onto the project right away?
-              <Link to={`/messages/${authUser}/create/${owner_username}`} style={{ color: "aqua" }} > Message Project owner</Link>
-            </p>
-          </div>
+          <>
+            {/* <p>Want to jump onto the project right away? */}
+              <Link className=""
+              to={`/messages/${authUser}/create/${owner_username}`} style={{ color: "MediumVioletRed", textDecoration: "none" }} > <FontAwesomeIcon icon={regular('message')} /> Msg Creator</Link>
+            {/* </p>  */}
+          </>
           :
           null}
       </div>
 
+      <CardText >Project Timeframe: {timeframe}</CardText>
 
-      <p>
-        {github_repo ?
-          <a href={github_repo} target="_blank" rel="noreferrer" style={{ color: "aqua" }}> View Repo for: {name} </a>
+
+      {github_repo ?
+          <CardLink className="pt-0 mt-0"
+          href={github_repo} target="_blank" rel="noreferrer" style={{ color: "purple", textDecoration: "none" }}> View Repository</CardLink>
           : null}
-      </p>
-
-      <CardText>Project Timeframe: {timeframe}</CardText>
 
 
       <div >
@@ -57,14 +60,17 @@ const MatchedProject = ({ name, owner_username, project_desc
       </div>
 
 
-
-      <div className="Match-Options">
+{/* id = "Project-Options-Div" */}
+      <div className="p-3 m-2" >
 
         {/* Links to View Project user matches, and project members */}
 
-        <Link to={`/matches/view/${project_id}/users`} style={{ color: "aqua", margin: "20px" }}> View Project User Matches</Link>
+        <Link to={`/matches/view/${project_id}/users`} 
+        className = "justify-content-between p-2 m-2 Link-Option"
+        > Project User Matches</Link>
 
-        <Link to={`/projectmembers/view/all/${project_id}`} style={{ color: "aqua" }}> View Project Members</Link>
+        <Link to={`/projectmembers/view/all/${project_id}`} 
+        className= "justify-content-between p-2 m-2 Link-Option"> Project Members</Link>
 
         {/* Proejct owners cannot remove a match from projects they create*/}
         {authUser !== owner_username ? unMatchOption : null}

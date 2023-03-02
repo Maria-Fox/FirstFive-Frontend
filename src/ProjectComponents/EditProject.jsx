@@ -73,7 +73,6 @@ const EditProject = () => {
     try {
       e.preventDefault();
       await API.editProject(project_id, projData);
-      alert("Project was updated successfully.");
       navigate(`/projects/created/by/${authUser}`);
     } catch (e) {
       setErrors(e);
@@ -88,7 +87,7 @@ const EditProject = () => {
     <div>
       {!projData ? <p>Loading...</p> :
         <div>
-          <h1 style={{ textAlign: "center" }}>Update: {projData.name}</h1>
+          <h1 className="text-center text-white pt-2 mt-2">Update: {projData.name}</h1>
 
           <Card >
             {errors ? <AlertNotification messages={errors} /> : null}

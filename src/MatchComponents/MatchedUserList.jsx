@@ -3,7 +3,7 @@ import API from "../API";
 import { useParams } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
 import MatchedUser from "./MatchedUser";
-import { Card, CardText, CardTitle } from "reactstrap";
+import { Card, CardLink, CardText, CardTitle } from "reactstrap";
 
 const MatchedUserList = () => {
   // ***************************************************************
@@ -29,7 +29,7 @@ const MatchedUserList = () => {
         // Retrieve users who are also project members 
         let projMemberData = await API.viewAllProjMembers(project_id);
         let allProjectMembers = projMemberData.map(user => user.username);
-        console.log(allProjectMembers)
+        console.log(new Set(allProjectMembers))
         setProjectMembers(new Set(allProjectMembers));
 
       } catch (e) {
@@ -50,9 +50,11 @@ const MatchedUserList = () => {
       if(isUserProjectMember(username)) return;
 
       console.log(`Adding ${username} to project id: ${project_id}`)
-      let response = await API.addProjectMember(project_id, username);
-      console.log(response);
-      setProjectMembers(new Set(projectMembers, username));
+      await API.addProjectMember(project_id, username);
+
+      let projMemberData = await API.viewAllProjMembers(project_id);
+      let allProjectMembers = projMemberData.map(user => user.username);
+      setProjectMembers(new Set(allProjectMembers));
     } catch (e) {
       setErrors(e);
       return;
@@ -63,8 +65,6 @@ const MatchedUserList = () => {
   // ***************************************************************
 
   function isUserProjectMember(username) {
-    // evaluates to true or false
-    console.log(`${username}`, projectMembers.has(username))
     return projectMembers.has(username);
   };
 
@@ -72,28 +72,29 @@ const MatchedUserList = () => {
 
 
   return (
-    <div>
-      <h1 style={{ textAlign: "center" }}>Matched Users</h1>
+    <div className="container">
+      <h1 className="text-center text-white pt-2 mt-2">Matched Users</h1>
       {errors ? <AlertNotification messages={errors} /> : null}
 
 
       {projData && matchedUsers ?
-        <Card style={{ padding: "20px" }}>
+        <Card className="p-3">
 
-          <CardTitle >{projData.proj_name}</CardTitle>
-          <small>Created by {projData.proj_owner}</small>
+          {/* <CardTitle className="fw-bold fs-2"> {projData.proj_name}</CardTitle>
+          <small >Created by {projData.proj_owner}</small>
 
-          <p >
-            {projData.github_repo ?
-              <a href={projData.github_repo} target="_blank" rel="noreferrer" style={{ color: "aqua" }}> View Repo </a>
-              : null}
-          </p>
+          {projData.github_repo ?
+              <CardLink href={projData.github_repo} target="_blank" rel="noreferrer" style={{ color: "purple", padding: "10px" }}> View Repo </CardLink>
+              : null} */}
+  
 
-          <p >Project Description: </p>
-          <CardText>{projData.proj_desc}</CardText>
+          {/* <CardText >Project Description: </CardText> */}
+          {/* <CardText className="m-2 p-3 " >
+            Project Description: {projData.proj_desc}
+          </CardText> */}
 
 
-          <div className="container">
+          <div className="">
             {matchedUsers.map(({ user_matched, matched_user_bio }) =>
               <div key={user_matched}>
 

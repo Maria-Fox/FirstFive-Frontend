@@ -4,6 +4,8 @@ import API from "../API";
 import UserContext from "./UserContext";
 import AlertNotification from "../Common/AlertNotifications";
 import { Card, Button } from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faVcard} from "@fortawesome/free-regular-svg-icons";
 
 const UserProfile = () => {
   const { username } = useParams();
@@ -75,7 +77,11 @@ const UserProfile = () => {
     <div className="container">
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      <h1 style={{ textAlign: "center" }}>Profile</h1>
+      <h1 className="text-center text-white pt-2 mt-2"> 
+            <FontAwesomeIcon icon={faVcard} />
+            Profile</h1>
+
+
       <Card className="p-3 text-center">
 
         <div >

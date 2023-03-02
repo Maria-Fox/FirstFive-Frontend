@@ -21,7 +21,7 @@ const MessageCard = ({ id, message_from, message_to }) => {
       {message_to === authUser ? null : <CardTitle>Message to: {message_to}</CardTitle>}
 
 
-      <Link
+      <Link style = {{color: "midnightBlue", textDecoration: "none"}}
         to={`/messages/${authUser}/read/${id}`} >See Details</Link>
     </Card>
   );

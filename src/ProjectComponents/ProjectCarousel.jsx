@@ -4,7 +4,9 @@ import confetti from 'canvas-confetti';
 import API from '../API';
 import CarouselItem from "./CarouselItem";
 import AlertNotification from '../Common/AlertNotifications';
-import { Card, CardTitle } from 'reactstrap';
+import { Card, CardText, CardTitle } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 
 
 function ProjectCarousel() {
@@ -19,7 +21,6 @@ function ProjectCarousel() {
     async function initiateCarousel() {
       try {
         let response = await API.carouselProjects();
-        console.log(response, "RES WAS")
         setProjects(response);
       } catch (e) {
         setErrors(e);
@@ -68,13 +69,14 @@ function ProjectCarousel() {
 
 
   return (
-    <div className="text-center">
+    <div className="text-center container">
 
-      <h1 >Projects</h1>
+      <h1 className="text-center text-white pt-2 mt-2">Projects</h1>
 
-      <Card className='container m-3 p-3'>
-        <p>Use "X" to skip a project and the heart to match!</p>
-        <small>Note: The projects displayed are all random projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project!</small>
+      <Card className='m-3 p-3'>
+        <CardTitle>Use "X" to skip a project and the "<FontAwesomeIcon icon={regular('heart')} />" to match!</CardTitle>
+
+        <small>Note: The projects displayed are all random projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project. Happy matching!</small>
       </Card>
 
       {errors ? <AlertNotification messages={errors} /> : null}
@@ -92,10 +94,9 @@ function ProjectCarousel() {
               handleMatch={() => handleMatch(authUser, id)}
               skip={skip}
             />)}
-
         </div>}
     </div>
   )
-}
+};
 
 export default ProjectCarousel;

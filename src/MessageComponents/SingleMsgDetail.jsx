@@ -3,7 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import UserContext from "../UserComponents/UserContext";
 import API from "../API";
 import {
-  Button,
   Card
 } from "reactstrap";
 import AlertNotification from "../Common/AlertNotifications";
@@ -55,16 +54,17 @@ const SingleMsgDetails = () => {
 
             {msgDetails.read_at ? <p>Read: {msgDetails.read_at}</p> : null}
 
-            <Card className="container m-1">
+            <Card className="m-1">
               <p className="p-2">
                 {msgDetails.body}
               </p>
             </Card>
 
 
-            {/* Would like to make Button component but seeing error. */}
             {msgDetails.to_user.username === authUser ?
-              <Link to={`/messages/${authUser}/create/${msgDetails.from_user.username}`} style={{ color: "aqua" }}>Reply</Link>
+              <Link 
+              to={`/messages/${authUser}/create/${msgDetails.from_user.username}`} style={{ color: "blue", textDecoration: "none" }}>
+                Reply</Link>
               : null}
           </Card>
         </div>

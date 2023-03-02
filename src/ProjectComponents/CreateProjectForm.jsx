@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import API from "../API";
 import UserContext from "../UserComponents/UserContext";
 import AlertNotification from "../Common/AlertNotifications";
-import { Form, FormGroup, Button, CardBody, Card, Label, Input, textarea } from "reactstrap"
+import { Form, FormGroup, Button, CardBody, Card, Label, Input, CardText } from "reactstrap"
 
 const CreateProjectForm = () => {
 
@@ -42,8 +42,6 @@ const CreateProjectForm = () => {
       // user is instantly matched with project. They can find it under the 'posts' Nav item.
 
       let id = response.id;
-      console.log(id, "&&&&&&&&&&&&&&&&", "State is not updating.");
-
       // Newly created proj id goes into matches.
       setMatchedProjectIds([...matchedProjectIds, id]);
 
@@ -61,13 +59,15 @@ const CreateProjectForm = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>Create Project</h1>
+      <h1 className="text-center text-white pt-2 mt-2">Create a Project</h1>
 
       <Card>
         {errors ? <AlertNotification messages={errors} /> : null}
 
+        <CardText className="p-3">Important: You are automatically "matched" with any project you create. Then, as the project owner you may choose whether or not you want to be a project member. If you simply want to suggest a project to the community you can later transfer ownership to another interested user.  </CardText>
+
         <CardBody>
-          <Form onSubmit={handleSubmit} className="container col-md-12 offset-md-3 col-lg-4 offset-lg-4">
+          <Form onSubmit={handleSubmit}>
 
             <FormGroup>
               <Label htmlFor="name" >Project Name

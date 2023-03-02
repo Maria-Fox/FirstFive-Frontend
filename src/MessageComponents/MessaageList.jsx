@@ -36,8 +36,6 @@ const MessageList = () => {
   let noMsgs = (
     <Card className="container p-3">
       <CardText style={{ textAlign: "center" }}>No messages, yet!</CardText>
-      <CardText>Messages can only be exhanged between users who have mutual project matches. To create a message please visit your matches and click on the user you want to message.</CardText>
-      <Link to={`/matches/view/${authUser}/all`}>Matches</Link>
     </Card>
   );
 
@@ -46,7 +44,12 @@ const MessageList = () => {
 
   return (
     <div className="container">
-      <h1 style={{ textAlign: "center" }}>Messages</h1>
+      <h1 className="text-center text-white pt-2 mt-2">Messages</h1>
+
+      <p className="text-white container">Messages can only be exhanged between users who have current mutual project matches. To create a message please visit your   
+      <Link style = {{textDecoration: "none", color: "aqua"}}
+      to={`/matches/view/${authUser}/all`}> matches</Link> and click on the user you want to message.
+      </p>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

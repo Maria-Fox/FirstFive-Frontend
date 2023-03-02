@@ -1,32 +1,41 @@
-.CarouselItem-div{
-  position: absolute;
+#card-container{
+  display: grid;
+  grid-template-columns: 3fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "overlap";
   top: 50%;
   left: 50%;
-  transform: (-50%, -50%);
-  border: solid 2px red;
+}
+
+
+
+.main-card{
+  /* position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: (-50%, -50%);*/
   margin: 20px;
   padding: 20px;
   width: 30vmin;
   aspect-ratio: 5/7;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 1vmin;
-};
-
-/* need to better center  & style but background color & border, etc don't work yet. */
+  border-radius: 1vmin; 
+  align-self: center;
+  justify-self: center;
+  grid-area: overlap;
+  position: absolute;
+  z-index: 3;
+}
 
 .Match-Button-Options{
   margin-top: 8vmin;
   display: flex;
   justify-content: space-around;
-  background-color: purple;
-  border: 2px solid pink;
 }
 
 .MatchOption {
   margin-top: 8vmin;
   display: flex;
   justify-content: space-around;
-
 }
 
 .SkipButton{
@@ -38,7 +47,6 @@
   height: 7vmin;
   width: 7vmin;
   cursor: pointer;
-  
 }
 
 .MatchButton{
@@ -50,4 +58,53 @@
   height: 7vmin;
   width: 7vmin;
   cursor: pointer;
+}
+
+/* Background- NONE USABLE matching cards. */
+.CarouselItem-div-BG-1{
+  /* position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: (-50%, -50%);
+  margin: 20px;
+  padding: 20px;
+  width: 30vmin;
+  aspect-ratio: 5/7;
+  border-radius: 1vmin; */
+  /* grid-area: overlap; */
+  margin: 20px;
+  padding: 20px;
+  width: 30vmin;
+  aspect-ratio: 5/7;
+  border-radius: 1vmin; 
+  align-self: left;
+  justify-self: left;
+  grid-area: overlap;
+  position: absolute;
+  z-index: 2;
+  background-image: url("../Images/matchCard-bg.avif");
+}
+
+.CarouselItem-div-BG-2{
+  /* position: absolute;
+  top: 50%;
+  right: -50%;
+  transform: (-50%, -50%);
+  margin: 20px;
+  padding: 20px;
+  width: 30vmin;
+  aspect-ratio: 5/7;
+  border-radius: 1vmin;
+  grid-area: overlap; */
+  margin: 20px;
+  padding: 20px;
+  width: 30vmin;
+  aspect-ratio: 5/7;
+  border-radius: 1vmin; 
+  align-self: right;
+  justify-self: right;
+  grid-area: overlap;
+  position: absolute;
+  z-index: 1;
+  background-image: url("../Images/matchCard-bg.avif");
 }

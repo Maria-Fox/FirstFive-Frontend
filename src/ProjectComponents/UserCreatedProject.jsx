@@ -22,7 +22,7 @@ const UserCreatedProject = ({ id, owner_username, name, project_desc, timeframe,
       <Button outline color="info" onClick={() => handleNavToEditProj(id)}>Edit Details</Button>
       <Button outline color="danger " onClick={() => handleDeleteProj(id)}>Delete</Button>
 
-      <Link to={`/projectmembers/update/${id}`} style={{ "color": "aqua" }}>view/ Edit Project Members</Link>
+      <Link to={`/projectmembers/update/${id}`} style={{ "color": "navy" }}>View/ Edit Project Members</Link>
 
     </Card >
   );

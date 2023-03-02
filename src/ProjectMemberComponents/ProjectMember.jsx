@@ -38,7 +38,7 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
   // ***************************************************************
 
   return (
-    <Card className="container m-4 p-4">
+    <Card className="m-4 p-4">
       <CardTitle >{username}</CardTitle>
 
       {username !== authUser ? msgUserOption : null}

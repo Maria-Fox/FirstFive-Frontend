@@ -69,7 +69,7 @@ const MatchedProjectList = () => {
   return (
 
     <div className="container">
-      <h1 style={{ textAlign: "center" }}>Matches</h1>
+      <h1 className="text-center text-white pt-2 mt-2">Matches</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

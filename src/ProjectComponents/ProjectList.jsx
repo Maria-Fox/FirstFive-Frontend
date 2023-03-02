@@ -6,6 +6,10 @@ import ProjectCard from "./ProjectCard";
 import confetti from "canvas-confetti";
 import AlertNotification from "../Common/AlertNotifications";
 import { Card, CardText } from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEdit} from "@fortawesome/free-regular-svg-icons";
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+import "./ProjectList.css";
 
 
 const ProjectList = () => {
@@ -14,7 +18,6 @@ const ProjectList = () => {
 
 
   let {authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
-  console.log( " auth user is in projectList ", authUser, "&&&&&")
 
   let [projects, setProjects] = useState(null);
   const [errors, setErrors] = useState(null);
@@ -23,16 +26,13 @@ const ProjectList = () => {
 
   useEffect(function viewAllProjects() {
     async function getAllProjects() {
-      console.debug(`#### In ProjectList matchedProjectIds are: ${matchedProjectIds}`)
 
       try {
-        console.log("CHECK HERE AUTHUSER", authUser)
         // let userMatches = await API.viewUsernameMatches(authUser);
         // let matchIds = userMatches.map(match => match.project_id);
         // setMatchedProjectIds([...matchIds]);
 
         if (matchedProjectIds.length === 0) {
-          console.log("USER DOES NOT HAVE MATCHES")
           let response = await API.getAllProjects();
           setProjects(response);
         } else {
@@ -57,7 +57,6 @@ const ProjectList = () => {
 
   let handleMatch = async function (authUser, id) {
     try {
-      console.log("matched ids BEFORE", matchedProjectIds);
       await API.addMatch(authUser, id);
 
       // Add the project to matches.
@@ -84,17 +83,16 @@ const ProjectList = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center">Projects</h1>
+      <h1 className="text-center text-white pt-2 mt-2">Projects</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      <Card className="container m-3 p-3 text-center">
-        <CardText>Prefer to view the projects through match-cards?
-          <Link to="/projects/carousel" style={{ color: "aqua" }} >Click here!</Link>
-        </CardText>
+      <Card className="container m-3 p-3 bg-dark bg-gradient text-white d-flex justify-content-between">
+        <CardText >
 
-        <CardText className="text-center">Don't see anything you are interested in?
-          <Link to="/projects/new" style={{ color: "aqua" }}>Create a project!</Link>
+          <Link to="/projects/carousel" className= "Project-links d-flex justify-content-between p-2">View the projects through match-cards <FontAwesomeIcon icon={regular('heart')} /></Link>
+
+          <Link to="/projects/new" className= "Project-links d-flex justify-content-between p-2">Create a project <FontAwesomeIcon icon={faEdit} /> </Link>
         </CardText>
       </Card>
 

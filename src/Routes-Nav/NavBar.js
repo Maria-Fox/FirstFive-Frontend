@@ -9,9 +9,7 @@ const NavBar = ({ logout }) => {
   // ***************************************************************
 
   let { authUser } = useContext(UserContext);
-  console.log("In navBar authUser is: ", authUser, "*****");
   let validToken = localStorage.getItem("token");
-  console.log(`in navBar token is:  ${validToken}`)
 
   // ***************************************************************
 

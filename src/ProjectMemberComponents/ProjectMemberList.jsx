@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Card, CardText } from "reactstrap";
+import { Card, CardText, CardTitle } from "reactstrap";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
 import ProjectMember from "./ProjectMember";
@@ -47,10 +47,15 @@ const ProjectMemberList = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Project Members</h1>
+    <h1 className="text-center text-white pt-2 mt-2">Project Members</h1>
 
-      <p style={{ textAlign: "center" }}>Want to jump on the project? Message a project member!</p>
-      <small>Note: Only the project owner can officially add you to the list, but it's a good idea to get aquainted with the existing members.</small>
+
+    <Card className="container ">
+
+      <CardTitle className="p-3">Looking for more information on this project? Message a project member!</CardTitle>
+
+
+      <small className="p-3">Note: Only the project owner can officially add you to the list, but it's a good idea to get aquainted with the existing members.</small>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
@@ -64,6 +69,7 @@ const ProjectMemberList = () => {
       )
         : noProjMembers}
 
+    </Card>
     </div>
   )
 }

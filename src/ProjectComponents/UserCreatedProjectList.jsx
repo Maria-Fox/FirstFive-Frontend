@@ -79,7 +79,7 @@ const UserCreatedProjectList = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center">Projects Created</h1>
+      <h1 className="text-center text-white pt-2 mt-2">Projects Created</h1>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 

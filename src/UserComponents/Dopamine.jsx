@@ -1,14 +1,15 @@
 import React from "react";
 import confetti from "canvas-confetti";
 import { Card, CardBody, CardText, CardTitle, Button } from "reactstrap";
+import "./Dopamine.css"
 
 
 const Dopamine = () => {
   return (
-    <Card className="text-center container" id ="Dopamine-Div">
+    <Card className="text-center container" id="confetti-card">
       <CardTitle className="h1 p-3 m-3">Need a pick-me-up?</CardTitle>
 
-      <CardBody>
+      <CardBody >
         <CardText>
           Click the button to release confetti! This activates a reward-system releasing domaine creating that "feel good" sensation.
         </CardText>
@@ -18,7 +19,7 @@ const Dopamine = () => {
       </CardBody>
 
 
-      <Button outline color="info" className="align-items-md-center"
+      <Button outline color="info" className="align-items-md-center m-2"
         onClick={() => confetti({ spread: 300 })} >Confetti</Button>
 
     </Card >
