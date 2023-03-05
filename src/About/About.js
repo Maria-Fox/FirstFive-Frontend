@@ -13,10 +13,10 @@ const About = () => {
       <CardText>Here, users can review and match projects. Once a user has matched a project they can see a list of all other users who matched the project or are active project members. From there, matched users can begin messaging one another and move forward with the project.
       </CardText>
 
-      <h3>Why was FirstFive created?</h3>
+      <h3 className="text-center">Why was FirstFive created?</h3>
       <CardText>FirstFive was created to support early career professionals in gaining valuable collaboration experience.</CardText>
 
-      <h4>Why the name FirstFive?</h4>
+      <h4 className="text-center">Why the name FirstFive?</h4>
       <CardText>
         The typical computer science degree takes 4-5 years. Bootcamps vary. However, a common theme among both graduates is the idea that they have few projects to demonstrate their skills, or they are looking for group proejcts to strengthen their skills.
       </CardText>

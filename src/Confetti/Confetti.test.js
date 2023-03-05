@@ -1,7 +1,7 @@
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import { render, fireEvent, getByText } from "@testing-library/react";
-import Dopamine from "./Dopamine";
+import Dopamine from "./Confetti";
 import { authUser } from "../TestUtils";
 import UserContext from "./UserContext";
 import { Button } from "reactstrap";

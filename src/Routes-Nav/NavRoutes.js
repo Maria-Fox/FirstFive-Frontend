@@ -20,7 +20,7 @@ import UserCreatedProjects from "../ProjectComponents/UserCreatedProjectList";
 import UpdateProjectMembers from "../ProjectMemberComponents/UpdateProjectMembers";
 import ProjectCarousel from "../ProjectComponents/ProjectCarousel";
 import Home from "../Home/Home";
-import Dopamine from "../UserComponents/Dopamine";
+import Confetti from "../Confetti/Confetti";
 import LandingPage from "../LandingPage/LandingPage";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
@@ -78,9 +78,9 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
         <Route exact path="/messages/:username/all" element={<MessageList />}></Route>
         <Route exact path="/messages/:username/read/:message_id" element={<SingleMsgDetails />}></Route>
 
-        {/* Dopamine */}
-        <Route path="/dopamine/hit"
-          element={<Dopamine />}>
+        {/* Confetti */}
+        <Route path="/confetti"
+          element={<Confetti />}>
         </Route>
 
         {/*Closing private routes. */}

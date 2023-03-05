@@ -1,0 +1,15 @@
+#LandingPage-Card{
+  font-family: Chalkduster;
+  color: aqua;
+  background-color: #1c1f2e;
+  border: none;
+  top: 50%;
+  right: -10%;
+}
+
+#title{
+  text-align: center;
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  display: flex;
+}

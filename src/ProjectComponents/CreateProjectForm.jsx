@@ -15,7 +15,7 @@ const CreateProjectForm = () => {
     name: null,
     project_desc: null,
     timeframe: null,
-    github_repo: null
+    github_repo: ""
   };
 
   let [projData, setProjData] = useState(initial_state);
@@ -124,7 +124,6 @@ const CreateProjectForm = () => {
                   id="github_repo"
                   value={projData.github_repo}
                   name="github_repo"
-                  required
                   placeholder="https://github.com/"
                   onChange={handleChange}
                 >

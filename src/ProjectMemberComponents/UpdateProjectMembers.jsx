@@ -33,10 +33,9 @@ const UpdateProjectMembers = () => {
 
   let handleRemoveProjMember = async function (project_id, username) {
     try {
-      let deletedUser = await API.deleteProjectMember(project_id, username);
+      await API.deleteProjectMember(project_id, username);
       let filteredOutDelted = projMembers.filter(users => users.username !== username);
-      setProjMembers(...filteredOutDelted);
-      alert("deleted user");
+      setProjMembers(filteredOutDelted);
     } catch (e) {
       setErrors(e);
       return;
@@ -45,7 +44,7 @@ const UpdateProjectMembers = () => {
 
   return (
     <div>
-      <h1 className="text-center">Project Members - Update</h1>
+      <h1 className="text-center text-white pt-2 mt-2">Project Members - Update</h1>
 
       <Card className="m-2">
         <CardBody>Looking to add members? To ensure only matched members are added please visit the <Link to={`/matches/view/${project_id}/users`}>users matched</Link> and click "add" under the prefered user.
@@ -57,7 +56,7 @@ const UpdateProjectMembers = () => {
 
       {projMembers && projMembers.length > 0 ? projMembers.map(({ username, bio }) =>
         <Card key={username}
-          className="container p -3 m-3 d-flex justify-content-center">
+          className="p-3 m-3 d-flex justify-content-center">
 
           <CardTitle className="h2">{username}</CardTitle>
           <CardBody>User bio: {bio}</CardBody>

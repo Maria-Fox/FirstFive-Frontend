@@ -79,7 +79,7 @@ const UserProfile = () => {
 
       <h1 className="text-center text-white pt-2 mt-2"> 
             <FontAwesomeIcon icon={faVcard} />
-            Profile</h1>
+             Profile</h1>
 
 
       <Card className="p-3 text-center">
