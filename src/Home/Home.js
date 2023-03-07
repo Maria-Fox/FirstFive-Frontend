@@ -16,17 +16,21 @@ const Home = () => {
 
   useEffect(() => {
     function getUserNotes() {
-      console.debug(userNotes, typeof (userNotes));
-      let render = [JSON.parse(localStorage.getItem('tracker'))];
-      console.log(render);
-      setDisplayItems(render);
-    }
+
+      let trackerObj = sessionStorage.getItem('tracker');
+      console.log(trackerObj, "tracker obj")
+      if (trackerObj == null) {
+        setDisplayItems([{ id: 1, projectName: "Sample here", note: "Contact project owner", additional: "Review github repo" }])
+      } else {
+        let parsedObj = JSON.parse(trackerObj);
+        console.log(parsedObj, "parsedObj")
+        setDisplayItems(parsedObj);
+      }
+    };
 
     getUserNotes();
 
-  }, [setUserNotes])
-
-  console.log("home ran");
+  }, [setDisplayItems]);
 
   let initialState = {
     projectName: null,
@@ -80,7 +84,8 @@ const Home = () => {
 
   const handleDelete = (idToDelete) => {
     localStorage.removeItem(idToDelete); //returns undefined.
-    let remainingNotes = displayItems.filter(note => note.id !== idToDelete);
+
+    let remainingNotes = userNotes.filter(note => note.id !== idToDelete);
     setUserNotes(remainingNotes);
   };
 
@@ -144,26 +149,29 @@ const Home = () => {
   const noteTable = (
     <div>
       <h1 className="text-white text-center">Track Project Interest</h1>
-      <Table responsive className="text-white">
+      <Table responsive bordered className="text-white mt-4">
         <thead>
           <tr>
             <th>Project Name</th>
             <th>Note</th>
             <th>Additional</th>
+            <th>Delete</th>
           </tr>
         </thead>
 
-        {displayItems == null ? <p id="loading">Loading... </p> :
-          displayItems.map(({ id, projectName, note, additional }) =>
-            <tbody>
+        <tbody>
+          {displayItems == null ? <p id="loading">Loading... </p> :
+            displayItems.map(({ id, projectName, note, additional }) =>
               <tr key={id}>
                 <td>{projectName}</td>
                 <td>{note}</td>
                 <td>{additional}</td>
                 <td><Button onClick={() => handleDelete(id)}> <FontAwesomeIcon icon={faTrash} /></Button></td>
               </tr>
-            </tbody>
-          )}
+
+            )
+          }
+        </tbody>
 
 
       </Table>
@@ -179,7 +187,7 @@ const Home = () => {
 
       {formErrors ? <AlertNotification messages={formErrors} /> : null}
 
-      {/* Opens form for user to add ntoes. */}
+      {/* Opens form for user to add notes. */}
       <FontAwesomeIcon icon={faEdit} size="4x"
         onClick={() => setNoteForm(status => !status)}
         style={{ color: "aquamarine", float: "right" }} />

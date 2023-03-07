@@ -7,6 +7,8 @@ function useLocalStorage(key, defaultValue = null) {
   // Initiates state
   let [item, setItem] = useState(initialValue);
 
+  console.log(item, "SET AS DEFAULT FOR", key)
+
   useEffect(
     function setLocalStorage() {
       if (!item) {
@@ -15,7 +17,8 @@ function useLocalStorage(key, defaultValue = null) {
       } else {
         // tracker holds objects.
         if (key == "tracker") {
-          window.localStorage.setItem(key, JSON.stringify(item))
+          window.localStorage.setItem(key, JSON.stringify(item));
+          console.log("Tracker set", item)
         };
 
         // if it's the first time, or the item exists set the value of the local storage item.
@@ -29,9 +32,15 @@ function useLocalStorage(key, defaultValue = null) {
   // console.log([item])
 
   // returns the new piece of state along with a setState function to update.
+  if (key == 'tracker') {
+    item = JSON.parse(sessionStorage.getItem('tracker'))
+    return [item, setItem]
+  };
+
   return [item, setItem];
 
 };
+
 export default useLocalStorage;
 
 // "token" = key.... passed in from App.js

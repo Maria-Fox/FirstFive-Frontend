@@ -12,7 +12,7 @@ import NavBar from './Routes-Nav/NavBar';
 
 // Key name for storing token in localStorage=> {token: "sdfsdf"}
 export const token_storage = "token";
-const sampleTrackItem = JSON.stringify([{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }]);
+const sampleTrackItem = [{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }];
 // const trackItems = JSON.parse(localStorage.getItem('tracker'));
 // console.log(sampleTrackItem, "parsed")
 
