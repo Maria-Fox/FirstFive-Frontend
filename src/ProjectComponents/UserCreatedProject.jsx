@@ -35,7 +35,7 @@ const handleNavToProjectMemberEdits = (id) => {
 
       <Button outline color="info" onClick={() => handleNavToEditProj(id)}>Edit Details</Button>
 
-      <Button outline color="primary"
+      <Button outline color="secondary"
       onClick={() => handleNavToProjectMemberEdits(id)}>Update Project Members </Button>
 
       <Button outline color="danger " onClick={() => handleDeleteProj(id)}>Delete</Button>

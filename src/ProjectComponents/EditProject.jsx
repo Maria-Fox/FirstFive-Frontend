@@ -146,7 +146,6 @@ const EditProject = () => {
                     id="github_repo"
                     value={projData.github_repo}
                     name="github_repo"
-                    required
                     onChange={handleChange}
                   >
                   </Input>

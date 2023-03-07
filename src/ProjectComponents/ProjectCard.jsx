@@ -34,7 +34,7 @@ const ProjectCard = ({ id, name, project_desc, timeframe, github_repo, handleMat
           <div style={{ display: "flex", justifyContent: "center" }}>
 
             <Button onClick={() => handleMatch(authUser, id)}
-              color="info">
+              color="secondary">
               Match
             </Button>
 

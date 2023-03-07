@@ -1,15 +1,37 @@
 #LandingPage-Card{
   font-family: Chalkduster;
-  color: aqua;
+  color: whitesmoke;
   background-color: #1c1f2e;
   border: none;
-  top: 50%;
-  right: -10%;
+  /* top: 50%;
+  right: -10%; */
+  position: relative;
+}
+
+#backgroundimg-div{
+  background-image: url("../Images/landingPage.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100vw;
+  height: 80vh;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #title{
-  text-align: center;
-  font-size: 4rem;
-  margin-bottom: 2rem;
-  display: flex;
+  font-size: 2rem;
 }
+
+#list{
+  /* margin-top: 10%; */
+  font-size: large;
+  /* position: relative; */
+  position: absolute;
+  left: 10%;
+  /* bottom: 50%  */
+}
+
+
+/* https://cdn.pixabay.com/photo/2016/07/17/11/12/board-1523537__340.jpg */

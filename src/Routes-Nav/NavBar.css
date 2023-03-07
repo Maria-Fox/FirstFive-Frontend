@@ -1,9 +1,10 @@
 .NavBar-item{
-  color:aqua;
-  padding: 10px
+  color:whitesmoke;
+  padding: 10px;
+  text-decoration: none;
 };
 
-/* .NavBar-item:hover{
-  color: whitesmoke;
-  margin: 30px;
-} */
+#test:hover{
+  color: red;
+}
+

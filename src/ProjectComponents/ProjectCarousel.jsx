@@ -58,8 +58,8 @@ function ProjectCarousel() {
   // **************************************************************
 
   const noProjectsToDisplay = (
-    <Card className='container'>
-      <CardTitle> All existing projects have been matched!</CardTitle>
+    <Card className='container pt-2 mt-2'>
+      <CardTitle> No projects left to match. Come back and check again soon!</CardTitle>
     </Card>
   );
 

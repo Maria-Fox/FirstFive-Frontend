@@ -4,3 +4,8 @@
   justify-content: center;
   margin-top: 20%;
 }
+
+#link {
+  text-decoration: none;
+  color: grey;
+}

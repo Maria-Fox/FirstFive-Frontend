@@ -61,7 +61,7 @@ const CreateProjectForm = () => {
     <>
       <h1 className="text-center text-white pt-2 mt-2">Create a Project</h1>
 
-      <Card>
+      <Card className="container">
         {errors ? <AlertNotification messages={errors} /> : null}
 
         <CardText className="p-3">Important: You are automatically "matched" with any project you create. Then, as the project owner you may choose whether or not you want to be a project member. If you simply want to suggest a project to the community you can later transfer ownership to another interested user.  </CardText>

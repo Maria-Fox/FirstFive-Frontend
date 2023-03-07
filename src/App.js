@@ -1,5 +1,4 @@
 import "./App.css"
-import { flushSync } from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavRoutes from './Routes-Nav/NavRoutes';
@@ -13,17 +12,23 @@ import NavBar from './Routes-Nav/NavBar';
 
 // Key name for storing token in localStorage=> {token: "sdfsdf"}
 export const token_storage = "token";
+const sampleTrackItem = JSON.stringify([{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }]);
+// const trackItems = JSON.parse(localStorage.getItem('tracker'));
+// console.log(sampleTrackItem, "parsed")
+
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
   const [matchedProjectIds, setMatchedProjectIds] = useState([]);
+  const [userNotes, setUserNotes] = useLocalStorage("tracker");
+
   const navigate = useNavigate();
 
   // ***************************************************************
 
   useEffect(function loadUserInfo() {
-    console.debug("App useEffect", "token=", token);
+    console.debug("App useEffect", "token=", typeof (userNotes));
 
     async function getCurrentUser() {
       if (token) {
@@ -87,6 +92,7 @@ function App() {
   async function logout() {
     setAuthUser(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('tracker');
     API.token = "";
     navigate("/auth/login");
   };
@@ -96,7 +102,7 @@ function App() {
 
   return (
     <UserContext.Provider
-      value={{ authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds }}>
+      value={{ authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds, userNotes, setUserNotes }}>
       <div id="AppID" >
         <NavBar logout={logout} />
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />

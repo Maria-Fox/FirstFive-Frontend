@@ -74,15 +74,15 @@ const UserProfile = () => {
 
 
   return (
-    <div className="container">
+    <div className="container" >
       {errors ? <AlertNotification messages={errors} /> : null}
 
       <h1 className="text-center text-white pt-2 mt-2"> 
             <FontAwesomeIcon icon={faVcard} />
-             Profile</h1>
+            Profile</h1>
 
 
-      <Card className="p-3 text-center">
+      <Card className="p-3 text-center pt-4 mt-2">
 
         <div >
           <h2>Username: {userData.username}</h2>

@@ -19,7 +19,7 @@ exports[`ProjectList component- approp display Valid user, renders no project to
         Prefer to view the projects through match-cards?
         <a
           href="/projects/carousel"
-          style="color: aqua;"
+          style="color: aquamarine;"
         >
           Click here!
         </a>
@@ -30,7 +30,7 @@ exports[`ProjectList component- approp display Valid user, renders no project to
         Don't see anything you are interested in?
         <a
           href="/projects/new"
-          style="color: aqua;"
+          style="color: aquamarine;"
         >
           Create a project!
         </a>

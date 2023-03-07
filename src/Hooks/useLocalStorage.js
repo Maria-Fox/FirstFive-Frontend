@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 // key = const firstfive_token = "token". If the key given does not exist it will default.
 function useLocalStorage(key, defaultValue = null) {
   const initialValue = localStorage.getItem(key) || defaultValue;
-
   // Initiates state
   let [item, setItem] = useState(initialValue);
 
@@ -14,6 +13,11 @@ function useLocalStorage(key, defaultValue = null) {
         // if the null OR ran above, remove the item
         window.localStorage.removeItem(key);
       } else {
+        // tracker holds objects.
+        if (key == "tracker") {
+          window.localStorage.setItem(key, JSON.stringify(item))
+        };
+
         // if it's the first time, or the item exists set the value of the local storage item.
         window.localStorage.setItem(key, item)
       }

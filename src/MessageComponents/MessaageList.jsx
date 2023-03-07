@@ -46,8 +46,8 @@ const MessageList = () => {
     <div className="container">
       <h1 className="text-center text-white pt-2 mt-2">Messages</h1>
 
-      <p className="text-white container">Messages can only be exhanged between users who have current mutual project matches. To create a message please visit your   
-      <Link style = {{textDecoration: "none", color: "aqua"}}
+      <p className="text-white m-4 p-4">Messages can only be exhanged between users who have current mutual project matches. To create a message please visit your   
+      <Link style = {{textDecoration: "none", color: "aquamarine"}}
       to={`/matches/view/${authUser}/all`}> matches</Link> and click on the user you want to message.
       </p>
 

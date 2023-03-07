@@ -10,23 +10,23 @@ const CarouselItem = function ({name, project_desc, timeframe, github_repo, hand
 
   return (
 
-    <div id = "card-container">
+    <div id = "card-container" className="container">
 
     {/* BG-1*/}
-    <Card className="CarouselItem-div-BG-1" >
+    <Card id="CarouselItem-div-BG-1" >
 
     <CardTitle className="fs-1">{name}</CardTitle>
     </Card >
 
     {/* BG-2 */}
-    <Card className="card CarouselItem-div-BG-2" >
+    <Card id="CarouselItem-div-BG-2" >
 
     <CardTitle className="fs-1">{name}</CardTitle>
     </Card >
 
 
       {/* Card user matches with. */}
-    <Card className="card main-card">
+    <Card id="main-card" className="container">
 
       <CardTitle className="fw-bold fs-1">{name}</CardTitle>
 
@@ -40,7 +40,8 @@ const CarouselItem = function ({name, project_desc, timeframe, github_repo, hand
       <CardText className="mt-0">{timeframe}</CardText>
 
 
-      <CardBody className="mt-0">
+      <CardBody className="mt-0 container">
+
         {project_desc}
       </CardBody>
 

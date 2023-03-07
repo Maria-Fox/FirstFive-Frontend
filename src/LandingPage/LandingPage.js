@@ -6,24 +6,27 @@ import "./LandingPage.css"
 const LandingPage = () => {
   return (
     <Card id="LandingPage-Card" className="mb-3 mt-5 container">
+      <div id="backgroundimg-div" className="container" >
 
-      {/* className="fw-bold fs-1 text-center" */}
-      <CardTitle id="title">FirstFive</CardTitle>
-
-      <CardText>The quickest way to: </CardText>
-
-      <ul className="fs-2 container">
-        <li>Review and join ongoing group projects.
-        </li>
-        <li>
-          Gain valuable collaboration experience.
-        </li>
-        <li>
-          Build resume ready projects.
-        </li>
-      </ul>
+        <div className="container" id="list">
+          <CardTitle id="title">FirstFive</CardTitle>
+          <CardText className="p-3">The quickest way to: </CardText>
 
 
+          <ul >
+            <li>Review and join group projects.
+            </li>
+            <li>
+              Gain collaboration experience.
+            </li>
+            <li>
+              Build resume ready projects.
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
 
     </Card>
 

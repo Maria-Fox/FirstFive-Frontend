@@ -5,7 +5,7 @@ import UserContext from "../UserComponents/UserContext";
 import ProjectCard from "./ProjectCard";
 import confetti from "canvas-confetti";
 import AlertNotification from "../Common/AlertNotifications";
-import { Card, CardText } from "reactstrap";
+import { Card, CardText, CardTitle } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEdit} from "@fortawesome/free-regular-svg-icons";
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
@@ -47,9 +47,6 @@ const ProjectList = () => {
 
     getAllProjects();
 
-  //  I get the following url when a user does a hard refresh: http://localhost:3001/matches/view/null/all _ THIS IS DUE TO THE INITIAL MOUNT.
-
-  // During the re-render the APP catches the updatedUser. But displays an unauth error. NEED TO ADDRESS.
   }, [setMatchedProjectIds, setProjects, authUser]);
 
   // ***************************************************************
@@ -63,6 +60,7 @@ const ProjectList = () => {
       setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
 
       // Update displayed unmatched projects, removing the latest match.
+
       setProjects(projects.filter(projects => projects.id !== id));
       confetti();
     } catch (e) {
@@ -73,10 +71,10 @@ const ProjectList = () => {
 
   // ***************************************************************
 
-  const noProjectsToMatch = (
-    <div className="container text-center">
-      <h2>No projects to match, yet!</h2>
-    </div>
+  let noProjectsToMatch = (
+    <Card className="container m-3 p-3">
+      <CardText style={{ textAlign: "center" }}>No projects left to match. Come back and check again soon!</CardText>
+    </Card>
   );
 
   // ***************************************************************

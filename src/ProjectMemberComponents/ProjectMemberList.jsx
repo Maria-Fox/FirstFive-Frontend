@@ -55,7 +55,7 @@ const ProjectMemberList = () => {
       <CardTitle className="p-3">Looking for more information on this project? Message a project member!</CardTitle>
 
 
-      <small className="p-3">Note: Only the project owner can officially add you to the list, but it's a good idea to get aquainted with the existing members.</small>
+      <small className="p-3">Note: Only the project owner can officially add you to the list, but it's a good idea to get aquamarineinted with the existing members.</small>
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
