@@ -6,11 +6,6 @@ function useLocalStorage(key, defaultValue = null) {
 
   const initialValue = localStorage.getItem(key) || defaultValue;
 
-  // if (key === "tracker" && defaultValue !== null) {
-  //   initialValue = JSON.stringify(initialValue);
-  // };
-
-
   // Initiates state
   let [item, setItem] = useState(initialValue);
 
@@ -22,9 +17,9 @@ function useLocalStorage(key, defaultValue = null) {
         // if the null OR ran above, remove the item
         window.localStorage.removeItem(key);
       } else {
-        // tracker holds objects. Stringify for safe JSON reading
+        // tracker holds objects. Stringify for safe JSON storage
         if (key === "tracker") {
-          window.localStorage.setItem(key, JSON.stringify(defaultValue));
+          window.localStorage.setItem(key, JSON.stringify(item));
         } else {
           // if it's the first time, or the item exists set the value of the local storage item.
           window.localStorage.setItem(key, item)
@@ -35,14 +30,9 @@ function useLocalStorage(key, defaultValue = null) {
 
 
   console.log("*******Local storage changed to ******", item);
-  // console.log([item])
+  console.log([item])
 
   // returns the new piece of state along with a setState function to update.
-  // if (key === 'tracker') {
-  //   const itemFromStorage = JSON.parse(localStorage.getItem('tracker'))
-  //   console.log("Local storage item is", itemFromStorage)
-  //   [item, setItem] = useState(itemFromStorage)
-  // };
 
   return [item, setItem];
 

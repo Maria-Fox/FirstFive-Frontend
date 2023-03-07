@@ -11,8 +11,12 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 const Home = () => {
 
   const { authUser, userNotes, setUserNotes } = useContext(UserContext);
-  const [displayItems, setDisplayItems] = useState(null);
 
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("tracker");
+    console.log(data, "!@##$%#$%");
+  })
 
   useEffect(() => {
     function getUserNotes() {
@@ -77,16 +81,11 @@ const Home = () => {
         let currentNotes = JSON.parse(localStorage.getItem('tracker')) || [];
         // console.log(currentNotes)
 
-
         let idForNote = currentNotes.length + 1 || 1;
         const newNote = { id: idForNote, ...formData };
         const allNotes = [...currentNotes, newNote];
-        setUserNotes(allNotes);
 
-        // setUserNotes(currentNotes);
-        // setDisplayItems([...currentNotes]);
-        // console.log(`this is the diisplay items`, displayItems)
-        // setDisplayItems(allNotes);
+        setUserNotes(allNotes);
         setNoteForm(status => !status);
       }
     } catch (e) {
@@ -175,7 +174,7 @@ const Home = () => {
         </thead>
 
         <tbody>
-          {userNotes == null ? <p id="loading">Loading... </p> :
+          {userNotes == [] ? <p id="loading">Loading... </p> :
             userNotes.map(({ id, projectName, note, additional }) =>
               <tr key={id}>
                 <td>{projectName}</td>
