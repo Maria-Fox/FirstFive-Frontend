@@ -21,7 +21,7 @@ function App() {
   const [authUser, setAuthUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
   const [matchedProjectIds, setMatchedProjectIds] = useState([]);
-  const [userNotes, setUserNotes] = useLocalStorage("tracker");
+  const [userNotes, setUserNotes] = useLocalStorage("tracker", sampleTrackItem);
 
   const navigate = useNavigate();
 

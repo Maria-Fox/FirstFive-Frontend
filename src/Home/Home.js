@@ -16,21 +16,21 @@ const Home = () => {
 
   useEffect(() => {
     function getUserNotes() {
+      console.log("Home use effect ran");
 
-      let trackerObj = sessionStorage.getItem('tracker');
+      let trackerObj = window.localStorage.getItem('tracker');
       console.log(trackerObj, "tracker obj")
       if (trackerObj == null) {
-        setDisplayItems([{ id: 1, projectName: "Sample here", note: "Contact project owner", additional: "Review github repo" }])
+        setUserNotes([{ id: 1, projectName: "Sample here", note: "Contact project owner", additional: "Review github repo" }])
       } else {
         let parsedObj = JSON.parse(trackerObj);
         console.log(parsedObj, "parsedObj")
-        setDisplayItems(parsedObj);
       }
     };
 
     getUserNotes();
 
-  }, [setDisplayItems]);
+  }, [setUserNotes]);
 
   let initialState = {
     projectName: null,
@@ -70,8 +70,23 @@ const Home = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      console.log(formData, "is formData");
+
+      // Ensure both fields have at east one char.
       if (formData.projectName.length > 1 && formData.note.length > 1) {
-        setUserNotes(userNotes => JSON.stringify([userNotes, { id: userNotes.length + 1, ...formData }]));
+        let currentNotes = JSON.parse(localStorage.getItem('tracker')) || [];
+        // console.log(currentNotes)
+
+
+        let idForNote = currentNotes.length + 1 || 1;
+        const newNote = { id: idForNote, ...formData };
+        const allNotes = [...currentNotes, newNote];
+        setUserNotes(allNotes);
+
+        // setUserNotes(currentNotes);
+        // setDisplayItems([...currentNotes]);
+        // console.log(`this is the diisplay items`, displayItems)
+        // setDisplayItems(allNotes);
         setNoteForm(status => !status);
       }
     } catch (e) {
@@ -96,7 +111,7 @@ const Home = () => {
   const formHTML = (
     <Card className="container bg-dark">
       <h1 className="text-white">New Note:</h1>
-      <Form >
+      <Form className="container">
         <Label className="text-white" for="projectName">
           Project Name:
         </Label>
@@ -160,8 +175,8 @@ const Home = () => {
         </thead>
 
         <tbody>
-          {displayItems == null ? <p id="loading">Loading... </p> :
-            displayItems.map(({ id, projectName, note, additional }) =>
+          {userNotes == null ? <p id="loading">Loading... </p> :
+            userNotes.map(({ id, projectName, note, additional }) =>
               <tr key={id}>
                 <td>{projectName}</td>
                 <td>{note}</td>
