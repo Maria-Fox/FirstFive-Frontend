@@ -17,6 +17,7 @@ function App() {
   const [authUser, setAuthUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
   const [matchedProjectIds, setMatchedProjectIds] = useState([]);
+  const [userNotes, setUserNotes] = useLocalStorage("tracker");
 
 
   const navigate = useNavigate();
@@ -98,7 +99,7 @@ function App() {
 
   return (
     <UserContext.Provider
-      value={{ authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds }}>
+      value={{ authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds, userNotes, setUserNotes }}>
       <div id="AppID" >
         <NavBar logout={logout} />
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />

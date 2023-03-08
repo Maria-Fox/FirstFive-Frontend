@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Card, Label, Form, Input, Button, Table } from "reactstrap";
 import useLocalStorage from "../Hooks/useLocalStorage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import AlertNotification from "../Common/AlertNotifications";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import UserContext from "../UserComponents/UserContext";
 
 
 const Home = () => {
@@ -14,7 +15,8 @@ const Home = () => {
   // const sampleTrackItem = [{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }];
 
   const [displayItems, setDisplayItems] = useState(null);
-  const [userNotes, setUserNotes] = useLocalStorage("tracker");
+  const { userNotes, setUserNotes } = useContext(UserContext)
+  // const [userNotes, setUserNotes] = useLocalStorage("tracker");
 
   // console.log(`from Home.js notes is`, userNotes, "%%%%%%%%%%");
 
