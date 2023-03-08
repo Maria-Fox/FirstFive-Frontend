@@ -14,7 +14,6 @@ class API {
 
     // can remove later.
     if (!this.token) {
-      console.log("There's no token")
       this.token = window.localStorage.getItem("token") || "invalidTemp"
     };
 
@@ -40,16 +39,12 @@ class API {
 
   static async registerUser(userData) {
     let newUser = await this.request("auth/register", { ...userData }, 'post');
-    // console.log("new user is", newUser)
     this.token = newUser.signedJWT
     return newUser.signedJWT;
   };
 
   static async authenticateUser(userData) {
     let authUser = await this.request(`auth/login`, { ...userData }, 'post');
-    // this.token = authUser.signedJWT;
-    console.log("TOKEN RET.")
-    console.log(authUser.signedJWT)
     return authUser.signedJWT;
   };
 
@@ -63,13 +58,11 @@ class API {
 
   static async viewUser(username) {
     let res = await this.request(`users/${username}`);
-    console.log(res.userData);
     return res.userData;
   };
 
   static async viewAuthUserProfile(username) {
     let res = await this.request(`users/${username}/profile/view`);
-    console.log(res.userData);
     return res.userData;
   };
 
@@ -162,7 +155,6 @@ class API {
   };
 
   static async deleteProjectMember(project_id, username) {
-    console.log(project_id, username, "API")
     let res = await this.request(`projectmembers/delete/${project_id}`, { username }, 'delete');
     return res;
   };

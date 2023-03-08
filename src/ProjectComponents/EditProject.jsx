@@ -37,7 +37,6 @@ const EditProject = () => {
     async function preloadProjData() {
       try {
         let response = await API.viewProject(project_id);
-        // console.log(response.github_repo, "RES IS ")
         setProjData(
           {
             "owner_username": authUser,

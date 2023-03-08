@@ -18,7 +18,6 @@ const MatchedProjectList = () => {
   useEffect(() => {
     async function getMatchData() {
       try {
-        console.log(matchedProjectIds)
         let response = await API.viewUsernameMatches(authUser || username);
         setMatchData(response);
 

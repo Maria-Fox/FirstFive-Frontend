@@ -9,7 +9,6 @@ const CreateMessage = () => {
 
   // message from, message_to
   const { username, to_username } = useParams();
-  console.log(`FROM USER ${username} TO USER ${to_username}`);
 
   // ***************************************************************
 
@@ -40,7 +39,6 @@ const CreateMessage = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log({ message_from: authUser, ...msgData })
       await API.createMessage(authUser, { message_from: authUser, ...msgData });
       alert("Created msg");
       navigate(`/messages/${authUser}/all`);

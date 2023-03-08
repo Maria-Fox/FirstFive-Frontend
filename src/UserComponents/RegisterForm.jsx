@@ -42,12 +42,9 @@ const RegisterForm = ({ registerUser }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData)
     let response = await registerUser(formData);
-    console.log("resp is:", response);
 
     if (response.success) {
-      console.log("success");
       navigate("/home");
     } else {
       setErrors([response.errors]);

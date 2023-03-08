@@ -35,18 +35,14 @@ const CreateProjectForm = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // console.log(projData)
     try {
       let response = await API.createProject({ owner_username: authUser, ...projData });
-      console.log("resp is:", response);
       // user is instantly matched with project. They can find it under the 'posts' Nav item.
 
       let id = response.id;
       // Newly created proj id goes into matches.
       setMatchedProjectIds([...matchedProjectIds, id]);
 
-      // probably navigate elsewhere. temp for now
-      // alert("Project was added successfully.");
       navigate(`/projects/created/by/${authUser}`);
     } catch (e) {
       setErrors(e);

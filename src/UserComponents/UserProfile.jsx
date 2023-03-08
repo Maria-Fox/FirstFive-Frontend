@@ -46,7 +46,6 @@ const UserProfile = () => {
 
 
   let handleDelete = () => {
-    console.log("delete ran")
     try {
       API.deleteUser(authUser);
       setAuthUser(null);

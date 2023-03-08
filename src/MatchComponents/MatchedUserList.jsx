@@ -20,7 +20,6 @@ const MatchedUserList = () => {
         // Retrieve the users who matched the project + proj data.
         let response = await API.viewProjectUserMatches(project_id);
         let { project_data, user_matches } = response;
-        console.log(project_data, "Data")
 
         // Set matches users + proj data.
         setmatchedUsers(user_matches);
@@ -29,7 +28,6 @@ const MatchedUserList = () => {
         // Retrieve users who are also project members 
         let projMemberData = await API.viewAllProjMembers(project_id);
         let allProjectMembers = projMemberData.map(user => user.username);
-        console.log(new Set(allProjectMembers))
         setProjectMembers(new Set(allProjectMembers));
 
       } catch (e) {
@@ -49,7 +47,6 @@ const MatchedUserList = () => {
       // If the user is already a project member escape.
       if(isUserProjectMember(username)) return;
 
-      console.log(`Adding ${username} to project id: ${project_id}`)
       await API.addProjectMember(project_id, username);
 
       let projMemberData = await API.viewAllProjMembers(project_id);

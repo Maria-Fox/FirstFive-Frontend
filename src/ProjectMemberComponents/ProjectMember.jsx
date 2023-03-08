@@ -5,8 +5,6 @@ import { Card, CardTitle, Button } from "reactstrap";
 
 const ProjectMember = ({ username, handleRemoveProjMember }) => {
 
-  // console.log(project_owner)
-
   const { authUser } = useContext(UserContext);
   const { project_id } = useParams();
   const navigate = useNavigate();

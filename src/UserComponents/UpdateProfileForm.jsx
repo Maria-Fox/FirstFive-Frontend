@@ -25,7 +25,6 @@ const UpdateProfileForm = () => {
       };
 
       let userData = await API.viewAuthUserProfile(username);
-      console.log(userData, "%%%%%%%%");
 
       // Fill form with current data.
       setFormData({
@@ -46,7 +45,6 @@ const UpdateProfileForm = () => {
     try {
       e.preventDefault();
       let response = await API.editUser(authUser, formData);
-      console.log(response);
       navigate(`/users/${authUser}`);
     } catch (err) {
       setFormErrors(err);

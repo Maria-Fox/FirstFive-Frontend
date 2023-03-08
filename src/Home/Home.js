@@ -5,6 +5,7 @@ import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import AlertNotification from "../Common/AlertNotifications";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import UserContext from "../UserComponents/UserContext";
+import uniquid from "uniqid";
 
 
 const Home = () => {
@@ -64,8 +65,7 @@ const Home = () => {
       if (formData.projectName.length > 1 && formData.note.length > 1) {
         let currentNotes = JSON.parse(localStorage.getItem('tracker')) || [];
 
-        // This keeps writing any submit's as id of 0.
-        let idForNote = currentNotes.length === 0 ? 1 : currentNotes.length + 1;
+        let idForNote = uniquid();
         const newNote = { id: idForNote, ...formData };
         const allNotes = [...currentNotes, newNote];
 
