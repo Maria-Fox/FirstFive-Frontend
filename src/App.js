@@ -12,16 +12,12 @@ import NavBar from './Routes-Nav/NavBar';
 
 // Key name for storing token in localStorage=> {token: "sdfsdf"}
 export const token_storage = "token";
-const sampleTrackItem = [{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }];
-// const trackItems = JSON.parse(localStorage.getItem('tracker'));
-// console.log(sampleTrackItem, "parsed")
-
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
   const [matchedProjectIds, setMatchedProjectIds] = useState([]);
-  const [userNotes, setUserNotes] = useLocalStorage("tracker", sampleTrackItem);
+
 
   const navigate = useNavigate();
 
@@ -102,7 +98,7 @@ function App() {
 
   return (
     <UserContext.Provider
-      value={{ authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds, userNotes, setUserNotes }}>
+      value={{ authUser, setAuthUser, matchedProjectIds, setMatchedProjectIds }}>
       <div id="AppID" >
         <NavBar logout={logout} />
         <NavRoutes registerUser={registerUser} authenticateUser={authenticateUser} logout={logout} />

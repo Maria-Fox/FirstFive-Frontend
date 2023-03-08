@@ -19,7 +19,7 @@ function useLocalStorage(key, defaultValue = null) {
       } else {
         // tracker holds objects. Stringify for safe JSON storage
         if (key === "tracker") {
-          window.localStorage.setItem(key, JSON.stringify(item));
+          window.localStorage.setItem(key, JSON.stringify(defaultValue));
         } else {
           // if it's the first time, or the item exists set the value of the local storage item.
           window.localStorage.setItem(key, item)
@@ -30,7 +30,6 @@ function useLocalStorage(key, defaultValue = null) {
 
 
   console.log("*******Local storage changed to ******", item);
-  console.log([item])
 
   // returns the new piece of state along with a setState function to update.
 

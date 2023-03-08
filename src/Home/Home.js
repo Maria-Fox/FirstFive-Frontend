@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Card, Label, Form, Input, CardTitle, Button, Table } from "reactstrap";
-import UserContext from "../UserComponents/UserContext";
-import "./Home.css";
+import React, { useEffect, useState } from "react";
+import { Card, Label, Form, Input, Button, Table } from "reactstrap";
+import useLocalStorage from "../Hooks/useLocalStorage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import AlertNotification from "../Common/AlertNotifications";
@@ -10,31 +9,24 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
 
-  const { authUser, userNotes, setUserNotes } = useContext(UserContext);
+  let SerializeNum = 1;
 
+  // const sampleTrackItem = [{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }];
+
+  const [displayItems, setDisplayItems] = useState(null);
+  const [userNotes, setUserNotes] = useLocalStorage("tracker");
+
+  // console.log(`from Home.js notes is`, userNotes, "%%%%%%%%%%");
 
   useEffect(() => {
-    const data = window.localStorage.getItem("tracker");
-    console.log(data, "!@##$%#$%");
-  })
-
-  useEffect(() => {
-    function getUserNotes() {
-      console.log("Home use effect ran");
-
-      let trackerObj = window.localStorage.getItem('tracker');
-      console.log(trackerObj, "tracker obj")
-      if (trackerObj == null) {
-        setUserNotes([{ id: 1, projectName: "Sample here", note: "Contact project owner", additional: "Review github repo" }])
-      } else {
-        let parsedObj = JSON.parse(trackerObj);
-        console.log(parsedObj, "parsedObj")
-      }
-    };
-
-    getUserNotes();
-
+    console.log("`useeffect ran ^^^^^^^^^^^^^^^^^^^^^")
+    const data = JSON.parse(localStorage.getItem("tracker"));
+    console.log(data, "Parsed tracker from localStorage.");
+    setDisplayItems(data);
   }, [setUserNotes]);
+
+  // ***************************************************************
+
 
   let initialState = {
     projectName: null,
@@ -47,15 +39,6 @@ const Home = () => {
   const [noteForm, setNoteForm] = useState(false);
   const [formData, setFormData] = useState(initialState);
   const [formErrors, setFormErrors] = useState(null);
-
-  // ***************************************************************
-
-  const msgBody = (
-    <Card style={{ backgroundColor: "transparent", color: "whiteSmoke", padding: "2%" }}
-      id="greeter-welcome">
-      <CardTitle>Hi, {authUser}!</CardTitle>
-    </Card>
-  );
 
 
   // ***************************************************************
@@ -79,13 +62,17 @@ const Home = () => {
       // Ensure both fields have at east one char.
       if (formData.projectName.length > 1 && formData.note.length > 1) {
         let currentNotes = JSON.parse(localStorage.getItem('tracker')) || [];
-        // console.log(currentNotes)
+        console.log(currentNotes.length, "current length")
 
-        let idForNote = currentNotes.length + 1 || 1;
-        const newNote = { id: idForNote, ...formData };
+        // This keeps writing any submit's as id of 0.
+        // let idForNote = currentNotes.length == 0 ? 1 : currentNotes.length + 1;
+        // SerializeNumdoes same as above. 
+        const newNote = { id: SerializeNum++, ...formData };
         const allNotes = [...currentNotes, newNote];
+        // console.log(allNotes)
 
         setUserNotes(allNotes);
+        setDisplayItems(allNotes);
         setNoteForm(status => !status);
       }
     } catch (e) {
@@ -174,8 +161,8 @@ const Home = () => {
         </thead>
 
         <tbody>
-          {userNotes == [] ? <p id="loading">Loading... </p> :
-            userNotes.map(({ id, projectName, note, additional }) =>
+          {displayItems == null ? <p id="loading">Loading... </p> :
+            displayItems.map(({ id, projectName, note, additional }) =>
               <tr key={id}>
                 <td>{projectName}</td>
                 <td>{note}</td>
@@ -196,8 +183,7 @@ const Home = () => {
 
 
   return (
-    <div className="container" id="chalkboard-div">
-      {/* {authUser ? msgBody : null} */}
+    <div className="container p-3 border" id="chalkboard-div">
 
       {formErrors ? <AlertNotification messages={formErrors} /> : null}
 
@@ -210,8 +196,6 @@ const Home = () => {
       {noteForm ? formHTML : null}
 
       {noteTable}
-
-
     </div>
   )
 }
