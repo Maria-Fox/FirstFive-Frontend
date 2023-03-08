@@ -15,10 +15,15 @@ const Home = () => {
   const { setUserNotes } = useContext(UserContext);
 
   useEffect(() => {
-    console.log("`useeffect ran ^^^^^^^^^^^^^^^^^^^^^")
-    const data = JSON.parse(localStorage.getItem("tracker"));
-    console.log(data, "Parsed tracker from localStorage.");
-    setDisplayItems(data);
+    const handleStorage = () => {
+      console.log("useeffect ran ^^^^^^^^^^^^^^^^^^^^^")
+      const data = JSON.parse(localStorage.getItem("tracker"));
+      console.log(data, "Parsed tracker from localStorage.");
+      setDisplayItems(data);
+    };
+
+    window.addEventListener('storage', handleStorage())
+    return () => window.removeEventListener('storage', handleStorage());
   }, [setUserNotes, setDisplayItems]);
 
   // ***************************************************************
@@ -60,7 +65,7 @@ const Home = () => {
         let currentNotes = JSON.parse(localStorage.getItem('tracker')) || [];
 
         // This keeps writing any submit's as id of 0.
-        let idForNote = currentNotes.length == 0 ? 1 : currentNotes.length + 1;
+        let idForNote = currentNotes.length === 0 ? 1 : currentNotes.length + 1;
         const newNote = { id: idForNote, ...formData };
         const allNotes = [...currentNotes, newNote];
 
@@ -152,7 +157,7 @@ const Home = () => {
         </thead>
 
         <tbody>
-          {displayItems == null ? <p id="loading">Loading... </p> :
+          {displayItems == null ? <p id="loading">Nothing, yet! </p> :
             displayItems.map(({ id, projectName, note, additional }) =>
               <tr key={id}>
                 <td>{projectName}</td>
