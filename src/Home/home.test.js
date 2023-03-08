@@ -1,25 +1,25 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import LoginForm from "./LoginForm";
+import Home from "./Home";
 import { MemoryRouter } from "react-router";
 
 // smoke
-test("Should render LoginForm", function () {
+test("Should render Home Page", function () {
   render(
     <MemoryRouter>
-      <LoginForm />
+      <Home />
     </MemoryRouter>);
 });
 
 
 
-// snapshot test. The first time you run this will take a snapshot, then re-run to compare the outcomes.
+// snapshot test. The first time user will have "Loading..."
 test("Creates a LoginForm snapshot", function () {
 
   // as fragment is a method destructured from the return obj. Puts return item in a div and we can test what's in the fragment.
   const { asFragment } = render(
     <MemoryRouter>
-      <LoginForm />
+      <Home />
     </MemoryRouter>,
   );
   expect(asFragment()).toMatchSnapshot();

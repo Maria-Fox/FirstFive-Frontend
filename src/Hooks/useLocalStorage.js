@@ -17,9 +17,9 @@ function useLocalStorage(key, defaultValue = null) {
         // if the null OR ran above, remove the item
         window.localStorage.removeItem(key);
       } else {
-        // tracker holds objects. Stringify for safe JSON storage
+        // tracker holds objects. Stringify for safe JSON storage - defaultVal
         if (key === "tracker") {
-          window.localStorage.setItem(key, JSON.stringify(defaultValue));
+          window.localStorage.setItem(key, JSON.stringify(item));
         } else {
           // if it's the first time, or the item exists set the value of the local storage item.
           window.localStorage.setItem(key, item)

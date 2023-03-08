@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Card, Label, Form, Input, Button, Table } from "reactstrap";
-import useLocalStorage from "../Hooks/useLocalStorage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import AlertNotification from "../Common/AlertNotifications";
@@ -10,22 +9,17 @@ import UserContext from "../UserComponents/UserContext";
 
 const Home = () => {
 
-  let SerializeNum = 1;
-
   // const sampleTrackItem = [{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }];
 
   const [displayItems, setDisplayItems] = useState(null);
-  const { userNotes, setUserNotes } = useContext(UserContext)
-  // const [userNotes, setUserNotes] = useLocalStorage("tracker");
-
-  // console.log(`from Home.js notes is`, userNotes, "%%%%%%%%%%");
+  const { setUserNotes } = useContext(UserContext);
 
   useEffect(() => {
     console.log("`useeffect ran ^^^^^^^^^^^^^^^^^^^^^")
     const data = JSON.parse(localStorage.getItem("tracker"));
     console.log(data, "Parsed tracker from localStorage.");
     setDisplayItems(data);
-  }, [setUserNotes]);
+  }, [setUserNotes, setDisplayItems]);
 
   // ***************************************************************
 
@@ -64,21 +58,17 @@ const Home = () => {
       // Ensure both fields have at east one char.
       if (formData.projectName.length > 1 && formData.note.length > 1) {
         let currentNotes = JSON.parse(localStorage.getItem('tracker')) || [];
-        console.log(currentNotes.length, "current length")
 
         // This keeps writing any submit's as id of 0.
-        // let idForNote = currentNotes.length == 0 ? 1 : currentNotes.length + 1;
-        // SerializeNumdoes same as above. 
-        const newNote = { id: SerializeNum++, ...formData };
+        let idForNote = currentNotes.length == 0 ? 1 : currentNotes.length + 1;
+        const newNote = { id: idForNote, ...formData };
         const allNotes = [...currentNotes, newNote];
-        // console.log(allNotes)
 
         setUserNotes(allNotes);
         setDisplayItems(allNotes);
         setNoteForm(status => !status);
       }
     } catch (e) {
-      console.log(e, "*******")
       setFormErrors(["Please add a project name and note."])
     }
   };
@@ -86,10 +76,9 @@ const Home = () => {
   // ***************************************************************
 
   const handleDelete = (idToDelete) => {
-    localStorage.removeItem(idToDelete); //returns undefined.
-
-    let remainingNotes = userNotes.filter(note => note.id !== idToDelete);
+    let remainingNotes = displayItems.filter(note => note.id !== idToDelete);
     setUserNotes(remainingNotes);
+    setDisplayItems(remainingNotes);
   };
 
 
@@ -171,7 +160,6 @@ const Home = () => {
                 <td>{additional}</td>
                 <td><Button onClick={() => handleDelete(id)}> <FontAwesomeIcon icon={faTrash} /></Button></td>
               </tr>
-
             )
           }
         </tbody>
@@ -185,7 +173,7 @@ const Home = () => {
 
 
   return (
-    <div className="container p-3 border" id="chalkboard-div">
+    <div className="container" id="chalkboard-div">
 
       {formErrors ? <AlertNotification messages={formErrors} /> : null}
 
