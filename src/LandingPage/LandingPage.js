@@ -10,10 +10,10 @@ const LandingPage = () => {
 
         <div className="container" id="list">
           <CardTitle id="title">FirstFive</CardTitle>
-          <CardText className="p-3">The quickest way to: </CardText>
+          <CardText className="pt-3">The quickest way to: </CardText>
 
 
-          <ul >
+          <ul  >
             <li>Review and join group projects.
             </li>
             <li>
@@ -27,10 +27,7 @@ const LandingPage = () => {
         </div>
 
       </div>
-
-    </Card>
-
-
+    </Card >
   )
 }
 

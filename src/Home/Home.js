@@ -20,6 +20,7 @@ const Home = () => {
       console.log("useeffect ran ^^^^^^^^^^^^^^^^^^^^^")
       const data = JSON.parse(localStorage.getItem("tracker"));
       console.log(data, "Parsed tracker from localStorage.");
+      console.log(typeof (data), "is the data type for return")
       setDisplayItems(data);
     };
 
@@ -68,6 +69,7 @@ const Home = () => {
         let idForNote = uniquid();
         const newNote = { id: idForNote, ...formData };
         const allNotes = [...currentNotes, newNote];
+        console.log(`THESE ARE THE CURRENT NOTES`, currentNotes);
 
         setUserNotes(allNotes);
         setDisplayItems(allNotes);
