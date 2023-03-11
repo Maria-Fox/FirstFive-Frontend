@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-// used to track token throughout the app. Behaves as state w/ localstorage features.
+// used to track token && notes throughout the app. Behaves as state w/ localstorage features.
 
 // key = const firstfive_token = "token". If the key given does not exist it will default.
 function useLocalStorage(key, defaultValue = null) {
@@ -18,7 +18,7 @@ function useLocalStorage(key, defaultValue = null) {
         window.localStorage.removeItem(key);
       } else {
         // tracker holds objects. Stringify for safe JSON storage - defaultVal
-        if (key === "tracker") {
+        if (key === "notes") {
           window.localStorage.setItem(key, JSON.stringify(item));
         } else {
           // if it's the first time, or the item exists set the value of the local storage item.
@@ -29,13 +29,13 @@ function useLocalStorage(key, defaultValue = null) {
   );
 
 
-  console.log("*******Local storage changed to ******", item);
+  // console.log("*******Local storage changed to ******", item);
 
   // returns the new piece of state along with a setState function to update.
 
   return [item, setItem];
+}
 
-};
 
 export default useLocalStorage;
 

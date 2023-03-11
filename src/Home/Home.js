@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useMemo, useState, useContext, flushSync } from "react";
 import { Card, Label, Form, Input, Button, Table } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
@@ -7,28 +7,42 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import UserContext from "../UserComponents/UserContext";
 import uniquid from "uniqid";
 
-
 const Home = () => {
+
+  const { notes, setNotes } = useContext(UserContext);
+  const [parsedNotes, setParsedNotes] = useState(null);
+  const [displayNotes, setDisplayNotes] = useState(false);
 
   // const sampleTrackItem = [{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }];
 
-  const [displayItems, setDisplayItems] = useState(null);
-  const { setUserNotes } = useContext(UserContext);
 
-  useEffect(() => {
-    const handleStorage = () => {
-      console.log("useeffect ran ^^^^^^^^^^^^^^^^^^^^^")
-      const data = JSON.parse(localStorage.getItem("tracker"));
-      console.log(data, "Parsed tracker from localStorage.");
-      console.log(typeof (data), "is the data type for return")
-      setDisplayItems(data);
-    };
+  // useEffect(() => {
+  //   const handleStorage = () => {
+  //     console.log("useeffect ran ^^^^^^^^^^^^^^^^^^^^^")
 
-    window.addEventListener('storage', handleStorage())
-    return () => window.removeEventListener('storage', handleStorage());
-  }, [setUserNotes, setDisplayItems]);
+  //     const notesData = JSON.parse(localStorage.getItem("notes"));
+  //     console.debug(notesData, "received");
+  //     setParsedNotes(notesData);
+  //     console.log(parsedNotes);
+  //     console.log(`loading changed`)
+  //   };
+
+  //   handleStorage();
+
+  // window.addEventListener('storage', handleStorage())
+  // return () => window.removeEventListener('storage', handleStorage());
+  // }, [setNotes, setParsedNotes]);
+
+  // Attempt with useMemo hook.
+  // const parsedNotesReturned = useMemo(function () {
+  //   let noteData = JSON.parse(localStorage.getItem("notes"));
+  //   setParsedNotes(noteData);
+  //   console.log(noteData, "& this is the state", parsedNotes);
+  //   setLoading(false);
+  // }, [setParsedNotes, setLoading]);
 
   // ***************************************************************
+
 
 
   let initialState = {
@@ -36,8 +50,8 @@ const Home = () => {
     note: null,
     additional: null
   };
-
   // ***************************************************************
+
 
   const [noteForm, setNoteForm] = useState(false);
   const [formData, setFormData] = useState(initialState);
@@ -57,35 +71,30 @@ const Home = () => {
 
   // ***************************************************************
 
-  const handleSubmit = async (e) => {
+  const addNote = (e) => {
     try {
       e.preventDefault();
-      console.log(formData, "is formData");
-
-      // Ensure both fields have at east one char.
-      if (formData.projectName.length > 1 && formData.note.length > 1) {
-        let currentNotes = JSON.parse(localStorage.getItem('tracker')) || [];
-
-        let idForNote = uniquid();
-        const newNote = { id: idForNote, ...formData };
-        const allNotes = [...currentNotes, newNote];
-        console.log(`THESE ARE THE CURRENT NOTES`, currentNotes);
-
-        setUserNotes(allNotes);
-        setDisplayItems(allNotes);
-        setNoteForm(status => !status);
-      }
+      const existingNotes = JSON.parse(localStorage.getItem('notes')) || [];
+      const idForNote = uniquid();
+      const newNote = { id: idForNote, ...formData };
+      const newItems = [...existingNotes, newNote];
+      setNotes(newItems);
+      setNoteForm(status => !status);
+      setDisplayNotes(status => !status);
     } catch (e) {
       setFormErrors(["Please add a project name and note."])
-    }
+    };
   };
+
 
   // ***************************************************************
 
   const handleDelete = (idToDelete) => {
-    let remainingNotes = displayItems.filter(note => note.id !== idToDelete);
-    setUserNotes(remainingNotes);
-    setDisplayItems(remainingNotes);
+    let currentNotes = JSON.parse(localStorage.getItem("notes"));
+
+    const updatedData = currentNotes.filter(note => note.id !== idToDelete);
+    console.log(`Now updating/ filtering to:`, updatedData);
+    setNotes([...updatedData]);
   };
 
 
@@ -135,7 +144,7 @@ const Home = () => {
         </Input>
 
 
-        <Button onClick={handleSubmit}>Add</Button>
+        <Button onClick={addNote}>Add</Button>
       </Form>
     </Card>
   );
@@ -148,6 +157,7 @@ const Home = () => {
   const noteTable = (
     <div>
       <h1 className="text-white text-center">Track Project Interest</h1>
+      <Button onClick={() => setDisplayNotes(false)}>Hide</Button>
       <Table responsive bordered className="text-white mt-4">
         <thead>
           <tr>
@@ -159,8 +169,8 @@ const Home = () => {
         </thead>
 
         <tbody>
-          {displayItems == null ? <p id="loading">Nothing, yet! </p> :
-            displayItems.map(({ id, projectName, note, additional }) =>
+          {parsedNotes == null ? <p id="loading">Nothing, yet! </p> :
+            parsedNotes.map(({ id, projectName, note, additional }) =>
               <tr key={id}>
                 <td>{projectName}</td>
                 <td>{note}</td>
@@ -170,13 +180,19 @@ const Home = () => {
             )
           }
         </tbody>
-
-
       </Table>
     </div>
   )
 
   // ***************************************************************
+
+  const getNotes = function () {
+    let noteData = JSON.parse(localStorage.getItem("notes"));
+    setParsedNotes(noteData);
+
+    console.log(noteData, "& this is the state", parsedNotes);
+    setDisplayNotes(true);
+  };
 
 
   return (
@@ -189,10 +205,10 @@ const Home = () => {
         onClick={() => setNoteForm(status => !status)}
         style={{ color: "aquamarine", float: "right" }} />
 
-
       {noteForm ? formHTML : null}
 
-      {noteTable}
+      {displayNotes ? noteTable : <Button onClick={getNotes}>Current Notes</Button>}
+
     </div>
   )
 }
