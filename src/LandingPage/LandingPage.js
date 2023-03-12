@@ -10,7 +10,7 @@ const LandingPage = () => {
 
         <div className="container" id="list">
           <CardTitle id="title">FirstFive</CardTitle>
-          <CardText className="pt-3">The quickest way to: </CardText>
+          <CardText className="">The quickest way to: </CardText>
 
 
           <ul  >
@@ -23,10 +23,28 @@ const LandingPage = () => {
               Build resume ready projects.
             </li>
           </ul>
-
         </div>
-
       </div>
+
+      {/* </div>
+
+      <div className="container" id="list"> */}
+      {/* <CardTitle id="title">FirstFive</CardTitle>
+        <CardText className="">The quickest way to: </CardText>
+
+        <ul  >
+          <li>Review and join group projects.
+          </li>
+          <li>
+            Gain collaboration experience.
+          </li>
+          <li>
+            Build resume ready projects.
+          </li>
+        </ul>
+
+
+      </div> */}
     </Card >
   )
 }

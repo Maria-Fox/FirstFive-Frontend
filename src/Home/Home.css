@@ -1,15 +1,10 @@
-#chalkboard-div{
-  /* background-image: url("https://cdn.pixabay.com/photo/2016/04/19/01/00/chalkboard-1337809__340.jpg"); */
+#home-div{
+  background-image: url("../Images/HomePage.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  width: 100vw;
-  height: 80vh;  
-  /* border: 2px solid purple; */
-  margin-top: 10%;
-  /* border: 2px solid whitesmoke; */
-  /* border-radius: 10px; */
-  padding: 30px;
+  width: 80vw;
+  height: 80vh;
 }
 
 #greeter-welcome{

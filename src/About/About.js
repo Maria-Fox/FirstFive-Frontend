@@ -3,7 +3,7 @@ import { Card, CardTitle, CardText } from "reactstrap";
 
 const About = () => {
   return (
-    <Card className="AboutDiv container bg-dark text-white">
+    <Card className="container bg-dark text-white">
       <CardTitle tag="h1" className="text-center  p-2 mt-3">About FirstFive</CardTitle>
 
 

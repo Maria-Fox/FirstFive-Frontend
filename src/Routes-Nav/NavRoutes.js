@@ -22,6 +22,7 @@ import ProjectCarousel from "../ProjectComponents/ProjectCarousel";
 import Home from "../Home/Home";
 import Confetti from "../Confetti/Confetti";
 import LandingPage from "../LandingPage/LandingPage";
+import NotFound from "../NotFound/NotFound";
 
 const NavRoutes = ({ registerUser, authenticateUser }) => {
 
@@ -85,6 +86,9 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
 
         {/*Closing private routes. */}
       </Route>
+
+      {/* Not Found */}
+      <Route path="*" element={<NotFound />}></Route>
 
 
     </Routes>

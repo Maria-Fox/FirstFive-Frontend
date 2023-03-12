@@ -12,13 +12,13 @@ import NavBar from './Routes-Nav/NavBar';
 
 // Key name for storing token in localStorage=> {token: "sdfsdf"}
 export const token_storage = "token";
-const sampleTrackItem = [{ id: 1, projectName: "Sample project", note: "Message project owner for further details.", additional: "Clone github repo and review code." }];
+const sampleNote = [{ projectNote: "Sample project", note: "Message project owner for further details", additional: "Clone github repo & review." }];
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
   const [token, setToken] = useLocalStorage(token_storage);
   const [matchedProjectIds, setMatchedProjectIds] = useState([]);
-  const [notes, setNotes] = useLocalStorage("notes", sampleTrackItem);
+  const [notes, setNotes] = useLocalStorage("notes", sampleNote);
 
   const navigate = useNavigate();
 
@@ -40,7 +40,6 @@ function App() {
           let userMatches = await API.viewUsernameMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
           setMatchedProjectIds([...matchIds]);
-          console.log(`FROM APP: MATCHEDIDS ARE:`, matchedProjectIds)
         } catch (err) {
           setAuthUser(null)
         };
