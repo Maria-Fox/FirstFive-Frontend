@@ -21,6 +21,7 @@
     "react-scripts": "5.0.1",
     "react-tsparticles": "^2.9.3",
     "reactstrap": "^9.1.5",
+    "surge": "^0.23.1",
     "tsparticles": "^2.9.3",
     "tsparticles-slim": "^2.9.3",
     "web-vitals": "^2.1.4"
