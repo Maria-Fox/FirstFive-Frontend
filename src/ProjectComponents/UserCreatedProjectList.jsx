@@ -57,7 +57,6 @@ const UserCreatedProjectList = () => {
 
       // Cause re-render for user
       setProjects(projects.filter(p => p.id !== project_id));
-      // alert("Deleted project!");
     } catch (e) {
       setErrors(e);
       return;

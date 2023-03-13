@@ -1,3 +1,52 @@
+# FirstFive Frontend
+
+## Deployed on Surge
+
+***
+ADD LINK HERE
+
+***
+
+## Description
+
+***
+A resource for early career professionals to connect and gain valuable collaboration expereince. With FirstFive, users can suggest project ideas and team up to begin working!
+
+FirstFive utilizes the API created and deployed. For further details please visit [FirstFive-backend](https://github.com/Maria-Fox/FirstFive).
+
+## Tech Stack
+
+***
+
+Backend/ Validations: Node.js partners with PostresSQL. BCRYPT password hashing/authentication, 
+
+
+Frontend: React, Node/Express, React-Bootstrap with FontAwesome for icons, Axios, and JSON Web Tokens
+
+
+## User Flow
+
+***
+
+### General User
+- Login or Signup
+- Upon login, review general diagram of steps for  successfull project collaboration and project execution.
+- View proposed group projects through a list or project-match-card.
+- Match preferred projects and gain access to existing project members and interested members.
+- Message and discuss project details.
+- Edit user profile details.
+
+### Project owner- user
+- Create a group project. 
+- Edit or delete a group project.
+- Add or remove project members.
+
+
+## Additional Notes
+
+Schema visible in Schema foler.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

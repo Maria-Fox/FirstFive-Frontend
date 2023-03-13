@@ -10,7 +10,7 @@ class API {
   // ******************************************* API send request method
 
   static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method, this.token, "**********");
+    // console.debug("API Call:", endpoint, data, method, this.token, "**********");
 
     // can remove later.
     if (!this.token) {

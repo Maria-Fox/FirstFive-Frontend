@@ -40,7 +40,6 @@ const CreateMessage = () => {
     try {
       e.preventDefault();
       await API.createMessage(authUser, { message_from: authUser, ...msgData });
-      alert("Created msg");
       navigate(`/messages/${authUser}/all`);
     } catch (e) {
       setErrors(e);

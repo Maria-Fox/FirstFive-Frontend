@@ -9,13 +9,15 @@ const Home = () => {
 
 
   return (
-    <Card className="bg-light text-center" id="home-div">
-      <Alert>Hi, {authUser}</Alert>
+    <div>
+      <Card className="bg-light text-center  container" id="home-div">
+        <Alert>Hi, {authUser}</Alert>
 
-      <Card className="border-0">
-        <CardText>Below are four general steps that can be applied to any project for best results. Once reviewed, move onto "Projects" to begin your journey!</CardText>
+        <Card className="border-0">
+        </Card>
       </Card>
-    </Card>
+      {/* <p>Below are four general steps that can be applied to any project for best results. Once reviewed, move onto "Projects" to begin your journey!</p> */}
+    </div>
 
   )
 }

@@ -29,7 +29,6 @@ const ProjectMemberList = () => {
     try {
       await API.deleteProjectMember(project_id, username);
       setProjMembers(projMembers.filter(users => users.username !== username));
-      // alert("deleted user");
     } catch (e) {
       setErrors(e);
       return;
