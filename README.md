@@ -2,23 +2,19 @@
 
 ## Deployed on Surge
 
-***
 ADD LINK HERE
 
-***
 
 ## Description
 
-***
 A resource for early career professionals to connect and gain valuable collaboration expereince. With FirstFive, users can suggest project ideas and team up to begin working!
 
 FirstFive utilizes the API created and deployed. For further details please visit [FirstFive-backend](https://github.com/Maria-Fox/FirstFive).
 
 ## Tech Stack
 
-***
 
-Backend/ Validations: Node.js partners with PostresSQL. BCRYPT password hashing/authentication, 
+Backend/ Validations: Node.js partners with PostresSQL. BCRYPT password hashing/authentication. 
 
 
 Frontend: React, Node/Express, React-Bootstrap with FontAwesome for icons, Axios, and JSON Web Tokens
@@ -26,7 +22,6 @@ Frontend: React, Node/Express, React-Bootstrap with FontAwesome for icons, Axios
 
 ## User Flow
 
-***
 
 ### General User
 - Login or Signup
@@ -44,7 +39,7 @@ Frontend: React, Node/Express, React-Bootstrap with FontAwesome for icons, Axios
 
 ## Additional Notes
 
-Schema visible in Schema foler.
+Schema visible in Schema folder.
 
 
 # Getting Started with Create React App

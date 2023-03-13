@@ -12,7 +12,6 @@ const Home = () => {
     <div>
       <Card className="bg-light text-center  container" id="home-div">
         <Alert>Hi, {authUser}</Alert>
-
         <Card className="border-0">
         </Card>
       </Card>
