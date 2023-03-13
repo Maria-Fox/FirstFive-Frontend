@@ -1,31 +1,25 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Home from "./Home";
+import NotFound from "./NotFound";
 import { MemoryRouter } from "react-router";
-import UserContext from "../UserComponents/UserContext";
-import { userWithMatchState } from "../TestUtils"
 
 // smoke
-test("Should render Home Page", function () {
+test("Should render NotFound Page", function () {
   render(
     <MemoryRouter>
-      <UserContext.Provider value={userWithMatchState}>
-        <Home />
-      </UserContext.Provider>
+      <NotFound />
     </MemoryRouter>);
 });
 
 
 
 // snapshot test. The first time user will have "Loading..."
-test("Creates a Home snapshot", function () {
+test("Creates a NotFound snapshot", function () {
 
   // as fragment is a method destructured from the return obj. Puts return item in a div and we can test what's in the fragment.
   const { asFragment } = render(
     <MemoryRouter>
-      <UserContext.Provider value={userWithMatchState}>
-        <Home />
-      </UserContext.Provider>
+      <NotFound />
     </MemoryRouter>,
   );
   expect(asFragment()).toMatchSnapshot();

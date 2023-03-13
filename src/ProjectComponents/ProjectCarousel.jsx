@@ -23,6 +23,10 @@ function ProjectCarousel() {
         let response = await API.carouselProjects();
         setProjects(response);
       } catch (e) {
+        // Signifies all projects have been matched. user sees noProjectsToDisplay response.
+        if(e[0] === "Class constructor BadRequestError cannot be invoked without 'new'"){
+          return;
+        }
         setErrors(e);
       }
     };
@@ -58,7 +62,7 @@ function ProjectCarousel() {
   // **************************************************************
 
   const noProjectsToDisplay = (
-    <Card className='container pt-2 mt-2'>
+    <Card className='m-3 p-3'>
       <CardTitle> No projects left to match. Come back and check again soon!</CardTitle>
     </Card>
   );
@@ -71,12 +75,12 @@ function ProjectCarousel() {
   return (
     <div className="text-center container">
 
-      <h1 className="text-center text-white pt-2 mt-2">Projects</h1>
+      <h1 className="text-white pt-2 mt-2">Projects</h1>
 
       <Card className='m-3 p-3'>
         <CardTitle>Use "X" to skip a project and the "<FontAwesomeIcon icon={regular('heart')} />" to match!</CardTitle>
 
-        <small>Note: The projects displayed are all random projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project. Happy matching!</small>
+        <small >Note: The projects displayed are all random projects you have not matched with. There is a small possibility you get two of the same projects back to back. If this happens, just "skip" again and you'll see a new project. Happy matching!</small>
       </Card>
 
       {errors ? <AlertNotification messages={errors} /> : null}

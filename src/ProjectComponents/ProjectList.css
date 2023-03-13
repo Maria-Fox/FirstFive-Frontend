@@ -1,9 +1,9 @@
-.Project-links{
+#Project-links{
   color: aquamarine;
   text-decoration: none;
 }
 
-.Project-links:hover{
+#Project-links:hover{
   background-color: aquamarine;
   color: black;
   border-radius: 10px;

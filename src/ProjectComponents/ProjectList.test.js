@@ -1,9 +1,7 @@
 import { render, getByText, waitFor } from "@testing-library/react";
 import ProjectList from "./ProjectList";
 import { MemoryRouter } from "react-router-dom";
-import { authUser } from "../TestUtils";
 import UserContext from "../UserComponents/UserContext";
-import axios from "axios";
 // Mock API calls.
 import API from "../API";
 jest.mock("../API")

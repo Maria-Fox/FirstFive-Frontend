@@ -36,7 +36,6 @@ function App() {
 
           API.token = token;
           // retrieve the user matches to populate approporiate projects.
-          // **Note - setting the authUser does not happen quickly enough to use authUser here... therefore using username.
           let userMatches = await API.viewUsernameMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
           setMatchedProjectIds([...matchIds]);
