@@ -20,14 +20,6 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
 
   // ***************************************************************
 
-  let removeProjectMemberOption = (
-    <Button onClick={() => handleRemoveProjMember(project_id, username)}>
-      Remove
-    </Button>
-  );
-
-  // ***************************************************************
-
   function sendMsgRequest() {
     navigate(`/messages/${authUser}/create/${username}`);
   };
@@ -41,7 +33,6 @@ const ProjectMember = ({ username, handleRemoveProjMember }) => {
 
       {username !== authUser ? msgUserOption : null}
 
-      {/* {project_owner === authUser ? removeProjectMemberOption : null} */}
     </Card>
   )
 }

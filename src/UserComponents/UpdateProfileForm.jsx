@@ -44,7 +44,7 @@ const UpdateProfileForm = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      let response = await API.editUser(authUser, formData);
+      await API.editUser(authUser, formData);
       navigate(`/users/${authUser}`);
     } catch (err) {
       setFormErrors(err);

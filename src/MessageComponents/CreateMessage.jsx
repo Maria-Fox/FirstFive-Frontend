@@ -8,7 +8,7 @@ import { Form, Label, Input, Button, Card } from "reactstrap"
 const CreateMessage = () => {
 
   // message from, message_to
-  const { username, to_username } = useParams();
+  const { to_username } = useParams();
 
   // ***************************************************************
 

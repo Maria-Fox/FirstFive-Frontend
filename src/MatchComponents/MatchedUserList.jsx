@@ -3,7 +3,7 @@ import API from "../API";
 import { useParams } from "react-router-dom";
 import AlertNotification from "../Common/AlertNotifications";
 import MatchedUser from "./MatchedUser";
-import { Card, CardLink, CardText, CardTitle } from "reactstrap";
+import { Card} from "reactstrap";
 
 const MatchedUserList = () => {
   // ***************************************************************

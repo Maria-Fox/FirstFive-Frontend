@@ -5,7 +5,7 @@ import UserContext from "../UserComponents/UserContext";
 import ProjectCard from "./ProjectCard";
 import confetti from "canvas-confetti";
 import AlertNotification from "../Common/AlertNotifications";
-import { Card, CardText, CardTitle } from "reactstrap";
+import { Card, CardText } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEdit} from "@fortawesome/free-regular-svg-icons";
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used

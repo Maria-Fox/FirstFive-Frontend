@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import API from '../API';
 import CarouselItem from "./CarouselItem";
 import AlertNotification from '../Common/AlertNotifications';
-import { Card, CardText, CardTitle } from 'reactstrap';
+import { Card, CardTitle } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 

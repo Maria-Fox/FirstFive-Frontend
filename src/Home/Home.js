@@ -1,4 +1,4 @@
-import React, { useContext, flushSync } from "react";
+import React, { useContext } from "react";
 import { Card, Alert, CardText } from "reactstrap";
 import UserContext from "../UserComponents/UserContext";
 import "./Home.css";
