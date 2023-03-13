@@ -2,7 +2,7 @@
 
 ## Deployed on Surge
 
-Visit deployed [https://firstfive.surge.sh/](app).
+Visit deployed [app](https://firstfive.surge.sh/).
 
 
 ## Description
