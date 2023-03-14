@@ -25,7 +25,6 @@ function App() {
   // ***************************************************************
 
   useEffect(function loadUserInfo() {
-    console.debug("App useEffect", "token=", typeof (userNotes));
 
     async function getCurrentUser() {
       if (token) {

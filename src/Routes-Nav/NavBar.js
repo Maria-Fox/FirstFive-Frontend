@@ -16,16 +16,20 @@ const NavBar = ({ logout }) => {
   if (!authUser && !validToken) {
     return (
       <nav style={{ textAlign: "right", width: "100%", fontSize: "large", padding: ".5em" }}>
-        <NavLink to="/" style={{ float: "left" }}
+
+        <NavLink to="/" style={{ float: "left", padding: "0" }}
           className="NavBar-item" >FirstFive</NavLink>
+
         <NavLink to="/auth/login" className="NavBar-item">Login</NavLink>
+
         <NavLink to="/auth/register" className="NavBar-item">Register</NavLink>
+
         <NavLink to="/about" className="NavBar-item">About</NavLink>
       </nav >
     );
   } else {
     return (
-      <nav style={{ textAlign: "right", padding: ".5em" }}  >
+      <nav style={{ textAlign: "right" }}  >
 
         <NavLink to="/home" className="NavBar-item" style={{ float: "left" }}>Home</NavLink>
 

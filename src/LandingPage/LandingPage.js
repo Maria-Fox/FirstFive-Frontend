@@ -5,13 +5,12 @@ import "./LandingPage.css"
 
 const LandingPage = () => {
   return (
-    <Card id="LandingPage-Card" className="mb-3 mt-5 container">
+    <Card id="LandingPage-Card" className="container">
       <div id="backgroundimg-div" className="container" >
 
         <div className="container" id="list">
           <CardTitle id="title">FirstFive</CardTitle>
           <CardText className="">The quickest way to: </CardText>
-
 
           <ul  >
             <li>Review and join group projects.
@@ -25,26 +24,6 @@ const LandingPage = () => {
           </ul>
         </div>
       </div>
-
-      {/* </div>
-
-      <div className="container" id="list"> */}
-      {/* <CardTitle id="title">FirstFive</CardTitle>
-        <CardText className="">The quickest way to: </CardText>
-
-        <ul  >
-          <li>Review and join group projects.
-          </li>
-          <li>
-            Gain collaboration experience.
-          </li>
-          <li>
-            Build resume ready projects.
-          </li>
-        </ul>
-
-
-      </div> */}
     </Card >
   )
 }
