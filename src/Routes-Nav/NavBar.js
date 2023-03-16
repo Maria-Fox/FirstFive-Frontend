@@ -31,9 +31,7 @@ const NavBar = ({ logout }) => {
     return (
       <nav style={{ textAlign: "right" }}  >
 
-        <NavLink to="/home" className="NavBar-item" style={{ float: "left" }}>Home</NavLink>
-
-        <NavLink to="/projects/view" className="NavBar-item">Projects</NavLink>
+        <NavLink to="/projects/view" className="NavBar-item" style={{ float: "left" }}>Projects</NavLink>
 
         <NavLink to={`/matches/view/${authUser}/all`} className="NavBar-item">Matches</NavLink>
 
