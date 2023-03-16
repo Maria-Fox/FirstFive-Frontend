@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import API from "../API";
 import AlertNotification from "../Common/AlertNotifications";
-import { FormGroup, Form, Card, Label, Input, Button } from "reactstrap"
+import { FormGroup, Form, Card, Label, Input, Button } from "reactstrap";
+import "./EditProject.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
+
 
 const EditProject = () => {
 
@@ -19,7 +23,7 @@ const EditProject = () => {
 
 
   let project_values = {
-    "owner_username": authUser,
+    "owner_username": "",
     "name": "",
     "project_desc": "",
     "timeframe": "",
@@ -28,6 +32,7 @@ const EditProject = () => {
 
   const [projData, setProjData] = useState(project_values);
   const [errors, setErrors] = useState(null);
+  const [acknowledgeUserChange, setAcknowledgeUserChange] = useState(false);
 
 
   // ***************************************************************
@@ -39,8 +44,8 @@ const EditProject = () => {
         let response = await API.viewProject(project_id);
         setProjData(
           {
-            "owner_username": authUser,
             "name": response.name,
+            "owner_username": response.owner_username,
             "project_desc": response.project_desc,
             "timeframe": response.timeframe,
             "github_repo": response.github_repo
@@ -71,13 +76,35 @@ const EditProject = () => {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      await API.editProject(project_id, projData);
-      navigate(`/projects/created/by/${authUser}`);
+      console.log("handleSubmit start")
+      if(projData.owner_username !== authUser){
+        if(!acknowledgeUserChange){
+          setErrors(["There was a change to the project owner. To proceed, please acknowledge the change by clicking the box below and re-submit. If you did not mean to make changes please update the field to your current username."])
+          return;
+        }else{
+            await API.editProject(project_id, projData);
+            navigate(`/projects/created/by/${authUser}`);
+        }
+      }
     } catch (e) {
       setErrors(e);
       return;
     };
   };
+
+    // ***************************************************************
+
+    const confirmProjectOwnerChange = (
+      <div >
+      <Button id = {acknowledgeUserChange ? "approved" : "notApproved"}
+        onClick={() => setAcknowledgeUserChange(currentStatus => !currentStatus)} >
+          <FontAwesomeIcon icon={regular('circle-check')} />
+        </Button>
+
+      <p style={{display: "inline-block"}}>I acknowledge once I transfer ownership I will not have access to update any project details including project members.</p>
+    
+      </div>
+    )
 
 
   // ***************************************************************
@@ -85,13 +112,13 @@ const EditProject = () => {
   return (
     <div>
       {!projData ? <p>Loading...</p> :
-        <div>
+        <div className="container">
           <h1 className="text-center text-white pt-2 mt-2">Update: {projData.name}</h1>
 
           <Card >
             {errors ? <AlertNotification messages={errors} /> : null}
 
-            <Form onSubmit={handleSubmit} className="container col-md-12 offset-md-3 col-lg-4 offset-lg-4 m-3">
+            <Form onSubmit={handleSubmit} className="p-4">
 
               <FormGroup>
                 <Label htmlFor="name" >Project Name
@@ -106,6 +133,23 @@ const EditProject = () => {
                   </Input>
                 </Label>
               </FormGroup>
+
+
+              <FormGroup>
+                <Label htmlFor="owner_username" >Project Owner
+                  <Input
+                    type="text"
+                    id="owner_username"
+                    value={projData.owner_username}
+                    name="owner_username"
+                    required
+                    onChange={handleChange}
+                  >
+                  </Input>
+                </Label>
+              </FormGroup>
+
+              {projData.owner_username !== authUser ? confirmProjectOwnerChange : null}
 
               <FormGroup>
                 <Label htmlFor="project_desc" >Project Description
