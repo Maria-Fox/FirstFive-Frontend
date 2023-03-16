@@ -68,7 +68,7 @@ const ProjectList = () => {
   // ***************************************************************
 
   let noProjectsToMatch = (
-    <Card className="container m-3 p-3">
+    <Card className="m-3 p-3">
       <CardText style={{ textAlign: "center" }}>No projects left to match. Come back and check again soon!</CardText>
     </Card>
   );
@@ -81,7 +81,7 @@ const ProjectList = () => {
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      <Card className="container m-3 p-3 bg-dark bg-gradient text-white d-flex justify-content-between">
+      <Card className="container pt-3 mt-2 mb-4 bg-dark bg-gradient text-white d-flex justify-content-between">
         <CardText >
 
           <Link to="/projects/carousel" id= "Project-links" className = "d-flex justify-content-between p-2">View the projects through match-cards <FontAwesomeIcon icon={regular('heart')} /></Link>

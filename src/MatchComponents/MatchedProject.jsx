@@ -4,7 +4,6 @@ import UserContext from "../UserComponents/UserContext";
 import { Card, CardTitle, CardText, Button, CardLink } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
-import "./MatchedProject.css";
 
 
 
@@ -19,7 +18,7 @@ const MatchedProject = ({ name, owner_username, project_desc
   // ***************************************************************
 
   const unMatchOption = (
-    <Button outline color="danger" className="m-3"
+    <Button outline color="danger" className="p-2 m-2"
       onClick={() => handleUnmatch(authUser, project_id)}
     >Unmatch Project</Button>
   )
@@ -28,7 +27,7 @@ const MatchedProject = ({ name, owner_username, project_desc
   // ***************************************************************
 
   return (
-    <Card className="container m-3 p-3">
+    <Card className="m-5 p-4">
 
       <CardTitle  className="fw-bold fs-2">{name}</CardTitle>
       {/* <small>Created by {owner_username}</small> */}
@@ -37,40 +36,38 @@ const MatchedProject = ({ name, owner_username, project_desc
       <small >Created by {owner_username}</small>
         {authUser !== owner_username ?
           <>
-            {/* <p>Want to jump onto the project right away? */}
-              <Link className=""
+              <Link 
               to={`/messages/${authUser}/create/${owner_username}`} style={{ color: "MediumVioletRed", textDecoration: "none" }} > <FontAwesomeIcon icon={regular('message')} /> Msg Creator</Link>
-            {/* </p>  */}
           </>
           :
           null}
       </div>
 
-      <CardText >Project Timeframe: {timeframe}</CardText>
-
-
       {github_repo ?
-          <CardLink className="pt-0 mt-0"
-          href={github_repo} target="_blank" rel="noreferrer" style={{ color: "purple", textDecoration: "none" }}> View Repository</CardLink>
+          <CardLink 
+          href={github_repo} target="_blank" rel="noreferrer" 
+          style={{ color: "blue", textDecoration: "none"}}> 
+          View Repository</CardLink>
           : null}
 
+      <CardText className="fw-bold">Project Timeframe: {timeframe}</CardText>
 
-      <div >
-        <CardText>{project_desc}</CardText>
-      </div>
+      <CardText className="p-5 pt-2">{project_desc}</CardText>
 
-
-{/* id = "Project-Options-Div" */}
-      <div className="p-3 m-2" >
-
-        {/* Links to View Project user matches, and project members */}
+      <div className="container" >
+        {/* Buttons to View Project user matches, and project members */}
 
         <Link to={`/matches/view/${project_id}/users`} 
-        className = "justify-content-between p-2 m-2 Link-Option"
-        > Project User Matches</Link>
+        className = "justify-content-between p-2 m-2"
+        > 
+          <Button> Project User Matches </Button>
+        </Link>
+
 
         <Link to={`/projectmembers/view/all/${project_id}`} 
-        className= "justify-content-between p-2 m-2 Link-Option"> Project Members</Link>
+        className= "justify-content-between p-2 m-2"> 
+          <Button>Project Members</Button>
+        </Link>
 
         {/* Proejct owners cannot remove a match from projects they create*/}
         {authUser !== owner_username ? unMatchOption : null}

@@ -13,13 +13,12 @@ const ProjectCard = ({ id, name, project_desc, timeframe, github_repo, handleMat
   // ***************************************************************
 
   return (
-    <div className='container m-3 p-3'>
+    <div className='m-2 p-2'>
       <Card >
 
         <CardBody >
 
           <CardTitle className="fw-bold fs-2">{name}</CardTitle>
-          <CardSubtitle >Project timeframe: {timeframe}</CardSubtitle>
 
           {github_repo ?  
           <CardLink href= {github_repo} 
@@ -27,7 +26,9 @@ const ProjectCard = ({ id, name, project_desc, timeframe, github_repo, handleMat
           >View Repository</CardLink> 
           : <p>No github repo added.</p>}
 
-          <CardBody className="p-3">
+        <CardSubtitle className="mt-2">Project timeframe: {timeframe}</CardSubtitle>
+
+          <CardBody className="p-5">
             {project_desc}
           </CardBody>
 

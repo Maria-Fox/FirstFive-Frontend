@@ -29,9 +29,9 @@ const NavBar = ({ logout }) => {
     );
   } else {
     return (
-      <nav style={{ textAlign: "right" }}  >
+      <nav id="navBar-nav" style={{ textAlign: "right" }}  >
 
-        <NavLink to="/projects/view" className="NavBar-item" style={{ float: "left" }}>Projects</NavLink>
+        <NavLink to="/projects/view" className="NavBar-item" style={{ float: "left", padding: "3px" }}>Projects</NavLink>
 
         <NavLink to={`/matches/view/${authUser}/all`} className="NavBar-item">Matches</NavLink>
 

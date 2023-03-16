@@ -69,7 +69,7 @@ const UserCreatedProjectList = () => {
   let noProjects = (
     <Card className="p-3 text-center">
       <CardTitle className="h2">No projects, yet!</CardTitle>
-      <Link to="/projects/new" >Create a project</Link>
+      <Link to="/projects/new" className="pt-3" >Create a project</Link>
     </Card>
   );
 

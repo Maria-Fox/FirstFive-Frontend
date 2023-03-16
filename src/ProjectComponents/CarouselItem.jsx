@@ -13,16 +13,16 @@ const CarouselItem = function ({name, project_desc, timeframe, github_repo, hand
     <div id = "card-container" className="container">
 
     {/* BG-1*/}
-    <Card id="CarouselItem-div-BG-1" >
+    {/* <Card id="CarouselItem-div-BG-1" >
 
     <CardTitle className="fs-1">{name}</CardTitle>
-    </Card >
+    </Card > */}
 
     {/* BG-2 */}
-    <Card id="CarouselItem-div-BG-2" >
+    {/* <Card id="CarouselItem-div-BG-2" >
 
     <CardTitle className="fs-1">{name}</CardTitle>
-    </Card >
+    </Card > */}
 
 
       {/* Card user matches with. */}

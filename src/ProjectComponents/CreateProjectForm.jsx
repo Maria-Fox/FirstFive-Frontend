@@ -45,6 +45,7 @@ const CreateProjectForm = () => {
 
       navigate(`/projects/created/by/${authUser}`);
     } catch (e) {
+      // if()
       setErrors(e);
       return;
     };

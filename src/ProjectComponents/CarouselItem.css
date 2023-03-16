@@ -17,14 +17,19 @@
   border-radius: 1vmin; 
   align-self: center;
   justify-self: center;
-  grid-area: overlap;
-  position: absolute;
-  z-index: 3;
-  top: 30%;
+  /* grid-area: overlap;*/
+  position: relative; 
+  /* z-index: 3; */
+  /* top: 30%; */
   max-height: 60vh;
   overflow: scroll;
 }
-/* max height */
+
+@media screen and (max-width: 600px) {
+  #main-card {
+    width: 60%
+  }
+}
 
 .Match-Button-Options{
   margin-top: 10vmin;
@@ -33,7 +38,6 @@
 }
 
 .MatchOption {
-  /* margin-top: 8vmin; */
   display: flex;
   justify-content: space-around;
 }
@@ -51,6 +55,21 @@
   margin-bottom: 10px;
 }
 
+@media screen and (max-width: 600px) {
+  .SkipButton {
+    font-size: 7vmin;
+    border: 0.4vmin solid rgb(200, 200, 200);
+    border-radius: 100%;
+    color: red;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New';
+    background-color: transparent;
+    height: 10vmin;
+    width: 10vmin;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+}
+
 .SkipButton:hover{
   background-color: rgba(211, 78, 78, 0.66);
   color: whitesmoke;
@@ -66,6 +85,21 @@
   width: 7vmin;
   cursor: pointer;
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .MatchButton {
+    font-size: 7vmin;
+    border: 0.4vmin solid rgb(200, 200, 200);
+    border-radius: 100%;
+    color: green;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New';
+    background-color: transparent;
+    height: 10vmin;
+    width: 10vmin;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
 }
 
 .MatchButton:hover{

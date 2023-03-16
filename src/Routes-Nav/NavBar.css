@@ -4,7 +4,10 @@
   text-decoration: none;
 };
 
-#test:hover{
-  color: red;
+@media screen and (max-width: 660px) {
+  #navBar-nav {
+    display: flex;
+    justify-content: space space-evenly;
+    font-size: 12px;
+  }
 }
-

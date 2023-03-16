@@ -11,7 +11,7 @@ exports[`ProjectList component- approp display Valid user, renders no project to
       Projects
     </h1>
     <div
-      class="container m-3 p-3 bg-dark bg-gradient text-white d-flex justify-content-between card"
+      class="container pt-3 mt-2 mb-4 bg-dark bg-gradient text-white d-flex justify-content-between card"
     >
       <p
         class="card-text"
@@ -64,7 +64,7 @@ exports[`ProjectList component- approp display Valid user, renders no project to
       </p>
     </div>
     <div
-      class="container m-3 p-3 card"
+      class="m-3 p-3 card"
     >
       <p
         class="card-text"

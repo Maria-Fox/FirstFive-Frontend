@@ -59,7 +59,7 @@ const MatchedProjectList = () => {
   let noMatchesYet = (
     <Card className="container p-3 text-center">
       <CardTitle>No matches, yet!</CardTitle>
-      <Link to="/projects/view">Visit projects to match</Link>
+      <Link to="/projects/view" className="pt-3">Visit projects to match</Link>
     </Card>
   );
 
