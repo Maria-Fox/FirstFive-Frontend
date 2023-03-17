@@ -81,12 +81,22 @@ const ProjectList = () => {
 
       {errors ? <AlertNotification messages={errors} /> : null}
 
-      <Card className="container pt-3 mt-2 mb-4 bg-dark bg-gradient text-white d-flex justify-content-between">
+      <Card className="container pt-3 pb-3 mt-2 mb-4 bg-dark bg-gradient text-white d-flex justify-content-between">
         <CardText >
 
-          <Link to="/projects/carousel" id= "Project-links" className = "d-flex justify-content-between p-2">View the projects through match-cards <FontAwesomeIcon icon={regular('heart')} /></Link>
+          <Link to="/projects/carousel" 
+          id= "Project-links" className = "d-flex justify-content-between p-2"
+          style = {{color: "whitesmoke", textDecoration: "none"}}
+          >
+            View the projects through match-cards <FontAwesomeIcon icon={regular('heart')} />
+          </Link>
 
-          <Link to="/projects/new" id= "Project-links" className = "d-flex justify-content-between p-2">Create a project <FontAwesomeIcon icon={faEdit} /> </Link>
+          <Link to="/projects/new" id= "Project-links" 
+          className = "d-flex justify-content-between p-2"
+          style = {{color: "whitesmoke", textDecoration: "none"}}>
+            Create a project <FontAwesomeIcon icon={faEdit} /> 
+          </Link>
+
         </CardText>
       </Card>
 

@@ -14,7 +14,7 @@ const Confetti = () => {
           You've worked hard to connect with team members and create valuable products. Celebrate your hard work by clicking the button to release confetti! This activates a reward-system releasing domaine creating that "feel good" sensation. 
         </CardText>
 
-        <CardText>Want to learn more about dopamine and the reards system? Visit <a href="https://www.youtube.com/watch?v=f7E0mTJQ2KM" rel="noreferrer" target="_blank" id = "link">this two minute video</a>.</CardText>
+        <CardText>Want to learn more about dopamine and the reward system? Visit <a href="https://www.youtube.com/watch?v=f7E0mTJQ2KM" rel="noreferrer" target="_blank" id = "link">this two minute video</a>.</CardText>
 
       </CardBody>
 

@@ -1,10 +1,10 @@
 #Project-links{
-  color: aquamarine;
+  color: whitesmoke;
   text-decoration: none;
 }
 
-#Project-links:hover{
+/* #Project-links:hover{
   background-color: aquamarine;
-  color: black;
+  color: #000000e7;
   border-radius: 10px;
-};
+}; */
