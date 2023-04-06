@@ -18,7 +18,7 @@ const MatchedProjectList = () => {
   useEffect(() => {
     async function getMatchData() {
       try {
-        let response = await API.viewUsernameMatches(authUser || username);
+        let response = await API.viewUserMatches(authUser || username);
         setMatchData(response);
 
         // Update user matches state/ array.
@@ -59,7 +59,7 @@ const MatchedProjectList = () => {
   let noMatchesYet = (
     <Card className="container p-3 text-center">
       <CardTitle>No matches, yet!</CardTitle>
-      <Link to="/projects/view" className="pt-3">Visit projects to match</Link>
+      <Link to="/projects/umatched" className="pt-3">Visit projects to match</Link>
     </Card>
   );
 

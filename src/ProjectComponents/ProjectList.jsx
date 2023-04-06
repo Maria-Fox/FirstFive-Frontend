@@ -56,7 +56,6 @@ const ProjectList = () => {
       setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
 
       // Update displayed unmatched projects, removing the latest match.
-
       setProjects(projects.filter(projects => projects.id !== id));
       confetti();
     } catch (e) {
@@ -91,7 +90,7 @@ const ProjectList = () => {
             View the projects through match-cards <FontAwesomeIcon icon={regular('heart')} />
           </Link>
 
-          <Link to="/projects/new" id= "Project-links" 
+          <Link to="/projects/add" id= "Project-links" 
           className = "d-flex justify-content-between p-2"
           style = {{color: "whitesmoke", textDecoration: "none"}}>
             Create a project <FontAwesomeIcon icon={faEdit} /> 

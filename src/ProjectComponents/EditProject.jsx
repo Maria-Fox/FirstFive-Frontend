@@ -15,7 +15,7 @@ const EditProject = () => {
   // ***************************************************************
 
 
-  const { project_id } = useParams();
+  const { id } = useParams();
   const { authUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ const EditProject = () => {
   useEffect(() => {
     async function preloadProjData() {
       try {
-        let response = await API.viewProject(project_id);
+        let response = await API.viewProject(id);
         setProjData(
           {
             "name": response.name,
@@ -58,7 +58,7 @@ const EditProject = () => {
     }
 
     preloadProjData();
-  }, [setProjData, authUser, project_id]);
+  }, [setProjData, authUser, id]);
 
   // ***************************************************************
 
@@ -76,17 +76,19 @@ const EditProject = () => {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      console.log("handleSubmit start")
+      
       if(projData.owner_username !== authUser){
         if(!acknowledgeUserChange){
+          console.log("says user change")
           setErrors(["There was a change to the project owner. To proceed, please acknowledge the change by clicking the box below and re-submit. If you did not mean to make changes please update the field to your current username."])
           return;
-        }else{
-            await API.editProject(project_id, projData);
-            navigate(`/projects/created/by/${authUser}`);
-        }
+        };
       }
+
+      await API.editProject(id, projData);
+      navigate(`/projects/created/by/${authUser}`);
     } catch (e) {
+      console.log("er have an err", e)
       setErrors(e);
       return;
     };

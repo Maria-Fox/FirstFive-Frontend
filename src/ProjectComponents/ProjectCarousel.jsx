@@ -21,12 +21,10 @@ function ProjectCarousel() {
     async function initiateCarousel() {
       try {
         let response = await API.carouselProjects();
+        console.log(response, "from useEffect")
+
         setProjects(response);
       } catch (e) {
-        // Signifies all projects have been matched. user sees noProjectsToDisplay response.
-        if(e[0] === "Class constructor BadRequestError cannot be invoked without 'new'"){
-          return;
-        }
         setErrors(e);
       }
     };
@@ -42,15 +40,12 @@ function ProjectCarousel() {
       await API.addMatch(authUser, id);
       setMatchedProjectIds(matchedProjectIds => [...matchedProjectIds, id]);
       confetti({ spread: 300, particleCount: 250 });
+
       let newProjToDisplay = await API.carouselProjects();
+      console.log(newProjToDisplay, "from handleMatch")
       setProjects(newProjToDisplay);
     } catch (e) {
-      if(e[0] === "Class constructor BadRequestError cannot be invoked without 'new'"){
-        setProjects(null);
-        return;
-      }
       setErrors(e);
-      return;
     };
   };
 

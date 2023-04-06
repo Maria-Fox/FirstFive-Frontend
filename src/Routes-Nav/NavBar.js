@@ -31,13 +31,13 @@ const NavBar = ({ logout }) => {
     return (
       <nav id="navBar-nav" style={{ textAlign: "right" }}  >
 
-        <NavLink to="/projects/view" className="NavBar-item" style={{ float: "left", padding: "3px" }}>Projects</NavLink>
+        <NavLink to="/projects/umatched" className="NavBar-item" style={{ float: "left", padding: "3px" }}>Projects</NavLink>
 
-        <NavLink to={`/matches/view/${authUser}/all`} className="NavBar-item">Matches</NavLink>
+        <NavLink to={`/matches/${authUser}/all`} className="NavBar-item">Matches</NavLink>
 
         <NavLink to={`/messages/${authUser}/all`} className="NavBar-item">Messages</NavLink>
 
-        <NavLink to={`/users/${authUser}`} className="NavBar-item">Profile</NavLink>
+        <NavLink to={`/users/${authUser}/profile`} className="NavBar-item">Profile</NavLink>
 
         <NavLink to={`/projects/created/by/${authUser}`} className="NavBar-item">Posts</NavLink>
 

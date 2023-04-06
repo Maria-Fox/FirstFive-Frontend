@@ -40,7 +40,7 @@ exports[`ProjectList component- approp display Valid user, renders no project to
         </a>
         <a
           class="d-flex justify-content-between p-2"
-          href="/projects/new"
+          href="/projects/add"
           id="Project-links"
         >
           Create a project 

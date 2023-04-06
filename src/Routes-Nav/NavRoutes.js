@@ -19,7 +19,7 @@ import About from "../About/About";
 import UserCreatedProjects from "../ProjectComponents/UserCreatedProjectList";
 import UpdateProjectMembers from "../ProjectMemberComponents/UpdateProjectMembers";
 import ProjectCarousel from "../ProjectComponents/ProjectCarousel";
-import Home from "../Home/Home";
+import Configure from "../Configure/Configure";
 import Confetti from "../Confetti/Confetti";
 import LandingPage from "../LandingPage/LandingPage";
 import NotFound from "../NotFound/NotFound";
@@ -47,30 +47,30 @@ const NavRoutes = ({ registerUser, authenticateUser }) => {
 
       {/* PRIVATE ROUTES */}
       <Route element={<PrivateRoutes />}>
-        <Route path="/home" element={<Home />}></Route>
+        <Route path="/configure" element={<Configure />}></Route>
 
         {/* User routes*/}
-        <Route exact path="/users/:username" element={<UserProfile />}></Route>
+        <Route exact path="/users/:username/profile" element={<UserProfile />}></Route>
         <Route exact path="/users/update/:username" element={<UpdateProfileForm />}></Route>
 
 
         {/* Project Routes */}
-        <Route path="/projects/new" element={<CreateProjectForm />}></Route>
-        <Route path="/projects/view" element={<ProjectList />}></Route>
+        <Route path="/projects/add" element={<CreateProjectForm />}></Route>
+        <Route path="/projects/umatched" element={<ProjectList />}></Route>
         <Route path="/projects/carousel" element={<ProjectCarousel />}></Route>
         <Route path="/projects/:id" element={<ProjectCard />}></Route>
-        <Route path="/edit/project/:project_id" element={<EditProject />}></Route>
+        <Route path="/projects/edit/:id" element={<EditProject />}></Route>
 
         {/* Projects created by user */}
         <Route path="/projects/created/by/:username" element={<UserCreatedProjects />}></Route>
 
 
         {/* Match Routes */}
-        <Route exact path="/matches/view/:username/all" element={<MatchList />}></Route>
-        <Route exact path="/matches/view/:project_id/users" element={<MatchedProjectUsers />}></Route>
+        <Route exact path="/matches/:username/all" element={<MatchList />}></Route>
+        <Route exact path="/matches/:project_id/users" element={<MatchedProjectUsers />}></Route>
 
         {/* Project Member Routes */}
-        <Route exact path="/projectmembers/view/all/:project_id" element={<ProjectMemberList />}></Route>
+        <Route exact path="/projectmembers/:project_id/users" element={<ProjectMemberList />}></Route>
         <Route exact path="/projectmembers/update/:project_id" element={<UpdateProjectMembers />}></Route>
 
 

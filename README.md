@@ -3,7 +3,8 @@
 ## Deployed on Surge
 
 Visit deployed [app](https://firstfive.surge.sh/).
-
+* Note: App is currently being refactored for readability, performance, and visual improvements. Come back soon for updates!
+* Tests are also in the process of being refactored.
 
 ## Description
 
@@ -11,13 +12,11 @@ A resource for early career professionals to connect and gain valuable collabora
 
 FirstFive utilizes the API I creaed and deployed [here](https://github.com/Maria-Fox/FirstFive).
 
-## Tech Stack
-
-
-Backend/ Validations: Node.js partners with PostresSQL. BCRYPT password hashing/authentication. 
-
+## Tech Stack 
 
 Frontend: React, Node/Express, React-Bootstrap with FontAwesome for icons, Axios, and JSON Web Tokens.
+
+Backend/ Validations: Node.js partners with PostresSQL. BCRYPT password hashing/authentication.
 
 
 ## User Flow
@@ -25,10 +24,10 @@ Frontend: React, Node/Express, React-Bootstrap with FontAwesome for icons, Axios
 
 ### General User
 - Login or Signup
-- Upon login, review general diagram of steps for  successfull project collaboration and project execution.
-- View proposed group projects through a list or project-match-card.
+- Upon login, user settings/ matches are populated.
+- User is redirected to view unmatched proposed group projects through a list or project-match-card.
 - Match preferred projects and gain access to existing project members and interested members.
-- Message and discuss project details.
+- Message/discuss project details with other users or review the project repo.
 - Edit user profile details.
 
 ### Project owner- user

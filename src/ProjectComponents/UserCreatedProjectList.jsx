@@ -42,7 +42,7 @@ const UserCreatedProjectList = () => {
   // ***************************************************************
 
   const handleNavToEditProj = (id) => {
-    navigate(`/edit/project/${id}`)
+    navigate(`/projects/edit/${id}`)
   };
 
   // ***************************************************************
@@ -69,7 +69,7 @@ const UserCreatedProjectList = () => {
   let noProjects = (
     <Card className="p-3 text-center">
       <CardTitle className="h2">No projects, yet!</CardTitle>
-      <Link to="/projects/new" className="pt-3" >Create a project</Link>
+      <Link to="/projects/add" className="pt-3" >Create a project</Link>
     </Card>
   );
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./UserProject.css"
 import { Button, Card, CardTitle, CardLink, CardBody, CardSubtitle } from "reactstrap";
 
-const UserCreatedProject = ({ id, owner_username, name, project_desc, timeframe, github_repo, handleNavToEditProj, handleDeleteProj }) => {
+const UserCreatedProject = ({ id, name, project_desc, timeframe, github_repo, handleNavToEditProj, handleDeleteProj }) => {
 
   const navigate = useNavigate();
 

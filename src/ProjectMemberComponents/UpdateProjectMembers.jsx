@@ -47,7 +47,7 @@ const UpdateProjectMembers = () => {
       <h1 className="text-center text-white pt-2 mt-2">Project Members - Update</h1>
 
       <Card className="m-2">
-        <CardBody>Looking to add members? To ensure only matched members are added please visit the <Link to={`/matches/view/${project_id}/users`}>users matched</Link> and click "add" under the prefered user.
+        <CardBody>Looking to add members? To ensure only matched members are added please visit the <Link to={`/matches/${project_id}/users`}>users matched</Link> and click "add" under the prefered user.
         </CardBody>
       </Card>
 

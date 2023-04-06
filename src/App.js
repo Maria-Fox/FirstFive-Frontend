@@ -35,7 +35,7 @@ function App() {
 
           API.token = token;
           // retrieve the user matches to populate approporiate projects.
-          let userMatches = await API.viewUsernameMatches(username);
+          let userMatches = await API.viewUserMatches(username);
           let matchIds = userMatches.map(match => match.project_id);
           setMatchedProjectIds([...matchIds]);
         } catch (err) {

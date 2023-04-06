@@ -57,14 +57,14 @@ const MatchedProject = ({ name, owner_username, project_desc
       <div className="container" >
         {/* Buttons to View Project user matches, and project members */}
 
-        <Link to={`/matches/view/${project_id}/users`} 
+        <Link to={`/matches/${project_id}/users`} 
         className = "justify-content-between p-2 m-2"
         > 
           <Button> Project User Matches </Button>
         </Link>
 
 
-        <Link to={`/projectmembers/view/all/${project_id}`} 
+        <Link to={`/projectmembers/${project_id}/users`} 
         className= "justify-content-between p-2 m-2"> 
           <Button>Project Members</Button>
         </Link>

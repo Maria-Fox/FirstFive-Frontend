@@ -45,7 +45,7 @@ const UpdateProfileForm = () => {
     try {
       e.preventDefault();
       await API.editUser(authUser, formData);
-      navigate(`/users/${authUser}`);
+      navigate(`/users/${authUser}/profile`);
     } catch (err) {
       setFormErrors(err);
       return;

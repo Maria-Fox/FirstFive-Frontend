@@ -11,10 +11,11 @@ const CreateProjectForm = () => {
   let navigate = useNavigate();
   let { authUser, matchedProjectIds, setMatchedProjectIds } = useContext(UserContext);
 
+  // Set as undefined so user cannot submit an empty project proposal.
   let initial_state = {
-    name: null,
-    project_desc: null,
-    timeframe: null,
+    name: "",
+    project_desc: "",
+    timeframe: "",
     github_repo: ""
   };
 
@@ -36,14 +37,18 @@ const CreateProjectForm = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      if(projData.name.length < 1 || projData.project_desc.length < 1){
+        setErrors("Please add a proejct name and description.");
+        return;
+      }
       let response = await API.createProject({ owner_username: authUser, ...projData });
       // user is instantly matched with project. They can find it under the 'posts' Nav item.
 
       let id = response.id;
       // Newly created proj id goes into matches.
       setMatchedProjectIds([...matchedProjectIds, id]);
-
       navigate(`/projects/created/by/${authUser}`);
+
     } catch (e) {
       // if()
       setErrors(e);
@@ -82,7 +87,7 @@ const CreateProjectForm = () => {
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor="project_desc" col>Project Description
+              <Label htmlFor="project_desc" >Project Description
                 <Input
                   type="textarea"
                   id="project_desc"

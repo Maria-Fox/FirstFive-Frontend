@@ -48,7 +48,7 @@ const MessageList = () => {
 
       <p className="text-white m-4 p-4">Messages can only be exhanged between users who have current mutual project matches. To create a message please visit your   
       <Link style = {{textDecoration: "none", color: "aquamarine"}}
-      to={`/matches/view/${authUser}/all`}> matches</Link> and click on the user you want to message.
+      to={`/matches/${authUser}/all`}> matches</Link> and click on the user you want to message.
       </p>
 
       {errors ? <AlertNotification messages={errors} /> : null}

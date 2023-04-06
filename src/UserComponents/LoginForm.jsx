@@ -43,7 +43,7 @@ const LoginForm = ({ authenticateuser }) => {
       let response = await authenticateuser(formData);
       
       if (response.success) {
-        navigate(`/home`);
+        navigate(`/configure`);
       } else {
         setFormErrors(response.errors);
         return;

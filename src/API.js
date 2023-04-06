@@ -62,7 +62,7 @@ class API {
   };
 
   static async viewAuthUserProfile(username) {
-    let res = await this.request(`users/${username}/profile/view`);
+    let res = await this.request(`users/${username}/profile`);
     return res.userData;
   };
 
@@ -80,7 +80,7 @@ class API {
   // ******************************************* PROJECT methods
 
   static async createProject(projectData) {
-    let res = await this.request(`projects/new`, { ...projectData }, 'post');
+    let res = await this.request(`projects/add`, { ...projectData }, 'post');
     return res;
   };
 
@@ -90,7 +90,7 @@ class API {
   };
 
   static async getNonMatchedProjects() {
-    let res = await this.request(`projects/view`);
+    let res = await this.request(`projects/unmatched`);
     return res;
   };
 
@@ -122,22 +122,22 @@ class API {
   // ******************************************* Match methods
 
   static async addMatch(username, project_id) {
-    let res = await this.request(`matches/add/${username}/${project_id}`, {}, 'post');
+    let res = await this.request(`matches/${username}/${project_id}`, {}, 'post');
     return res;
   };
 
-  static async viewUsernameMatches(username) {
-    let res = await this.request(`matches/view/${username}/all`);
+  static async viewUserMatches(username) {
+    let res = await this.request(`matches/${username}/all`);
     return res;
   };
 
   static async viewProjectUserMatches(project_id) {
-    let res = await this.request(`matches/view/${project_id}/users`);
+    let res = await this.request(`matches/${project_id}/users`);
     return res;
   };
 
   static async removeUserMatch(username, project_id) {
-    let res = await this.request(`matches/remove/${username}/${project_id}`, {}, 'post');
+    let res = await this.request(`matches/${username}/${project_id}`, {}, 'delete');
     return res;
   };
 
@@ -150,12 +150,12 @@ class API {
   };
 
   static async viewAllProjMembers(project_id) {
-    let res = await this.request(`projectmembers/view/all/${project_id}`);
+    let res = await this.request(`projectmembers/${project_id}/users`);
     return res;
   };
 
   static async deleteProjectMember(project_id, username) {
-    let res = await this.request(`projectmembers/delete/${project_id}`, { username }, 'delete');
+    let res = await this.request(`projectmembers/${project_id}`, { username }, 'delete');
     return res;
   };
 

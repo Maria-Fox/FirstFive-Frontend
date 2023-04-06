@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardTitle } from "reactstrap";
-import "./Home.css";
+import "./Configure.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'; // <-- import styles to be used
 
@@ -15,7 +15,7 @@ const Home = () => {
   setTimeout(() => {
     setLoadingData(true);
     setIsLoading(false);
-    navigate("/projects/view");
+    navigate("/projects/umatched");
   }, 1000);
 
 

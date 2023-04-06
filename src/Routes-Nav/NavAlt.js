@@ -64,13 +64,13 @@ const NavAlt = ({ logout }) => {
             <Nav navbar>
 
               <NavItem >
-                <NavLink href="/projects/view">
+                <NavLink href="/projects/umatched">
                   Projects
                 </NavLink>
               </NavItem>
 
               <NavItem>
-                <NavLink href={`/matches/view/${authUser}/all`}>
+                <NavLink href={`/matches/${authUser}/all`}>
                   Matches
                 </NavLink>
               </NavItem>
