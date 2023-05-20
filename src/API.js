@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "https://localhost:3001";
 
 class API {
 
@@ -12,13 +12,12 @@ class API {
   static async request(endpoint, data = {}, method = "get") {
     // console.debug("API Call:", endpoint, data, method, this.token, "**********");
 
-    // can remove later.
     if (!this.token) {
       this.token = window.localStorage.getItem("token") || "invalidTemp"
     };
 
     const url = `${BASE_URL}/${endpoint}`;
-    const headers = { Authorization: `Bearer ${API.token}` };
+    const headers = { Authorization: `Bearer ${API.token}`, 'Access-Control-Allow-Origin': 'https://firstfive.onrender.com'};
     const params = (method === "get")
       ? data
       : {};
@@ -27,7 +26,7 @@ class API {
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.message);
+      // console.error("API Error:", err.message);
       // grab just the error message
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];

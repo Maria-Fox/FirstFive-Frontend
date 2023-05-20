@@ -1,6 +1,6 @@
 # FirstFive Frontend
 
-## Deployed on Surge
+## Currently in the process of reploying on Render. Previously on Heroku. 
 
 Visit deployed [app](https://firstfive.surge.sh/).
 * Note: App is currently being refactored for readability, performance, and visual improvements. Come back soon for updates!

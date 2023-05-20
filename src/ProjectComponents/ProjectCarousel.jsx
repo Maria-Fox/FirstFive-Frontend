@@ -21,8 +21,6 @@ function ProjectCarousel() {
     async function initiateCarousel() {
       try {
         let response = await API.carouselProjects();
-        console.log(response, "from useEffect")
-
         setProjects(response);
       } catch (e) {
         setErrors(e);
