@@ -26,7 +26,7 @@ const RegisterForm = ({ registerUser }) => {
   let navigate = useNavigate();
 
   let [formData, setFormData] = useState(initial_state);
-  let [errors, setErrors] = useState();
+  let [errors, setErrors] = useState(null);
 
   // ***************************************************************
 

@@ -52,8 +52,6 @@ class API {
 
   // ******************************************* USER methods
 
-  // Need to see about limmited views to only those who matched..
-
 
   static async viewUser(username) {
     let res = await this.request(`users/${username}`);
