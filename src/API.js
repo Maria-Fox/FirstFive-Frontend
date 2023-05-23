@@ -17,7 +17,7 @@ class API {
     };
 
     const url = `${BASE_URL}/${endpoint}`;
-    const headers = { Authorization: `Bearer ${API.token}`, 'Access-Control-Allow-Origin': 'https://firstfive.onrender.comtps://firstfive.surge.sh'};
+    const headers = { Authorization: `Bearer ${API.token}`};
     const params = (method === "get")
       ? data
       : {};
