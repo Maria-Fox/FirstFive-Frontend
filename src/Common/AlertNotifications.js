@@ -2,7 +2,7 @@ import React from "react";
 
 
 function AlertNotification({ type = "danger", messages = [] }) {
-  // console.debug("Alert", "type=", type, "messages=", messages);
+  console.debug("Alert", "type=", type, "messages=", messages);
 
   return (
     <div className={`alert alert-${type}`} role="alert">
